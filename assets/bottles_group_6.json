@@ -1,0 +1,43 @@
+﻿{"frames": {
+
+"bru_bruis_group0000":
+{
+	"frame": {"x":414,"y":749,"w":390,"h":746},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":390,"h":746},
+	"sourceSize": {"w":390,"h":746}
+},
+"spa_reine_group0000":
+{
+	"frame": {"x":403,"y":0,"w":394,"h":746},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":394,"h":746},
+	"sourceSize": {"w":394,"h":746}
+},
+"sprite_group0000":
+{
+	"frame": {"x":0,"y":0,"w":400,"h":753},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":753},
+	"sourceSize": {"w":400,"h":753}
+},
+"weldenhof_bio_appel_group0000":
+{
+	"frame": {"x":0,"y":756,"w":411,"h":722},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":411,"h":722},
+	"sourceSize": {"w":411,"h":722}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.0.0.326",
+	"image": "bottles_group_6.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1"
+}
+}
