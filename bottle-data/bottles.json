@@ -318,5 +318,13 @@
       "crate_category": 24,
       "total_bottles": 28,
       "volume": "25CL"
+   },
+   {
+      "name": "ACQUA PANNA",
+      "type": "water",
+      "bottle_key": "ACQUA_PANNA",
+      "crate_category": 24,
+      "total_bottles": 12,
+      "volume": "1L"
    }
 ]
