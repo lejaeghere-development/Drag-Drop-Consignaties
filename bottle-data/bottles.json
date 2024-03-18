@@ -1,16 +1,232 @@
 [
    {
-      "name": "BRU PLAT",
+      "name": "ACQUA PANNA",
       "type": "water",
-      "bottle_key": "bru_plat",
+      "bottle_key": "ACQUA_PANNA",
       "crate_category": 6,
       "total_bottles":6,
       "volume": "1L"
    },
    {
+      "name": "ALMDUDLER",
+      "type": "frisdrank",
+      "bottle_key": "ALMDUDLER",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "35CL"
+   },
+   {
+      "name": "APPELAERE",
+      "type": "fruitsap",
+      "bottle_key": "APPELAERE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "APPLETISER",
+      "type": "frisdrank",
+      "bottle_key": "APPLETISER",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "27.5CL"
+   },
+   {
+      "name": "AQUARIUS LEMON",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_LEMON",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "AQUARIUS LEMON",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_LEMON",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "50CL"
+   },
+   {
+      "name": "AQUARIUS ORANGE",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_ORANGE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "AQUARIUS ORANGE",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_ORANGE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "50CL"
+   },
+   {
+      "name": "AQUARIUS RED PEACH",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_RED_PEACH",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "AQUARIUS RED PEACH",
+      "type": "frisdrank",
+      "bottle_key": "AQUARIUS_RED_PEACH",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "50CL"
+   },
+   {
+      "name": "BAVIK SUPER PILS",
+      "type": "bieren",
+      "bottle_key": "BAVIK_SUPER_PILS",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "BOON OUDE GEUZE",
+      "type": "bieren",
+      "bottle_key": "BOON_OUDE_GEUZE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "BOSCOULIS",
+      "type": "bieren",
+      "bottle_key": "BOSCOULIS",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "BOURGOGNE DE FLANDRES",
+      "type": "bieren",
+      "bottle_key": "BOURGOGNE_DE_FLANDRES",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "BRU BRUIS",
+      "type": "water",
+      "bottle_key": "BRU_BRUIS_SMALL",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "BRU BRUIS",
+      "type": "water",
+      "bottle_key": "BRU_BRUIS_SMALL",
+      "crate_category": 24,
+      "total_bottles":18,
+      "volume": "50CL"
+   },
+   {
+      "name": "BRU BRUIS PET",
+      "type": "water",
+      "bottle_key": "BRU_BRUIS_SMALL",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "50CL"
+   },
+   {
+      "name": "BRU PLAT",
+      "type": "water",
+      "bottle_key": "BRU_PLAT_BIG",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "1L"
+   },
+   {
+      "name": "BRU PLAT",
+      "type": "water",
+      "bottle_key": "BRU_PLAT_SMALL",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "BRU PLAT",
+      "type": "water",
+      "bottle_key": "BRU_PLAT_SMALL",
+      "crate_category": 24,
+      "total_bottles":18,
+      "volume": "50CL"
+   },
+   {
+      "name": "BRUGSE ZOT BLOND",
+      "type": "bieren",
+      "bottle_key": "BRUGSE_ZOT_BLOND",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "CANADA DRY",
+      "type": "frisdrank",
+      "bottle_key": "CANADA_DRY",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "CARLSBERG",
+      "type": "bieren",
+      "bottle_key": "CARLSBERG",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "CARLSBERG 0.0%",
+      "type": "bieren",
+      "bottle_key": "CARLSBERG_0",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "CECEMEL",
+      "type": "melk",
+      "bottle_key": "CECEMEL",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
       "name": "CHAUDFONTAINE BRUIS",
       "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_6",
+      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "CHAUDFONTAINE BRUIS",
+      "type": "water",
+      "bottle_key": "CHAUDFONTAINE_BRUIS_BIG",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "1L"
+   },
+   {
+      "name": "CHAUDFONTAINE LICHT BRUISEND",
+      "type": "water",
+      "bottle_key": "CHAUDFONTAINE_LICHT_BRUISEND",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "1L"
+   },
+   {
+      "name": "CHAUDFONTAINE PLAT",
+      "type": "water",
+      "bottle_key": "CHAUDFONTAINE_PLAT",
       "crate_category": 6,
       "total_bottles":6,
       "volume": "1L"
@@ -133,86 +349,6 @@
       "bottle_key": "TONISSTEINER_AGRUM_20",
       "crate_category": 24,
       "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "BAVIK SUPER PILS",
-      "type": "bieren",
-      "bottle_key": "BAVIK_SUPER_PILS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BOON OUDE GEUZE",
-      "type": "bieren",
-      "bottle_key": "BOON_OUDE_GEUZE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BOSCOULIS",
-      "type": "bieren",
-      "bottle_key": "BOSCOULIS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "BOURGOGNE DE FLANDRES",
-      "type": "bieren",
-      "bottle_key": "BOURGOGNE_DE_FLANDRES",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "BRU BRUIS",
-      "type": "water",
-      "bottle_key": "BRU_BRUIS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BRUGSE ZOT BLOND",
-      "type": "bieren",
-      "bottle_key": "BRUGSE_ZOT_BLOND",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "CARLSBERG",
-      "type": "bieren",
-      "bottle_key": "CARLSBERG",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "CARLSBERG 0.0%",
-      "type": "bieren",
-      "bottle_key": "CARLSBERG_0",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CECEMEL",
-      "type": "melk",
-      "bottle_key": "CECEMEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "CHAUDFONTAINE BRUIS",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_24",
-      "crate_category": 24,
-      "total_bottles":24,
       "volume": "25CL"
    },
    {
