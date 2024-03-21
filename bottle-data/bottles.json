@@ -114,6 +114,14 @@
    {
       "name": "BRU BRUIS",
       "type": "water",
+      "bottle_key": "BRU_BRUIS_BIG",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "1L"
+   },
+   {
+      "name": "BRU BRUIS",
+      "type": "water",
       "bottle_key": "BRU_BRUIS_SMALL_25",
       "crate_category": 24,
       "total_bottles":24,
