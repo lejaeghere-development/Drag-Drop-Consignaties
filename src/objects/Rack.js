@@ -242,7 +242,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                 this.setVisible(false);
 
                 
-                this[`rack1_shelf4_right_info_txt`].setText('Empties');
+                this[`rack1_shelf4_right_info_txt`].setText('Leeggoed');
                
     }
     addRack(){
@@ -272,7 +272,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         }
         this[`rack1_shelf4_right_info`].setAlpha(1);
         this[`rack1_shelf4_right_info_txt`].setAlpha(1);
-        this[`rack1_shelf4_right_info_txt`].setText('Empties');
+        this[`rack1_shelf4_right_info_txt`].setText('Leeggoed');
         let totalBottles= Global.totalBottles;
         Global.totalBottles= 24;
         this.isBigCrate= true;
@@ -331,7 +331,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     style: {
                         font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(34 * this.scaleFact) + 'px Montserrat-Regular',
                         fill: '#394c54',
-                        align: "center"
+                        align: "center",
+                        wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
                 })
                 .setAlpha(0)
@@ -351,7 +352,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     style: {
                         font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(34 * this.scaleFact) + 'px Montserrat-Regular',
                         fill: '#394c54',
-                        align: "center"
+                        align: "center",
+                        wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
                 })
                 .setAlpha(0)
@@ -1013,7 +1015,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                     Global.extraCrate= this.crate;
                     this[`rack2_shelf4_right_info`].setAlpha(1);
                     this[`rack2_shelf4_right_info_txt`].setAlpha(1);
-                    this[`rack2_shelf4_right_info_txt`].setText('Empties');
+                    this[`rack2_shelf4_right_info_txt`].setText('Leeggoed');
                 }
         } else {
             this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${Global.totalBottles}_empty0000`:`crate_${Global.totalBottles}_10000`)
@@ -1252,12 +1254,14 @@ export default class Rack extends Phaser.GameObjects.Group {
                 .setScale(this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_left_info_txt`] && this[`rack${i}_shelf${j}_left_info_txt`].scene && this[`rack${i}_shelf${j}_left_info_txt`].setPosition(this[`rack${i}_shelf${j}_left_info`].x, this[`rack${i}_shelf${j}_left_info`].y)
+                .setWordWrapWidth(this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95)
                 .setFontSize(34 * this.scaleFact);
 
                 this[`rack${i}_shelf${j}_right_info`] && this[`rack${i}_shelf${j}_right_info`].scene && this[`rack${i}_shelf${j}_right_info`].setPosition(this[`rack${i}`].x+(650)*this.scaleFact, this[`rack${i}`].y-(680 - 450*(j-1))*this.scaleFact)
                 .setScale(-this.scaleFact*1.2,this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_right_info_txt`] && this[`rack${i}_shelf${j}_right_info_txt`].scene && this[`rack${i}_shelf${j}_right_info_txt`].setPosition(this[`rack${i}_shelf${j}_right_info`].x, this[`rack${i}_shelf${j}_right_info`].y)
+                .setWordWrapWidth(this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95)
                 .setFontSize(34 * this.scaleFact);
 
             }

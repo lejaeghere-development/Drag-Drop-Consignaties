@@ -4,7 +4,7 @@ import {
     Global
 } from "./global";
 
-const BASE_URL='https://www.apexexp.in/Games/Deliveryves/';
+const BASE_URL='./';//'https://www.apexexp.in/Games/Deliveryves/';
 
 
 
@@ -23,7 +23,7 @@ async function createUser(){
 }
 
 async function updateData(){
-
+    console.log(Global.dataToSent,'Global.dataToSent',localStorage.getItem('uuid'));
     const res = await axios.post(`${BASE_URL}data.php`, {
         data: window.btoa(JSON.stringify({
             'uuid': localStorage.getItem('uuid'),
@@ -37,11 +37,16 @@ async function updateData(){
     return JSON.parse(window.atob(res['data']));
 }
 
-async function sendEmail(email){
+async function sendEmail(name, email, mobile, comments, redirectUrl){
     const res = await axios.post(`${BASE_URL}sendEmail.php`, {
         data: window.btoa(JSON.stringify({
             'uid': localStorage.getItem('uuid'),
-            'email': email
+            'name': name,
+            'email': email,
+            'mobile': mobile,
+            'email': email,
+            'comments': comments,
+            'redirectUrl': redirectUrl
         }))
     }, {
         headers: {

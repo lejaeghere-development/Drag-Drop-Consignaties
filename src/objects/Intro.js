@@ -57,7 +57,7 @@ export default class Intro extends Phaser.GameObjects.Group {
     this.introTxt = this.scene.make.text({
             x: this.subBG.x,
             y: this.subBG.y,
-            text: `Please select a crate to proceed`,
+            text: `Selecteer hier het type krat`,
             origin: {
                 x: 0.5,
                 y: 0.5
@@ -98,13 +98,13 @@ export default class Intro extends Phaser.GameObjects.Group {
         this.crate_6_infoTxt = this.scene.make.text({
                 x: this.crate_6_infoBG.x,
                 y: this.crate_6_infoBG.y - 25 * this.scaleFact,
-                text: `6 Bottles`,
+                text: `Grote Flessen`,
                 origin: {
                     x: 0.5,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(50 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(50 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -134,13 +134,13 @@ export default class Intro extends Phaser.GameObjects.Group {
         this.crate_24_infoTxt = this.scene.make.text({
                 x: this.crate_24_infoBG.x,
                 y: this.crate_24_infoBG.y - 25 * this.scaleFact,
-                text: `24 Fixed Bottles`,
+                text: `Kleine Flessen`,
                 origin: {
                     x: 0.5,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(50 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(50 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -169,13 +169,13 @@ export default class Intro extends Phaser.GameObjects.Group {
         this.crate_24custom_infoTxt = this.scene.make.text({
                 x: this.crate_24_custom_infoBG.x,
                 y: this.crate_24_custom_infoBG.y - 25 * this.scaleFact,
-                text: `24 Custom Bottles`,
+                text: `Kleine Flessen Mix`,
                 origin: {
                     x: 0.5,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(50 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(50 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
                     fill: '#ffffff',
                     align: "center"
                 }

@@ -11,7 +11,7 @@ var isIOS = getMobileOperatingSystem() == "iOS";
 import {
     uuid
 } from "uuidv4";
-import { createUser } from "./objects/api";
+import { createUser, sendEmail } from "./objects/api";
 Global.dpr= Math.min(window.devicePixelRatio, 1.75);
 let DEFAULT_WIDTH = 2208*Global.dpr;
 let DEFAULT_HEIGHT = 1242*Global.dpr;
@@ -51,7 +51,11 @@ const config = {
 };
 
 window.addEventListener("load", async () => {
+    
     localStorage.setItem('uuid', uuid())
+    // localStorage.setItem('uuid', '14d474f8-4509-4141-848c-279513cb409b');
+
+    // await sendEmail('saif', 'saifulkanneth@gmail.com', '123', 'hello', window.location.href)
     let response= await createUser();
 
     startGame();

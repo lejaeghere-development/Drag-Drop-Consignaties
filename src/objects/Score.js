@@ -29,7 +29,7 @@ export default class Score extends Phaser.GameObjects.Group {
         this.scoreHead = this.scene.make.text({
                 x: this.extraLeftPer + 1100 * this.scaleFact + this.extraTop/2,
                 y: this.c_h * .5 + 200 * this.scaleFact ,
-                text: `Congratualtions!`,
+                text: `Proficiat!`,
                 origin: {
                     x: 0.5,
                     y: 0.5
@@ -47,7 +47,7 @@ export default class Score extends Phaser.GameObjects.Group {
         this.scoreTxt = this.scene.make.text({
                 x: this.extraLeftPer + 1100 * this.scaleFact + this.extraTop/2,
                 y: this.c_h * .5 + 450 * this.scaleFact ,
-                text: 'Your drinks are on the way. You will receive an email shortly with an overview of your crate racks.', //`${Global.scoreTotal} pts`,
+                text: 'Vanaf nu niet meer sleuren met dranken, je krijgt binnenkort een overzicht van je consignatie via mail', //`${Global.scoreTotal} pts`,
                 origin: {
                     x: 0.5,
                     y: 0.5

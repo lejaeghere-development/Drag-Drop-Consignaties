@@ -125,7 +125,7 @@ export default class Register extends Phaser.GameObjects.Group {
         document.querySelector(".user_form").classList.remove("active")
 
         this.emitter.emit('score:show');
-        await sendEmail(this.email);
+        await sendEmail(this.username, this.email, this.mobile,this.comments, window.location.href);
     }
 
 }
