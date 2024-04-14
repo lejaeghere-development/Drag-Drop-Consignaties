@@ -1,6 +1,6 @@
 <html lang='en'>
     <head>
-         <meta charset='UTF-8'>
+         <meta charset='utf8mb4'>
          <meta name='viewport' content='width=device-width, initial-scale=1'>
          <meta http-equiv='X-UA-Compatible' content='IE=edge'>
          <title>New Email</title>
@@ -14,7 +14,6 @@
          <style type='text/css'>
               :root {
                 color-scheme: light dark;
-                supported-color-schemes: light dark;
 
                 --woocommerce: #7F54B3;
                 --wc-green: #7ad03a;
@@ -34,25 +33,13 @@
 
                 --e-global-typography-primary-font-weight: 900;
               }
-    
-    
-              /* targets color attribute */
-              [data-ogsc] .text-color{
-    
-              }
-    
-           
-                   @font-face {
-                    font-family: 'Montserrat-Bold';
-                    src: url('./fonts/Montserrat-Bold.otf');
-                    /*src: url('C:\Users\Maxim\Documents\WerkEnStage\Lejaeghere Development\Projects\Drag-Drop-Consignaties\src\mail\fonts\GreycliffCF-Medium.woff');*/
-                   }
-                   @font-face {
-                        font-family: 'GreycliffCF-Medium-Regular';
-                        /* src: url('./fonts/Montserrat-Regular.otf'); */
-                        src: url('C:\Users\Maxim\Documents\WerkEnStage\Lejaeghere Development\Projects\Drag-Drop-Consignaties\src\mail\fonts\GreycliffCF-Medium.woff');
 
-                       }
+              @font-face {
+                    font-family: 'GreycliffCF';
+                    src: url('./fonts/greycliff-medium.otf')
+               }
+    
+
     
     
               @media (prefers-color-scheme: dark) {
@@ -67,21 +54,24 @@
     
     
               *{
-    
-                   box-sizing: border-box;
-                   padding: 0;border-spacing: 0px;
-                   margin: 0;
-                   padding: 0;
-                   font-family: 'GreycliffCF-Medium-Regular';
-              }
+  
+               box-sizing: border-box;
+               padding: 0;border-spacing: 0px;
+               margin: 0;
+               padding: 0;
+               font-family: 'GreycliffCF','Lucida Sans'
+               }
+
               .blue_txt{
                    color: #007892;
               }
+
               .txt_regular, .txt_regular *{
-                   font-family:'GreycliffCF-Medium-Regular'
+               font-family: 'GreycliffCF','Lucida Sans';
               }
+
               .txt_bold, .txt_bold *{
-                   font-family:'GreycliffCF-Medium-Regular';
+                   font-family: 'GreycliffCF','Lucida Sans';
                    font-weight: bold;
               }
               .hover:hover{
@@ -222,7 +212,7 @@
                              </td>
                         </tr>
                         <tr>
-                             <td class='txt_regular black_txt sub' style='padding-top:20px;>
+                             <td class='txt_regular black_txt sub' style='padding-top:20px;'>
                                 Het Team van DeliverYves
                              </td>
                         </tr>
