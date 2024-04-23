@@ -39,8 +39,7 @@ $decodeData= json_decode(base64_decode($_POST['data']));
     $mail->AddAddress('hello@deliveryves.be','DeliverYves');
     $mail->Subject = 'Jouw krattenrek';
     $mail->isHTML(TRUE);
-    $mail->Body = "
-<html lang='en'>
+    $mail->Body = "<html lang='en'>
     <head>
          <meta charset='utf8mb4'>
          <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -124,12 +123,10 @@ $decodeData= json_decode(base64_decode($_POST['data']));
                    font-size: 20px;
                    text-align: left;
                    padding: 5px 0;
-                   font-weight: var(--e-global-typography-primary-font-weight);
               }
               .sub{
                    font-size: 17px;
-                   text-align: left;
-                   
+                   text-align: left;   
               }
 
               .background_yellow{
@@ -177,16 +174,17 @@ $decodeData= json_decode(base64_decode($_POST['data']));
     
                    <table style='padding: 20px;  width: 700px;margin-bottom:100px;' width='700' cellpadding='0' cellspacing='0' border='0' class='full-width'>
                        <tr>
-                             <td class='txt_bold blue_txt head'>
+                             <td class='txt_regular black_txt sub' style='padding-bottom: 28px;'>
                              Beste ".$decodeData->name.",
                              </td>
+                             
                        </tr>
                        <tr>
                              <td class='txt_regular black_txt sub' style='padding-bottom: 28px;'>
                                 Bedankt voor het fijne gesprek. We hebben de gekozen dranken geplaatst in je krattenrekken.
                             </td>
                         <tr>
-                                  <td class='txt_bold blue_txt head'>
+                                  <td class='txt_regular black_txt sub'>
                                   Overzicht:
                                   </td>
                         </tr>
@@ -210,43 +208,25 @@ $decodeData= json_decode(base64_decode($_POST['data']));
                              </td>
                         </tr>
                         <tr>
-                                  <td class='txt_bold blue_txt head'>
-                                  Naam:
+                                  <td class='txt_regular black_txt sub' style='padding-bottom: 20px; padding-top: 20px;'>
+                                  Naam: ".$decodeData->name."
                                   </td>
                         </tr>
                         <tr>
-                                  <td class='txt_regular head'>
-                                  ".$decodeData->name."
+                                  <td class='txt_regular black_txt sub' style='padding-bottom: 20px;'>
+                                  Telefoonnummer: ".$decodeData->mobile."
                                   </td>
                         </tr>
                         <tr>
-                                  <td class='txt_bold blue_txt head'>
-                                  Telefoonnummer:
-                                  </td>
-                        </tr>
-                        <tr>
-                                  <td class='txt_regular black_txt head'>
-                                  ".$decodeData->mobile."
-                                  </td>
-                        </tr>
-                        <tr>
-                                  <td class='txt_bold blue_txt head'>
-                                  Opmerkingen:
-                                  </td>
-                        </tr>
-                        <tr>
-                                  <td class='txt_regular black_txt head'>
-                                  ".$decodeData->comments."
+                                  <td class='txt_regular black_txt sub' style='padding-bottom: 20px;'>
+                                  Opmerkingen: ".$decodeData->comments."
                                   </td>
                         </tr>
                         <tr>
                              <td class='txt_regular black_txt sub' style='padding-top:20px;'>
-                                Toch nog iets wijzigen? Laat het ons weten via hello@deliveryves.be.
+                                Toch nog iets wijzigen? Laat het ons weten via hello@deliveryves.be. We zorgen ervoor dat je dranken regelmatig worden aangevuld, liefst van zodra je 80% hebt verbruikt. Zo val je nooit zonder drank. Bedankt voor je vertrouwen in DeliverYves.                             </td>
+
                              </td>
-                        </tr>
-                        <tr>
-                             <td class='txt_regular black_txt sub'>
-                                We zorgen ervoor dat je dranken regelmatig worden aangevuld, liefst van zodra je 80% hebt verbruikt. Zo val je nooit zonder drank. Bedankt voor je vertrouwen in DeliverYves.                             </td>
                         </tr>
                         <tr>
                              <td class='txt_regular black_txt sub' style='padding-top:20px;'>
@@ -268,37 +248,17 @@ $decodeData= json_decode(base64_decode($_POST['data']));
     </td>
     </tr>
     </table>
-     <!--[if gte mso 9]>
-    </v:textbox>
-    </v:rect>
-    <![endif]-->
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     </td>
     </tr>
     </table>
-    
-    
-    
-    
-    
-    
+
     </td>
     </tr>
     </table>
     </body>
-    </html>
-";
+    </html>";
     if(!$mail->send()){
           echo json_encode(array('info' => 'Message could not be sent.'));
      //    echo base64_encode('Mailer Error: ' . $mail->ErrorInfo);
