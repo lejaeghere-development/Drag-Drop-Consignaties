@@ -33,6 +33,25 @@ export default class Rack extends Phaser.GameObjects.Group {
         // this.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
 
         // this.rack1
+
+       /*  Global.rackInfoToSave={
+            'rack1_shelf1_right':[],
+            'rack1_shelf1_left':[],
+            'rack1_shelf2_right':[],
+            'rack1_shelf2_left':[],
+            'rack1_shelf3_right':[],
+            'rack1_shelf3_left':[],
+            'rack1_shelf4_right':[],
+            'rack1_shelf4_left':[],
+            'rack2_shelf1_right':[],
+            'rack2_shelf1_left':[],
+            'rack2_shelf2_right':[],
+            'rack2_shelf2_left':[],
+            'rack2_shelf3_right':[],
+            'rack2_shelf3_left':[],
+            'rack2_shelf4_right':[],
+            'rack2_shelf4_left':[]
+        }; */
         Global.crateData = {
             "rack1_left_1": {
                 'status': 'empty',
@@ -40,7 +59,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -940
-                }
+                },
+                "isBig": false
             },
             "rack1_right_1": {
                 'status': 'empty',
@@ -48,7 +68,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -940
-                }
+                },
+                "isBig": false
             },
             "rack1_left_2": {
                 'status': 'empty',
@@ -56,7 +77,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -485
-                }
+                },
+                "isBig": false
             },
             "rack1_right_2": {
                 'status': 'empty',
@@ -64,7 +86,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -485
-                }
+                },
+                "isBig": false
             },
             "rack1_left_3": {
                 'status': 'empty',
@@ -72,7 +95,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -30
-                }
+                },
+                "isBig": false
             },
             "rack1_right_3": {
                 'status': 'empty',
@@ -80,7 +104,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -30
-                }
+                },
+                "isBig": false
             },
             "rack1_left_4": {
                 'status': 'taken',
@@ -88,7 +113,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: 425
-                }
+                },
+                "isBig": false
             },
             "rack1_right_4": {
                 'status': 'taken',
@@ -96,7 +122,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: 425
-                }
+                },
+                "isBig": false
             },
             "rack2_left_1": {
                 'status': 'empty',
@@ -104,7 +131,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -940
-                }
+                },
+                "isBig": false
             },
             "rack2_right_1": {
                 'status': 'empty',
@@ -112,7 +140,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -940
-                }
+                },
+                "isBig": false
             },
             "rack2_left_2": {
                 'status': 'empty',
@@ -120,7 +149,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -485
-                }
+                },
+                "isBig": false
             },
             "rack2_right_2": {
                 'status': 'empty',
@@ -128,7 +158,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -485
-                }
+                },
+                "isBig": false
             },
             "rack2_left_3": {
                 'status': 'empty',
@@ -136,7 +167,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: -30
-                }
+                },
+                "isBig": false
             },
             "rack2_right_3": {
                 'status': 'empty',
@@ -144,7 +176,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: -30
-                }
+                },
+                "isBig": false
             },
             "rack2_left_4": {
                 'status': 'empty',
@@ -152,7 +185,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: -180,
                     y: 425
-                }
+                },
+                "isBig": false
             },
             "rack2_right_4": {
                 'status': 'empty',
@@ -160,7 +194,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 'position': {
                     x: 180,
                     y: 425
-                }
+                },
+                "isBig": false
             }
         }
         this.rackInfo = {
@@ -178,7 +213,9 @@ export default class Rack extends Phaser.GameObjects.Group {
     }
 
     init() {
-        this.rack1 = this.create(this.c_w - this.extraLeftPer - this.extraTop/2 - (150 + 600 + 150) * this.scaleFact, this.c_h * .5 + 100 * this.scaleFact, 'items', 'rack0000')
+        this.initConfigDone= false;
+
+        this.rack1 = this.create(this.c_w - this.extraLeftPer - this.extraTop/2 - (150 + 600 + 150) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact, 'items', 'rack0000')
             .setDepth(0)
             .setData('canShow', true)
             .setScale(this.scaleFact * 1.4);
@@ -186,13 +223,13 @@ export default class Rack extends Phaser.GameObjects.Group {
 
 
 
-        this.rack2 = this.create(this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 300) * this.scaleFact, this.c_h * .5 + 100 * this.scaleFact, 'items', 'rack0000')
+        this.rack2 = this.create(this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 300) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact, 'items', 'rack0000')
             .setDepth(0)
             .setData('canShow', true)
             .setScale(this.scaleFact * 1.4);
 
     
-        this.deleteBtn = this.create(this.c_w - this.extraLeftPer - (100 + 200 + 150) * this.scaleFact- this.extraTop/2, this.c_h * .5 - 800 * this.scaleFact, 'items', 'closeBtn0000')
+        this.deleteBtn = this.create(this.c_w - this.extraLeftPer - (100 + 200 + 150) * this.scaleFact- this.extraTop/2, this.c_h * .5 - 700 * this.scaleFact, 'items', 'closeBtn0000')
         .setScale(this.scaleFact*1.2)
         .setData('canShow', true)
         .setInteractive({
@@ -242,8 +279,12 @@ export default class Rack extends Phaser.GameObjects.Group {
                 this.setVisible(false);
 
                 
-                this[`rack1_shelf4_right_info_txt`].setText('Leeggoed');
+                this[`rack1_shelf4_left_info_txt`].setText('Leeggoed');
                
+                // this.emitter.emit('crate_selection:hide');
+                // this.showOrHideUI(false)
+
+                
     }
     addRack(){
         if(Global.popupActive) return false;
@@ -251,6 +292,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.deleteBtn.setVisible(true);
         this.addBtn.setVisible(false);
         this.rack1.setVisible(true);
+        window.rack1Visible= true;
         this.rack1.setAlpha(1);
         this.rack1.setData('canShow', true);
         this.deleteBtn.setData('canShow', true);
@@ -270,9 +312,9 @@ export default class Rack extends Phaser.GameObjects.Group {
             this[`rack${1}_shelf${j}_left_info_txt`].setData('canShow', true);
             this[`rack${1}_shelf${j}_right_info_txt`].setData('canShow', true);
         }
-        this[`rack1_shelf4_right_info`].setAlpha(1);
-        this[`rack1_shelf4_right_info_txt`].setAlpha(1);
-        this[`rack1_shelf4_right_info_txt`].setText('Leeggoed');
+        this[`rack1_shelf4_left_info`].setAlpha(1);
+        this[`rack1_shelf4_left_info_txt`].setAlpha(1);
+        this[`rack1_shelf4_left_info_txt`].setText('Leeggoed');
         let totalBottles= Global.totalBottles;
         Global.totalBottles= 24;
         this.isBigCrate= true;
@@ -284,11 +326,14 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.addCrateOnShelf([], this.rack1, '4');
         Global.totalBottles= totalBottles;
         this.updateSkipFrame();
-
+        // Global.defaultCrateExists=false;
 
         if(Global.extraCrate){
 
             [Global.extraCrate, ...Global.extraCrate.getData('crateItems')].forEach((child) => {
+                if(child.getData('infoBtn')){
+                    child.getData('infoBtn').destroy(true);
+                }
                 child.destroy(true, true);
             })
             Global.crateData[`rack2_right_4`]['status']= 'empty';
@@ -329,8 +374,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                         y: 0.5
                     },
                     style: {
-                        font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(34 * this.scaleFact) + 'px Montserrat-Regular',
-                        fill: '#394c54',
+                        font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px greycliff-medium' : '' + String(34 * this.scaleFact) + 'px greycliff-medium',
+                        fill: '#000000',
                         align: "center",
                         wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
@@ -350,8 +395,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                         y: 0.5
                     },
                     style: {
-                        font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(34 * this.scaleFact) + 'px Montserrat-Regular',
-                        fill: '#394c54',
+                        font: (Global.isMobile) ? '' + String(34 * this.scaleFact) + 'px greycliff-medium' : '' + String(34 * this.scaleFact) + 'px greycliff-medium',
+                        fill: '#000000',
                         align: "center",
                         wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
@@ -378,9 +423,10 @@ export default class Rack extends Phaser.GameObjects.Group {
         Global.popupActive= false;
         document.querySelector("#delete_confirm").classList.remove("active");
     }
-    deleteSecondRack(){
+    deleteSecondRack(defaultAction= false){
         this.deleteBtn.setVisible(false);
         this.rack1.setVisible(false);
+        window.rack1Visible= false;
         this.deleteBtn.setData('canShow', false);
         this.rack1.setData('canShow', false);
         this.rack1.setAlpha(0);
@@ -391,9 +437,12 @@ export default class Rack extends Phaser.GameObjects.Group {
                     let isCrateIndex= child.getData('isCrateIndex');
                     let crateTotalBottles= child.getData('crateTotalBottles');
 
-                    isCrateIndex && crateTotalBottles>0 && this.emitter.emit('header:update_crate', -1);
-
+                    // isCrateIndex && crateTotalBottles>0 && this.emitter.emit('header:update_crate', -1);
+                    if(child.getData('infoBtn')){
+                        child.getData('infoBtn').destroy(true);
+                    }
                     child.destroy(true);
+                    // this.crateFront.setData('infoBtn', this.infoIcon);
                 })
                
                 child.destroy(true);
@@ -421,7 +470,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                 }
             }
         })
-        
+        this.emitter.emit('header:update_crate', 0); // As per new logic
         for(let j=1;j<=4;j++){
             this[`rack${1}_shelf${j}_left_info`].setVisible(false);
             this[`rack${1}_shelf${j}_right_info`].setVisible(false);
@@ -444,7 +493,7 @@ export default class Rack extends Phaser.GameObjects.Group {
 
         }
         
-        this.addBtn.setVisible(true);
+        /* !defaultAction && */ this.addBtn.setVisible(true);
        
         this.rackInfo = {
             'rack': 'rack2',
@@ -458,14 +507,86 @@ export default class Rack extends Phaser.GameObjects.Group {
         Global.totalBottles= totalBottles;
         
         this.hideDeleteConfirm();
-        this.updateSkipFrame();
+        !defaultAction && this.updateSkipFrame();
 
     }
     showOrHideUI(status){
+        if(status && !this.initConfigDone){
+            this.initConfigDone= true;
+            if(!window.rack1Visible){
+                this.deleteSecondRack(true);
+            }
+            if(window.userConfig.length>0){
+                window.userConfig= JSON.parse(window.userConfig.replace(/&quot;/g, '"'));
+                setTimeout(() => {
+                    Global.defaultCrateExists=false;
+                 },1000)
+                setTimeout(() => {
+                    for(let rackIndex=1;rackIndex<=2;rackIndex++){
+                        for(let shelfIndex=1;shelfIndex<=4;shelfIndex++){
+                            if(this[`rack${rackIndex}`].visible){
+                                if(window.userConfig[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_left_${shelfIndex}`].length>1){
+                                    if(this.rack1.visible || (!this.rack1.visible && shelfIndex!=4)){
+                                        console.log(this.rack1.visible, shelfIndex,' Precautuion Check')
+                                        this.matchShelfFound=true;
+                                        this.rackInfo = {
+                                            'rack': `rack${rackIndex}`,
+                                            'shelf': shelfIndex,
+                                            'side': 'left'
+                                        }
+                                        this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_left_${shelfIndex}`],...window.userConfig[`rack${rackIndex}_right_${shelfIndex}`]], true, `rack${rackIndex}`, 'left', shelfIndex, true);
+                                        
+                                    }
+                                    
+                                }else{
+                                    if(window.userConfig[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_left_${shelfIndex}`].length>0){
+                                        
+                                        this.matchShelfFound=true;
+                                        //rackKey='', side='', shelfKey=''
+                                        this.rackInfo = {
+                                            'rack': `rack${rackIndex}`,
+                                            'shelf': shelfIndex,
+                                            'side': 'left'
+                                        }
+                                        this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_left_${shelfIndex}`]], true, `rack${rackIndex}`, 'left', shelfIndex, false);
+                                    }
+                                    if(window.userConfig[`rack${rackIndex}_right_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_right_${shelfIndex}`].length>0){
+                                        if(this.rack1.visible || (!this.rack1.visible && shelfIndex!=4)){
+                                            this.matchShelfFound=true;
+                                            //rackKey='', side='', shelfKey=''
+                                            this.rackInfo = {
+                                                'rack': `rack${rackIndex}`,
+                                                'shelf': shelfIndex,
+                                                'side': 'right'
+                                            }
+                                            this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_right_${shelfIndex}`]], true, `rack${rackIndex}`, 'right', shelfIndex, false);
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                    setTimeout(() => {
+                        if(window.isGuest !="true"){
+                            this.emitter.emit('crate:add_crate');
+                        }
+                        
+                        // this.emitter.emit('bottle:add_new', Global.lastBottleKey);
+                    }, 250);
+                    // this.matchShelfFound=false;
+                }, 0);
+            }
+            
+            
+
+            //checkToPlace(isNew, filledBottlesOrObject) {
+        }
         this.setVisible(status);
    
-        this[`rack1_shelf4_right_info`].setAlpha(status?1:0);
-                this[`rack1_shelf4_right_info_txt`].setAlpha(status?1:0);
+        this[`rack1_shelf4_left_info`].setAlpha(status?1:0);
+                this[`rack1_shelf4_left_info_txt`].setAlpha(status?1:0);
         if(!this.rack1.getData('canShow')){
             this.rack1.setVisible(false);
             this.deleteBtn.setVisible(false);
@@ -480,13 +601,16 @@ export default class Rack extends Phaser.GameObjects.Group {
                 this.addBtn.setVisible(false);
             }
         }
-        
+        this.infoIcon && this.infoIcon.setVisible(status)
     }
-    checkToPlace(isNew, filledBottlesOrObject) {
+    checkToPlace(isNew, filledBottlesOrObject, prefill= false, rackKey='', side='', shelfKey='', isBig) {
 
         if (!this.matchShelfFound) {
             if (isNew) {
-                this.emitter.emit('crate:reset_position', filledBottlesOrObject);
+                if(!prefill){
+                    this.emitter.emit('crate:reset_position', filledBottlesOrObject);
+                }
+                
             } else {
                 if(Global.canDispose){
                     let filledBottles= filledBottlesOrObject.getData('filledBottles')
@@ -529,7 +653,10 @@ export default class Rack extends Phaser.GameObjects.Group {
                             this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_right_info`].setAlpha(1)
                             Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(0,2);
                             Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(2,4);
-                            filledBottles && this.showTag(this.rackInfo, filledBottles)
+                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['isBig']= true;
+                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['isBig']= true;
+                            
+                            filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBigCrate)
                         }
                        
                     }else{
@@ -541,9 +668,10 @@ export default class Rack extends Phaser.GameObjects.Group {
                             this.rackInfo=rackInfo;
                             filledBottles= filledBottlesOrObject.getData('filledBottles')
                         }
+                        
                      
-                        Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]&& (Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottles);
-                        filledBottles && this.showTag(this.rackInfo, filledBottles)
+                        Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]&& (Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottles, Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['isBig']= false);
+                        filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBig)
 
                     }
 
@@ -555,19 +683,32 @@ export default class Rack extends Phaser.GameObjects.Group {
             this.updateSkipFrame();
             return false;
         } else {
-            
+            this.emitter.emit('header:update_crate', 0);
             if (isNew) {
                 this.emitter.emit('header:update_crate_status', 'add');
-                this.emitter.emit('header:update_crate', 1);
-                this.addCrateOnShelf(filledBottlesOrObject);
+                
+                this.addCrateOnShelf(filledBottlesOrObject,undefined, undefined,prefill, rackKey, side, shelfKey, isBig);
                 this.emitter.emit('crate:remove');
+
+                if(!prefill){
+                    setTimeout(() => {
+                        this.emitter.emit('crate:add_crate');
+                        this.emitter.emit('bottle:add_new', Global.lastBottleKey);
+                    }, 250);
+                }
+                
+
+
             } else {
                 this.rearrageOnShelf(filledBottlesOrObject);
 
             }
-            if (this.isBigCrate) {
+            let conditionCheck=(prefill?isBig:this.isBigCrate);
+            if (conditionCheck) {
                 Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['status'] = 'taken';
                 Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['status'] = 'taken';
+                Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['isBig'] = true;
+                Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['isBig'] = true;
 
                 let filledBottles= null;
                 if(Array.isArray(filledBottlesOrObject)){
@@ -575,24 +716,27 @@ export default class Rack extends Phaser.GameObjects.Group {
                 }else{
                     filledBottles= filledBottlesOrObject.getData('filledBottles')
                 }
+          
                 if(filledBottles){
+
                     this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_left_info`].setAlpha(1)
                     this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_right_info`].setAlpha(1)
                     Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(0,2);
                     Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(2,4);
-                    this.showTag(this.rackInfo, filledBottles)
+                    this.showTag(this.rackInfo, filledBottles, conditionCheck)
                 }
            
 
             } else {
 
                 Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['status'] = 'taken';
+                Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['isBig'] = false;
                 if(Array.isArray(filledBottlesOrObject)){
                     Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottlesOrObject;
-                    this.showTag(this.rackInfo, filledBottlesOrObject)
+                    this.showTag(this.rackInfo, filledBottlesOrObject, conditionCheck)
                 }else{
                     Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottlesOrObject.getData('filledBottles');
-                    this.showTag(this.rackInfo, filledBottlesOrObject.getData('filledBottles'))
+                    this.showTag(this.rackInfo, filledBottlesOrObject.getData('filledBottles'), conditionCheck)
                 }
                 
             }
@@ -605,6 +749,7 @@ export default class Rack extends Phaser.GameObjects.Group {
     updateSkipFrame(){
         let isEmptyRemains= false;
        
+        console.log('updateSkipFrame')
         Object.keys(Global.crateData).forEach((crateDataKey) => {
             let rack= this[crateDataKey.split("_")[0]];
 
@@ -613,18 +758,21 @@ export default class Rack extends Phaser.GameObjects.Group {
 
             }
         });
-
+        console.log(isEmptyRemains,'isEmptyRemains',Global.defaultCrateExists)
         if(isEmptyRemains){
             this.emitter.emit('header:update_skip_frame', 'skip');
             this.emitter.emit('header:hide_ready_info');
         }else{
-            this.emitter.emit('header:update_skip_frame', 'ready');
-            this.emitter.emit('header:show_ready_info');
+            if(!Global.defaultCrateExists){
+                this.emitter.emit('header:update_skip_frame', 'ready');
+                this.emitter.emit('header:show_ready_info');
+            }
+            
         }
-       
+        
     }
     hideTag(rackInfo, items){
-
+        if(items == null) return false;
         if(items.length>1){
             this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info`].setAlpha(0);
             this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info_txt`].setAlpha(0);
@@ -638,7 +786,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         
         }
     }
-    showTag(rackInfo, items){
+    showTag(rackInfo, items, isBigCrate){
 
         let card1Str='';
         let card2Str='';
@@ -647,7 +795,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         const allEqual = (obj) => {
             let isEqual= true;
             let last= obj[0];
-            for(let i=1;i<obj.length-1;i++){
+            for(let i=1;i<obj.length;i++){
                 if(last != obj[i]){
                     isEqual= false;
                 }
@@ -655,8 +803,8 @@ export default class Rack extends Phaser.GameObjects.Group {
             return isEqual;
         }
         let _totalBottles= 0;
+        let _volume= '';
         let isAllEqual= allEqual(items);
-
         items.forEach((item, index) => {
             if(index>0 && index<2){
                 card1Str += '\n'
@@ -666,6 +814,7 @@ export default class Rack extends Phaser.GameObjects.Group {
             }
             let key= jsonData.filter(data => data['bottle_key'] == item.split('_group')[0])[0]['name'];
             _totalBottles= jsonData.filter(data => data['bottle_key'] == item.split('_group')[0])[0]['total_bottles'];
+            _volume= jsonData.filter(data => data['bottle_key'] == item.split('_group')[0])[0]['volume'];
 
 
             // key= key['name'];
@@ -675,9 +824,9 @@ export default class Rack extends Phaser.GameObjects.Group {
             } */
             totalBottles+= 6;
             if(index<2){
-                card1Str += `${key}  (${!isAllEqual?'6':_totalBottles})`
+                card1Str += `${key}  ${_volume} (${!isAllEqual?'6':_totalBottles})`
             }else{
-                card2Str += `${key}  (${!isAllEqual?'6':_totalBottles})`
+                card2Str += `${key}  ${_volume} (${!isAllEqual?'6':_totalBottles})`
             }
             
             
@@ -685,7 +834,7 @@ export default class Rack extends Phaser.GameObjects.Group {
 
         });
         
-        if(this.isBigCrate){
+        if(isBigCrate){
             if(allEqual(items)){
 
                 card1Str= `${card1Str.split('(')[0]}(${_totalBottles})`;
@@ -696,12 +845,39 @@ export default class Rack extends Phaser.GameObjects.Group {
                 this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setAlpha(0);
 
             }else{
+                let cardItems= [...card1Str.split('\n'),...card2Str.split('\n')];
+                let cardObj={}
+                cardItems.forEach(key => {
+                    let key1= key.split(" (")[0];
+                    let key2= parseInt(key.split(" (")[1].split(")")[0]);
+                    if(cardObj[key1]){
+                        cardObj[key1] += key2
+                    }else{
+                        cardObj[key1]= key2;
+                    }
+                });
+                card1Str='';
+                card2Str='';
+                Object.keys(cardObj).forEach((key, index) => {
+                    if(index<2){
+                        card1Str += `${index%2!=0?'\n':''}${key} (${cardObj[key]})`;
+                    }
+                    if(index>=2){
+                        card2Str += `${index%2!=0?'\n':''}${key} (${cardObj[key]})`;
+                    }
+                })
                 this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info`].setAlpha(1);
                 this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info_txt`].setAlpha(1);
                 this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info_txt`].setText(card1Str)
-                this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info`].setAlpha(1);
-                this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setAlpha(1);
-                this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setText(card2Str)
+                if(card2Str.length>0){
+                    this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info`].setAlpha(1);
+                    this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setAlpha(1);
+                    this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setText(card2Str)
+                }else{
+                    this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info`].setAlpha(0);
+                    this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_right_info_txt`].setAlpha(0);
+                }
+             
             }
           
 
@@ -980,9 +1156,14 @@ export default class Rack extends Phaser.GameObjects.Group {
 
         }
     }
-    addCrateOnShelf(filledBottles, optionalRack, optionalShelf) {
+    addCrateOnShelf(filledBottles, optionalRack, optionalShelf, prefill, rackKey, side, shelfKey, isBig) {
 
+        let conditionCheck=this.isBigCrate;
+        if(prefill){
+            conditionCheck= isBig;
+            this.highlight.setPosition(this[rackKey].x + (conditionCheck ? 0 : Global.crateData[`${rackKey}_${side}_${shelfKey}`]['position'].x) * this.scaleFact, this[rackKey].y + Global.crateData[`${rackKey}_${side}_${shelfKey}`]['position'].y * this.scaleFact)
 
+        }
         this.highlight.setAlpha(0);
 
         this.crateChannel1= null;
@@ -993,8 +1174,8 @@ export default class Rack extends Phaser.GameObjects.Group {
         
         
         if(filledBottles.length== 0){
-            this.highlight.setPosition(optionalRack.x + (this.isBigCrate ? 0 : Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${optionalShelf}`]['position'].x) * this.scaleFact, optionalRack.y + Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${optionalShelf}`]['position'].y * this.scaleFact)
-            if(this.isBigCrate){
+            this.highlight.setPosition(optionalRack.x + (conditionCheck ? 0 : Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${optionalShelf}`]['position'].x) * this.scaleFact, optionalRack.y + Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${optionalShelf}`]['position'].y * this.scaleFact)
+            if(conditionCheck){
                 for(let i=1;i<=3;i++){
                     Global.crateData[`rack1_left_${i}`]['status']= 'empty';
                     Global.crateData[`rack1_right_${i}`]['status']= 'empty';
@@ -1002,12 +1183,13 @@ export default class Rack extends Phaser.GameObjects.Group {
             }else{
                 Global.crateData[`rack2_right_4`]['status']= 'taken';
             }
-           
+       
         }
-        if (Global.totalBottles == 6) {
-            this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${Global.totalBottles}_empty0000`:`crate_${Global.totalBottles}_back0000`)
+        let bottleCnt=(prefill?(isBig?24:6):Global.totalBottles)
+        if (bottleCnt == 6) {
+            this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${bottleCnt}_empty0000`:`crate_${bottleCnt}_back0000`)
                 .setDepth(1 + shelfFactor);
-            this.crateFront = this.create(this.crate.x, this.crate.y, 'items', `crate_${Global.totalBottles}_front0000`)
+            this.crateFront = this.create(this.crate.x, this.crate.y, 'items', `crate_${bottleCnt}_front0000`)
                 .setVisible(filledBottles.length>0)
                 .setAlpha(filledBottles.length>0)
                 .setDepth(3 + shelfFactor);
@@ -1018,17 +1200,17 @@ export default class Rack extends Phaser.GameObjects.Group {
                     this[`rack2_shelf4_right_info_txt`].setText('Leeggoed');
                 }
         } else {
-            this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${Global.totalBottles}_empty0000`:`crate_${Global.totalBottles}_10000`)
+            this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${bottleCnt}_empty0000`:`crate_${bottleCnt}_10000`)
                 .setDepth(1 + shelfFactor);
 
-            this.crateChannel1 = this.create(this.crate.x, this.crate.y, 'items', `crate_${Global.totalBottles}_30000`)
+            this.crateChannel1 = this.create(this.crate.x, this.crate.y, 'items', `crate_${bottleCnt}_30000`)
                 .setDepth(3 + shelfFactor)
                 .setVisible(filledBottles.length>0)
                  .setAlpha(filledBottles.length>0)
                 .setData('filledIndex', 0)
                 .setScale(this.scaleFact * 0.7);
 
-            this.crateChannel2 = this.create(this.crate.x, this.crate.y, 'items', `crate_${Global.totalBottles}_70000`)
+            this.crateChannel2 = this.create(this.crate.x, this.crate.y, 'items', `crate_${bottleCnt}_70000`)
                 .setDepth(7 + shelfFactor)
                 .setVisible(filledBottles.length>0)
                  .setAlpha(filledBottles.length>0)
@@ -1036,7 +1218,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                 .setScale(this.scaleFact * 0.7);
 
 
-            this.crateFront = this.create(this.crate.x, this.crate.y, 'items', `crate_${Global.totalBottles}_80000`)
+            this.crateFront = this.create(this.crate.x, this.crate.y, 'items', `crate_${bottleCnt}_80000`)
                 .setVisible(filledBottles.length>0)
                  .setAlpha(filledBottles.length>0)
                 .setDepth(8 + shelfFactor);
@@ -1047,7 +1229,34 @@ export default class Rack extends Phaser.GameObjects.Group {
 
         }
      
+        if(filledBottles.length== 0){
+            setTimeout(function(crateFront, crate){
+                this.infoIcon= this.create(crateFront.x+crateFront.width*crateFront.scaleX*.4, crateFront.y-250*this.scaleFact, 'items','infoBtn0000')
+            .setScale(this.scaleFact)
+            .setAlpha(0)
+            .setVisible(crate.visible)
+            .setInteractive({
+                cursor: 'pointer'
+            })
+            .on('pointerdown', () => {
+                this.emitter.emit('crate_info2:show');
+            })
+            .setDepth(8 + shelfFactor);
 
+            this.infoIcon.setData('refItem', crateFront)
+            this.scene.tweens.add({
+                targets: this.infoIcon,
+                ease: 'Linear.Out',
+                alpha:1,
+                duration: 350,
+                repeat: 0, // -1: infinity
+                yoyo: false,
+
+            });
+
+            crateFront.setData('infoBtn', this.infoIcon);
+            }.bind(this, this.crateFront, this.crate), 500)
+        }
         this.crateFront
             .setData('filledIndex', 0)
             .setData('insideRack', true)
@@ -1063,9 +1272,9 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.crate.setData('rackInfo', this.rackInfo);
         this.crate.setData('isCrateIndex', true);
         this.crate.setData('crateTotalBottles', filledBottles.length);
-        this.crate.setData('isBigCrate', this.isBigCrate);
+        this.crate.setData('isBigCrate', conditionCheck);
         this.crateFront.setData('rackInfo', this.rackInfo);
-        this.crateFront.setData('isBigCrate', this.isBigCrate);
+        this.crateFront.setData('isBigCrate', conditionCheck);
 
         if(filledBottles.length>0){
             this.crateFront
@@ -1233,13 +1442,16 @@ export default class Rack extends Phaser.GameObjects.Group {
     onResize(){
         setScaleFactor.call(this, false);
 
-        this.rack1 && this.rack1.scene && this.rack1.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (150 + 600 + 150) * this.scaleFact, this.c_h * .5 + 100 * this.scaleFact)
+        this.rack1 && this.rack1.scene && this.rack1.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (150 + 600 + 150) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact)
         .setScale(this.scaleFact * 1.4);
 
-        this.rack2 && this.rack2.scene && this.rack2.setPosition(this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 300) * this.scaleFact, this.c_h * .5 + 100 * this.scaleFact)
+
+        this.infoIcon && this.infoIcon.scene && this.infoIcon.setScale(this.scaleFact).setPosition(this.infoIcon.getData('refItem').x+this.infoIcon.getData('refItem').width*this.infoIcon.getData('refItem').scaleX*.4, this.infoIcon.getData('refItem').y-250*this.scaleFact)
+
+        this.rack2 && this.rack2.scene && this.rack2.setPosition(this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 300) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact)
         .setScale(this.scaleFact * 1.4);
 
-        this.deleteBtn && this.deleteBtn.scene && this.deleteBtn.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 200 + 150) * this.scaleFact, this.c_h * .5 - 800 * this.scaleFact)
+        this.deleteBtn && this.deleteBtn.scene && this.deleteBtn.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 200 + 150) * this.scaleFact, this.c_h * .5 - 700 * this.scaleFact)
         .setScale(this.scaleFact*1.2);
 
         this.addBtn && this.addBtn.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 650 + 150) * this.scaleFact, this.c_h * .5 - 0 * this.scaleFact)

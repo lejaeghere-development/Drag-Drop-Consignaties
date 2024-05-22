@@ -27,6 +27,7 @@ export default class Bin extends Phaser.GameObjects.Group {
 
     init() {
         this.bin= this.create(this.c_w-this.extraLeftPer-200*this.scaleFact, this.c_h-this.extraTop-300*this.scaleFact, 'items', 'bin0000')
+        .setDepth(0)
         .setScale(this.scaleFact*.4)
 
         this.setVisible(false);

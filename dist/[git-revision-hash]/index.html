@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8" content="width=device-width,minimum-scale=1,maximum-scale=1" name="viewport"><link rel="icon" type="image/x-icon" href="favicon.png"><style>@font-face {
+            font-family: 'greycliff-medium';
+            src: url('./fonts/greycliff-medium.ttf');
+        }
+        @font-face {
+            font-family: 'greycliff-bold';
+            src: url('./fonts/greycliff-bold.ttf');
+        }
+        
+        
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .dummy {
+            color: #ffffff;
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        .dummy p {
+            opacity: 0;
+        }
+        
+        .dummy p:nth-child(1) {
+            font-family: 'greycliff-bold';
+        }
+        .dummy p:nth-child(2) {
+            font-family: 'greycliff-medium';
+        }
+        
+        #rotate.active{
+            display: block;
+        }
+        #rotate{
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color: #ffffff;
+            z-index:1000;
+        }
+        #rotate img{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            width:10%;
+            max-width: 200px;
+        }
+        @media screen and (max-width: 768px){
+         
+            #rotate img{
+                width:30% !important;
+            }
+        }
+        #search-container, #homeScr, #delete_confirm,#skip_confirm, .user_form, #ready_info, #crate_info, .search_bottles{
+            display: none;
+        }</style><script>window.isLoggedIn= true;
+        window.username='saif';
+        window.email='saifulkanneth@gmail.com';
+        window.mobile='8105106261';
+        window.rack1Visible= true;
+        window.comments="comments";
+        window.address='address';
+        window.vat='vat';
+        window.userConfig= '{ "rack1_left_1": null, "rack1_right_1": null, "rack1_left_2": null, "rack1_right_2": null, "rack1_left_3": null, "rack1_right_3": null, "rack1_left_4": null, "rack1_right_4": null, "rack2_left_1": [ "AQUARIUS_ORANGE_33_group", "AQUARIUS_ORANGE_33_group" ], "rack2_right_1": [ "AQUARIUS_ORANGE_33_group", "AQUARIUS_ORANGE_33_group" ], "rack2_left_2": [ "AQUARIUS_ORANGE_50_group", "AQUARIUS_ORANGE_50_group" ], "rack2_right_2": [ "AQUARIUS_ORANGE_50_group", "AQUARIUS_ORANGE_50_group" ], "rack2_left_3": [ "BOON_OUDE_GEUZE_group", "BOON_OUDE_GEUZE_group" ], "rack2_right_3": [ "BOON_OUDE_GEUZE_group", "BOON_OUDE_GEUZE_group" ], "rack2_left_4": [ "CRISTALINE_PLAT_group" ], "rack2_right_4": [ "EVIAN_group" ] }'</script></head><body><div class="dummy"><p>Hello</p><p>Hello</p><p>Hello</p><p>Hello</p><p>HELLo</p></div><div class="form_bg"></div><div id="game-sec"></div><div class="search_bottles"><div class="bottle" id="bottle_water"><img src="./assets/water.png" alt="" srcset=""></div><div class="bottle" id="bottle_frisdrank"><img src="./assets/frisdrank.png" alt="" srcset=""></div><div class="bottle" id="bottle_fruitsap"><img src="./assets/fruitsap.png" alt="" srcset=""></div><div class="bottle" id="bottle_bieren"><img src="./assets/bier.png" alt="" srcset=""></div><div class="bottle" id="bottle_zuivel"><img src="./assets/zuivel.png" alt="" srcset=""></div></div><div id="search-container"><div class="box-container"><input id="search-box" placeholder="Zoek je favoriete drank..."><div class="search-icon"><img src="./assets/search-icon.png" alt=""></div></div><div id="suggestions-container"></div></div><div id="delete_confirm" class=""><div class="container"><div class="head">Ben je zeker dat je het 2de rek wil weghalen??</div><div class="info">Een 2de rek resulteerd in minder delivery kosten.</div><div class="buttons"><div class="btn" id="confirm">Bevestig</div><div class="btn yellow" id="cancel">Annuleer</div></div></div></div><div id="skip_confirm" class=""><div class="container"><div class="head">Pas op! Je hebt je rekken niet volledig opgevuld.</div><div class="info">Ben je zeker dat je wil doorgaan?</div><div class="buttons"><div class="btn" id="confirm">Bevestig</div><div class="btn yellow" id="cancel">Annuleer</div></div></div></div><div id="ready_info" class=""><div class="container"><div class="head">Proficiat, je krattenrekken zijn nu netjes opgevuld.</div><div class="info">Zit je drankenvooraard nu goed? Bevestigen om verder te gaan.</div><div class="buttons"><div class="btn" id="confirm">Bevestig</div><div class="btn yellow" id="cancel">Annuleer</div></div></div></div><div class="user_form"><div class="container"><div class="head">Je hebt nu je ideale consignatie samengesteld!</div><div class="field"><input name="name" id="name" placeholder="Naam"></div><div class="field"><input type="email" name="email" id="email" placeholder="Email"></div><div class="field"><input type="tel" name="mobile" id="mobile" placeholder="GSM"></div><div class="field"><input name="address" id="address" placeholder="Adress"></div><div class="field"><input name="vat" id="vat" placeholder="VAT number"></div><div class="field"><textarea type="text" name="comments" id="comments" placeholder="extra Info" rows="1"></textarea></div><div class="buttons"><div class="back">Wijzig</div><div class="user_submit">Verstuur</div></div></div></div><div id="crate_info" class=""><div class="container"><div class="head">What is Lorem Ipsum?</div><div class="info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</div><div class="buttons"><div class="btn yellow" id="cancel">Annuleer</div></div></div></div><div class="gameError"></div><div id="rotate"><img src="./assets/rotate.png" alt="" srcset=""></div><script src="./index.js"></script></body></html>

@@ -1,3 +1,4 @@
+import { logout } from "./api";
 import EventEmitter from "./event-emitter";
 import {
     Global
@@ -38,30 +39,47 @@ export default class Header extends Phaser.GameObjects.Group {
     }
 
     init() {
+
         this.BG = this.scene.add.graphics();
-        this.BG.fillStyle(0xffffff, 1);
+        this.BG.fillStyle(0xffffff, 0);
         this.BG.fillRect(this.extraLeftPer, this.extraTop, (this.c_w - this.extraLeftPer) * 0.2, 300 * this.scaleFact);
-        this.BG.fillStyle(0x55A383, 1)
+        this.BG.fillStyle(0xffffff, 0)
         this.BG.fillRect((this.c_w - this.extraLeftPer) * 0.2, this.extraTop, (this.c_w - this.extraLeftPer) * 0.8, 300 * this.scaleFact);
         this.add(this.BG);
+
+
+     
+
 
         this.logo = this.create(this.extraLeftPer + (this.c_w - this.extraLeftPer) * 0.1, 150 * this.scaleFact+this.extraTop, 'items', 'logo0000')
             // .setVisible(false)
             .setScale(this.scaleFact * 1.2);
 
+            var postFxPlugin = this.scene.plugins.get('rexdropshadowpipelineplugin');
+            var postFxPipeline = postFxPlugin
+                .add(this.BG, {
+                    distance: 15*this.scaleFact,
+                    angle: -90,
+                    blur:5,
+                    shadowColor: 0xc4c4c4,//0xc4c4c4,
+                    alpha: 0.75
+                });
+
+                
+
         this.crateCreatedBG = this.create(this.extraLeftPer + (this.c_w - this.extraLeftPer) * 0.2 + 200 * this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'crate_filled_bg0000')
             .setScale(this.scaleFact * 1.5);
 
         this.crateCreatedTxt = this.scene.make.text({
-                x: this.crateCreatedBG.x - 60 * this.scaleFact,
-                y: this.crateCreatedBG.y + 5 * this.scaleFact,
-                text: `0`,
+                x: this.crateCreatedBG.x - 40 * this.scaleFact,
+                y: this.crateCreatedBG.y + (5) * this.scaleFact,
+                text: `0/7`,
                 origin: {
                     x: 0.5,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(70 * this.scaleFact) + 'px Montserrat-Bold' : '' + String(70 * this.scaleFact) + 'px Montserrat-Bold',
+                    font: (Global.isMobile) ? '' + String(65 * this.scaleFact) + 'px greycliff-bold' : '' + String(65 * this.scaleFact) + 'px greycliff-bold',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -73,13 +91,13 @@ export default class Header extends Phaser.GameObjects.Group {
         this.crateCreatedHead = this.scene.make.text({
                 x: this.crateCreatedBG.x + 150 * this.scaleFact,
                 y: this.crateCreatedBG.y + 5 * this.scaleFact,
-                text: `Crates Stacked`,
+                text: `gevulde schappen`,
                 origin: {
                     x: 0,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(70 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(70 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(70 * this.scaleFact) + 'px greycliff-medium' : '' + String(70 * this.scaleFact) + 'px greycliff-medium',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -88,8 +106,17 @@ export default class Header extends Phaser.GameObjects.Group {
 
         this.add(this.crateCreatedHead);
 
-
-        this.addOrChangeCrate = this.create(this.c_w-this.extraLeftPer - 300*this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'changeCrate0000')
+        if(window.isLoggedIn){
+            this.logoutBtn = this.create(this.c_w-this.extraLeftPer - 300*this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'logout0000')
+            .setScale(this.scaleFact * 0.75)
+            .setInteractive({
+                cursor: 'pointer'
+            })
+            .on('pointerdown', this.doLogout.bind(this))
+            .on('pointerover', this.onHover.bind(this, 'logoutBtn', 'logout_10000'))
+            .on('pointerout', this.onHover.bind(this, 'logoutBtn', 'logout0000'))
+        }
+        this.addOrChangeCrate = this.create(this.c_w-this.extraLeftPer - (window.isLoggedIn?800:300)*this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'changeCrate0000')
         .setScale(this.scaleFact * 0.75)
         .setInteractive({
             cursor: 'pointer'
@@ -99,7 +126,7 @@ export default class Header extends Phaser.GameObjects.Group {
         .on('pointerover', this.onHover.bind(this, 'addOrChangeCrate', 'changeCrate_10000'))
         .on('pointerout', this.onHover.bind(this, 'addOrChangeCrate', 'changeCrate0000'))
 
-        this.skipBtn = this.create(this.c_w-this.extraLeftPer - 800*this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'skip0000')
+        this.skipBtn = this.create(this.c_w-this.extraLeftPer - (window.isLoggedIn?1300:800)*this.scaleFact, 150 * this.scaleFact+this.extraTop, 'items', 'skip0000')
         .setScale(this.scaleFact * 0.75)
         .setInteractive({
             cursor: 'pointer'
@@ -143,7 +170,60 @@ export default class Header extends Phaser.GameObjects.Group {
     } */
     updateCrate(toAdd){
         Global.cratesCreated += toAdd;
-        this.crateCreatedTxt.setText(Global.cratesCreated)
+
+        setTimeout(() => {
+            let filledData={};
+            let totalShelfFilled=0;
+       
+        /* Object.keys(Global.crateData).forEach((key) => {
+            if(
+                Global.crateData[key]['status'] === 'taken' && 
+                Global.crateData[key]['filledBottles'] != null 
+            ){
+                let rackInfo=key.split("_");
+                console.log(filledData[`${rackInfo[0]}_${rackInfo[2]}`], '<<>>',`${rackInfo[0]}_${rackInfo[2]}`)
+                if(!filledData[`${rackInfo[0]}_${rackInfo[2]}`]){
+                    filledData[`${rackInfo[0]}_${rackInfo[2]}`]=1;
+                    totalShelfFilled++;
+                }
+            }
+        }); */
+        console.log("CHECK DATA")
+        for(let rackCnt=1;rackCnt<=2;rackCnt++){
+            for(let shelfCnt=1;shelfCnt<=4;shelfCnt++){
+                if((rackCnt!=1 ||(rackCnt==1 && shelfCnt!= 4)) && ((rackCnt ==1 && window.rack1Visible) || rackCnt!=1)){
+                    if(
+                        Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['status'] == 'taken' && 
+                        (
+                            Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['status'] == 'taken' ||
+                            (rackCnt == 2 && shelfCnt == 4)
+                        )
+                    ){
+                        console.log(Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'],'ABC');
+                        console.log(Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['filledBottles'],'DEF');
+
+                        if(
+                            (rackCnt == 2 && shelfCnt ==4 && Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['filledBottles'] && Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['filledBottles'].length>1 && Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'] && Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'].length>1 && window.rack1Visible) ||
+                            (rackCnt != 2 || shelfCnt !=4) ||
+                            (rackCnt == 2 && shelfCnt ==4 && (Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'] && Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'].length==1 && !window.rack1Visible) ||
+                            (rackCnt == 2 && shelfCnt ==4 && (Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'] && Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'].length==1 && Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['filledBottles'] && Global.crateData[`rack${rackCnt}_right_${shelfCnt}`]['filledBottles'].length==1 && window.rack1Visible))
+                            ) 
+                        ){
+                            totalShelfFilled++;
+                        }
+                        /* if(!((rackCnt == 2 && shelfCnt ==4 && Global.crateData[`rack${rackCnt}_left_${shelfCnt}`]['filledBottles'].length>1) || !window.rack1Visible)){
+                            totalShelfFilled++;
+                        } */
+                       
+                    }
+                }
+                
+            }
+        }
+        console.log(totalShelfFilled,'totalShelfFilled');
+        // this.crateCreatedTxt.setText(`${Global.cratesCreated}/7`)
+        this.crateCreatedTxt.setText(`${totalShelfFilled}/${window.rack1Visible?'7':'4'}`);
+        }, 500)
     }
     onCrateAdd(){
         this.addOrChangeCrate.setVisible(true)
@@ -180,6 +260,8 @@ export default class Header extends Phaser.GameObjects.Group {
         document.querySelector("#ready_info").classList.remove("active");
         document.querySelector("#ready_info").classList.remove("active");
         this.hideSkip();
+
+        
     }
     showGame(){
         this.skipBtn.setVisible(true);
@@ -193,6 +275,10 @@ export default class Header extends Phaser.GameObjects.Group {
         Global.popupActive= false;
         document.querySelector("#skip_confirm").classList.remove("active")
 
+    }
+    async doLogout(){
+        await logout();
+        location.href='./login.php';
     }
     onHover(key, frame){
         this[key].setFrame(frame);
@@ -220,17 +306,20 @@ export default class Header extends Phaser.GameObjects.Group {
         .setScale(this.scaleFact * 1.5);
 
         this.crateCreatedTxt
-        .setPosition(this.crateCreatedBG.x - 60 * this.scaleFact, this.crateCreatedBG.y + 5 * this.scaleFact)
-        .setFontSize(70 * this.scaleFact);
+        .setPosition(this.crateCreatedBG.x - 50 * this.scaleFact, this.crateCreatedBG.y + 5 * this.scaleFact)
+        .setFontSize(65 * this.scaleFact);
 
         this.crateCreatedHead
-        .setPosition(this.crateCreatedBG.x + 150 * this.scaleFact, this.crateCreatedBG.y + 5 * this.scaleFact)
+        .setPosition(this.crateCreatedBG.x + 170 * this.scaleFact, this.crateCreatedBG.y + 5 * this.scaleFact)
         .setFontSize(70 * this.scaleFact);
 
-        this.addOrChangeCrate.setPosition(this.c_w-this.extraLeftPer - 300*this.scaleFact, 150 * this.scaleFact+this.extraTop)
+        this.addOrChangeCrate.setPosition(this.c_w-this.extraLeftPer - (window.isLoggedIn?800:300)*this.scaleFact, 150 * this.scaleFact+this.extraTop)
         .setScale(this.scaleFact * 0.75)
 
-        this.skipBtn.setPosition(this.c_w-this.extraLeftPer - 800*this.scaleFact, 150 * this.scaleFact+this.extraTop)
+        this.skipBtn.setPosition(this.c_w-this.extraLeftPer - (window.isLoggedIn?1300:800)*this.scaleFact, 150 * this.scaleFact+this.extraTop)
+        .setScale(this.scaleFact * 0.75)
+
+        this.logoutBtn && this.logoutBtn.setPosition(this.c_w-this.extraLeftPer - 300*this.scaleFact, 150 * this.scaleFact+this.extraTop)
         .setScale(this.scaleFact * 0.75)
     }
 }

@@ -177,6 +177,7 @@ export default class Crates extends Phaser.GameObjects.Group {
         }
     }
     addCrate() {
+        console.log("crate:add_crate")
         this.shrinkScalFact = 0;
         this.crateDragged = false;
         this.filledBottles = [];
@@ -188,38 +189,39 @@ export default class Crates extends Phaser.GameObjects.Group {
         this.shrinkFact = 1;
         this.crateChannel1 = null;
         this.crateChannel2 = null;
-
+        Global.crateCanBeDragged= false;
+     
         if (Global.totalBottles == 6) {
             this.bottleSets = 1;
-            this.crate = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_back0000`)
+            this.crate = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_back0000`)
                 .setDepth(11 + Global.extraDepth)
                 .setData('readyToDrag', true)
                 .setAlpha(0)
                 .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
-            this.crateFront = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_front0000`)
+            this.crateFront = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_front0000`)
                 .setDepth(13 + Global.extraDepth)
                 .setAlpha(0)
                 // .setData('readyToDrag', true)
                 .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
         } else {
             this.bottleSets = 4;
-            this.crate = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_10000`)
+            this.crate = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_10000`)
                 .setDepth(11 + Global.extraDepth)
                 .setAlpha(0)
                 .setData('readyToDrag', true)
                 .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
-            this.crateChannel1 = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_30000`)
+            this.crateChannel1 = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_30000`)
                 .setDepth(13 + Global.extraDepth)
                 .setAlpha(0)
                 .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
-            this.crateChannel2 = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_70000`)
+            this.crateChannel2 = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_70000`)
                 .setDepth(17 + Global.extraDepth)
                 .setAlpha(0)
                 .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
-            this.crateFront = this.create(this.extraLeftPer + 1600 * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_80000`)
+            this.crateFront = this.create(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */ , this.c_h - this.extraTop - 400 * this.scaleFact, 'items', `crate_${Global.totalBottles}_80000`)
                 .setDepth(18 + Global.extraDepth)
                 .setAlpha(0)
                 // .setData('readyToDrag', true)
@@ -241,7 +243,6 @@ export default class Crates extends Phaser.GameObjects.Group {
         this.crate.setData('initY', this.crate.y);
 
         this.crates.push(this.crate);
-
         this.showCrate();
     }
     onSkip() {
@@ -249,7 +250,7 @@ export default class Crates extends Phaser.GameObjects.Group {
             targets: this.children.entries,
             ease: 'Back.Out',
             y: `+=${1000*this.scaleFact}`,
-            duration: 350,
+            duration: 250,
             repeat: 0,
             delay: 0,
             yoyo: false,
@@ -364,6 +365,7 @@ export default class Crates extends Phaser.GameObjects.Group {
             this.filledBottles[this.filledIndex - 1] = bottle.texture.key;
             this.filledIndeces.push(this.filledIndex)
             this.updateNextFillIndex();
+            
         }
 
 
@@ -386,6 +388,7 @@ export default class Crates extends Phaser.GameObjects.Group {
     disableCrateToDrag() {
         this.crate.disableInteractive()
         this.crateFront.disableInteractive()
+        Global.crateCanBeDragged= false;
     }
     enableCrateToDrag() {
 
@@ -399,6 +402,7 @@ export default class Crates extends Phaser.GameObjects.Group {
             cursor: 'pointer',
             pixelPerfect: true
         })
+        Global.crateCanBeDragged= true;
     }
     removeBottle() {
         this[`bottle_set${this.filledIndex}`].setAlpha(0);
@@ -473,6 +477,7 @@ export default class Crates extends Phaser.GameObjects.Group {
             if ((gameObject == this.crate || gameObject == this.crateFront) && this.crateDragged) {
                 this.crateDragged = false;
                 if (Global.canDispose) {
+                   
                     this.removeCrate();
                 } else {
                     this.emitter.emit('rack:check_to_place', true, this.filledBottles);
@@ -480,6 +485,7 @@ export default class Crates extends Phaser.GameObjects.Group {
                 }
 
             }
+          
             return false;
         }
         this.updateNextFillIndex();
@@ -489,7 +495,7 @@ export default class Crates extends Phaser.GameObjects.Group {
         } else {
             this.emitter.emit('crate:add_crate_bottle');
 
-
+         
 
         }
         // if(this.nextSpotFound)
@@ -506,17 +512,17 @@ export default class Crates extends Phaser.GameObjects.Group {
     onResize() {
         setScaleFactor.call(this, false);
 
-        this.crate && this.crate.scene && this.crate.setPosition(this.extraLeftPer + 1600 * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
+        this.crate && this.crate.scene && this.crate.setPosition(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
             .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
-        this.crateFront && this.crateFront.scene && this.crateFront.setPosition(this.extraLeftPer + 1600 * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
+        this.crateFront && this.crateFront.scene && this.crateFront.setPosition(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
             .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
 
-        this.crateChannel1 && this.crateChannel1.scene && this.crateChannel1.setPosition(this.extraLeftPer + 1600 * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
+        this.crateChannel1 && this.crateChannel1.scene && this.crateChannel1.setPosition(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
             .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
-        this.crateChannel2 && this.crateChannel2.scene && this.crateChannel2.setPosition(this.extraLeftPer + 1600 * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
+        this.crateChannel2 && this.crateChannel2.scene && this.crateChannel2.setPosition(this.extraLeftPer + this.extraTop/4 + (1600 - 900) * this.scaleFact, this.c_h - this.extraTop - 400 * this.scaleFact)
             .setScale(this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85));
 
 

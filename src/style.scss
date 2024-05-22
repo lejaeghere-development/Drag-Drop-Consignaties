@@ -38,7 +38,7 @@ canvas{
         .head{
             color: #007892;
             font-size: 2vw;
-            font-family: 'Montserrat-Bold';
+            font-family: 'greycliff-bold';
             text-align: center;
             margin-bottom: 20px;
         }
@@ -54,9 +54,9 @@ canvas{
                 border: 1px solid #c4c4c4;
                 border-radius: 10px;
                 font-size: 1.2vw;
-                line-height: 4vw;
+                line-height: 2.75vw;
                 color: #007892;
-                font-family: 'Montserrat-Regular';
+                font-family: 'greycliff-medium';
                 text-align: center;
                 &.error{
                     background-color: #ca3947;
@@ -81,7 +81,7 @@ canvas{
             font-size: 1.2vw;
             line-height: 4vw;
             width: 48%;
-            font-family: 'Montserrat-Bold';
+            font-family: 'greycliff-bold';
             text-align: center;
             background-color: #FBDE42;
             display: table;
@@ -98,7 +98,9 @@ canvas{
 }
 #delete_confirm,
 #skip_confirm,
-#ready_info{
+#ready_info,
+#crate_info,
+#crate_info2{
     &.active{
         display: block;
     }
@@ -121,13 +123,13 @@ canvas{
         .head{
             font-size: 2vw;
             color: #000000;
-            font-family: 'Montserrat-Bold';
+            font-family: 'greycliff-bold';
             text-align: center;
         }
         .info{
             font-size: 1vw;
             color: #000000;
-            font-family: 'Montserrat-Regular';
+            font-family: 'greycliff-medium';
             text-align: center;
             margin: 10px 0 30px 0;
         }
@@ -140,7 +142,7 @@ canvas{
                 line-height: 4vw;
                 width: 48%;
                 color: #000000;
-                font-family: 'Montserrat-Bold';
+                font-family: 'greycliff-bold';
                 text-align: center;
                 background-color: #d6d6d6;
                 border-radius: 7px;
@@ -151,11 +153,54 @@ canvas{
             }
         }
     }
+    &#crate_info,
+    &#crate_info2{
+        .container{
+            max-width: 750px;
+            .buttons{
+                justify-content: center !important;
+            }
+        }
+        
+       
+    }
 }
-
+.search_bottles{
+    position: absolute;
+    top:14%;
+    left: 3.8%;
+    flex-direction: row;
+    display: none;
+    &.active{
+        display: flex;
+    }
+    .bottle{
+        position: relative;
+        width: 6vw;
+        height: 10vh;
+        margin-left: 0.25vw;
+        cursor: pointer;
+        border:2px solid transparent;
+        border-radius: 10px;
+        overflow:hidden;
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        &.active{
+            border-color: #54a383;
+        }
+        img{
+            position: relative;
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            object-fit: contain;
+        }
+    }
+}
 #search-container{
     position: absolute;
-    top:20%;
+    top:27%;
     left: 3.8%;
     display: none;
     &.active{
@@ -178,7 +223,7 @@ canvas{
             color: #0A657A;
             font-size: 1.5vw;
             line-height: 4vw;
-            font-family: 'Montserrat-Regular';
+            font-family: 'greycliff-medium';
             padding: 0 2vw;
     
         }
@@ -207,7 +252,7 @@ canvas{
         
         top: 10px;
         overflow: hidden;
-        max-height: 66vh;
+        max-height: 60vh;
         overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -218,7 +263,7 @@ canvas{
             line-height: 3vw;
             padding: 0 1vw;
             border-bottom: 1px solid #0A657A;
-            font-family: 'Montserrat-Regular';
+            font-family: 'greycliff-medium';
             cursor: pointer;
             &:last-child{
                 border-bottom: none;

@@ -7,8 +7,10 @@ var Global = {
     desktop_orientation: null,
     scoreTotal: 0,
     gameStarted:false,
+    selectedBottleType:null,
     viewMode:"landscape",
     totalBottles: 0, 
+    formInitiated:false,
     cratesCreated:0,
     bottleOnCrate:false,
     crateActivated:false,
@@ -17,13 +19,26 @@ var Global = {
     points:100,
     crateType: null,
     extraDepth: 5000,
+    snapCnt:0,
     canDispose:false,
     extraCrate:null,
+    errorTO:null,
+    rackInfoToSave:[],
+    defaultCrateExists:false,
+    crateCanBeDragged:false,
     dataToSent:{
         "username": "",
         "email": "",
         "mobile": "",
         "score":"",
+    },
+    showInfo:function(errorTxt){
+        Global.errorTO && clearTimeout(Global.errorTO);
+        document.querySelector(".error").classList.add("active");
+        document.querySelector(".error").innerHTML= errorTxt;
+        Global.errorTO= setTimeout(() => {
+            document.querySelector(".error").classList.remove("active");
+        }, 2000)
     },
     onResize:function(){
         clearTimeout(Global.rotateTO);

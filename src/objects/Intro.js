@@ -47,9 +47,12 @@ export default class Intro extends Phaser.GameObjects.Group {
 
 
         Global.crateActivated = false;
+        document.querySelector(".search_bottles").classList.remove("active");
         document.querySelector("#search-container").classList.remove("active");
-
-
+        document.querySelectorAll(".search_bottles .bottle").forEach((bottle) => {
+            bottle.classList.remove("active");
+        });
+        Global.selectedBottleType=null;
         this.subBG = this.create(this.c_w * .5, this.c_h * .5 - 100 * this.scaleFact, 'items', 'sub_bg0000')
         .setDepth(1001)
         .setScale(this.scaleFact * .85);
@@ -63,7 +66,7 @@ export default class Intro extends Phaser.GameObjects.Group {
                 y: 0.5
             },
             style: {
-                font: (Global.isMobile) ? '' + String(50 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(50 * this.scaleFact) + 'px Montserrat-Regular',
+                font: (Global.isMobile) ? '' + String(50 * this.scaleFact) + 'px greycliff-medium' : '' + String(50 * this.scaleFact) + 'px greycliff-medium',
                 fill: '#0A657A',
                 align: "center"
             }
@@ -104,7 +107,7 @@ export default class Intro extends Phaser.GameObjects.Group {
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px greycliff-medium' : '' + String(45 * this.scaleFact) + 'px greycliff-medium',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -140,7 +143,7 @@ export default class Intro extends Phaser.GameObjects.Group {
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px greycliff-medium' : '' + String(45 * this.scaleFact) + 'px greycliff-medium',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -162,6 +165,18 @@ export default class Intro extends Phaser.GameObjects.Group {
             })
             .setScale(this.scaleFact * 1.2);
 
+
+            this.infoIcon= this.create(this.crate_24_custom.x+this.crate_24_custom.width*this.crate_24_custom.scaleX*.4, this.crate_24_custom.y-450*this.scaleFact, 'items','infoBtn0000')
+            .setScale(this.scaleFact)
+            .setDepth(1000)
+            .setInteractive({
+                cursor: 'pointer'
+            })
+            .on('pointerdown', () => {
+                this.emitter.emit('crate_info:show');
+            })
+
+
         this.crate_24_custom_infoBG = this.create(this.c_w * .5 + 1200 * this.scaleFact, this.c_h * .5 + 800 * this.scaleFact, 'items', 'bottle_info_240000')
             .setDepth(1000)
             .setScale(this.scaleFact * 1.8);
@@ -169,13 +184,13 @@ export default class Intro extends Phaser.GameObjects.Group {
         this.crate_24custom_infoTxt = this.scene.make.text({
                 x: this.crate_24_custom_infoBG.x,
                 y: this.crate_24_custom_infoBG.y - 25 * this.scaleFact,
-                text: `Kleine Flessen Mix`,
+                text: `Kleine flessen mixed`,
                 origin: {
                     x: 0.5,
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(45 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(45 * this.scaleFact) + 'px greycliff-medium' : '' + String(45 * this.scaleFact) + 'px greycliff-medium',
                     fill: '#ffffff',
                     align: "center"
                 }
@@ -187,6 +202,8 @@ export default class Intro extends Phaser.GameObjects.Group {
      
     }
     selectCrate(bottles, crateType) {
+        if(Global.popupActive) return false;
+        
         Global.totalBottles = bottles;
         Global.crateType = crateType;
 
@@ -206,6 +223,8 @@ export default class Intro extends Phaser.GameObjects.Group {
     onResize(){
         setScaleFactor.call(this, false);
 
+
+        this.infoIcon && this.infoIcon.scene && (this.infoIcon.setScale(this.scaleFact).setPosition(this.crate_24_custom.x+this.crate_24_custom.width*this.crate_24_custom.scaleX*.4, this.crate_24_custom.y-450*this.scaleFact));
         this.title && this.title.scene && this.title.setPosition(this.c_w * .5, this.c_h * .5 - 400 * this.scaleFact)
         .setScale(this.scaleFact * .8);
 

@@ -10,12 +10,12 @@
     <style>
         
         @font-face {
-            font-family: 'Montserrat-Bold';
-            src: url('./fonts/Montserrat-Bold.otf');
+            font-family: 'greycliff-medium';
+            src: url('./fonts/greycliff-medium.ttf');
         }
         @font-face {
-            font-family: 'Montserrat-Regular';
-            src: url('./fonts/Montserrat-Regular.otf');
+            font-family: 'greycliff-bold';
+            src: url('./fonts/greycliff-bold.ttf');
         }
         
         
@@ -37,10 +37,10 @@
         }
         
         .dummy p:nth-child(1) {
-            font-family: 'Montserrat-Bold';
+            font-family: 'greycliff-bold';
         }
         .dummy p:nth-child(2) {
-            font-family: 'Montserrat-Regular';
+            font-family: 'greycliff-medium';
         }
         
         #rotate.active{
@@ -70,11 +70,21 @@
                 width:30% !important;
             }
         }
-        #search-container, #homeScr, #delete_confirm,#skip_confirm, .user_form, #ready_info{
+        #search-container, #homeScr, #delete_confirm,#skip_confirm, .user_form, #ready_info, #crate_info, .search_bottles{
             display: none;
         }
     </style>
-  
+    <script>
+        window.isLoggedIn= true;
+        window.username='saif';
+        window.email='saifulkanneth@gmail.com';
+        window.mobile='8105106261';
+        window.rack1Visible= true;
+        window.comments="comments";
+        window.address='address';
+        window.vat='vat';
+        window.userConfig= '{ "rack1_left_1": null, "rack1_right_1": null, "rack1_left_2": null, "rack1_right_2": null, "rack1_left_3": null, "rack1_right_3": null, "rack1_left_4": null, "rack1_right_4": null, "rack2_left_1": [ "AQUARIUS_ORANGE_33_group", "AQUARIUS_ORANGE_33_group" ], "rack2_right_1": [ "AQUARIUS_ORANGE_33_group", "AQUARIUS_ORANGE_33_group" ], "rack2_left_2": [ "AQUARIUS_ORANGE_50_group", "AQUARIUS_ORANGE_50_group" ], "rack2_right_2": [ "AQUARIUS_ORANGE_50_group", "AQUARIUS_ORANGE_50_group" ], "rack2_left_3": [ "BOON_OUDE_GEUZE_group", "BOON_OUDE_GEUZE_group" ], "rack2_right_3": [ "BOON_OUDE_GEUZE_group", "BOON_OUDE_GEUZE_group" ], "rack2_left_4": [ "CRISTALINE_PLAT_group" ], "rack2_right_4": [ "EVIAN_group" ] }'
+    </script>
 </head>
 
 <body>
@@ -87,6 +97,23 @@
     </div>
     <div class="form_bg"></div>
     <div id="game-sec"></div>
+    <div class="search_bottles">
+        <div class="bottle" id="bottle_water">
+            <img src="./assets/water.png" alt="" srcset="">
+        </div>
+        <div class="bottle" id="bottle_frisdrank">
+            <img src="./assets/frisdrank.png" alt="" srcset="">
+        </div>
+        <div class="bottle" id="bottle_fruitsap">
+            <img src="./assets/fruitsap.png" alt="" srcset="">
+        </div>
+        <div class="bottle" id="bottle_bieren">
+            <img src="./assets/bier.png" alt="" srcset="">
+        </div>
+        <div class="bottle" id="bottle_zuivel">
+            <img src="./assets/zuivel.png" alt="" srcset="">
+        </div>
+    </div>
     <div id="search-container">
         <div class="box-container">
             <input type="text" id="search-box" placeholder="Zoek je favoriete drank...">
@@ -133,10 +160,21 @@
             <div class="field"><input type="text" name="name" id="name" placeholder="Naam"></div>
             <div class="field"><input type="email" name="email" id="email" placeholder="Email"></div>
             <div class="field"><input type="tel" name="mobile" id="mobile" placeholder="GSM"></div>
+            <div class="field"><input type="text" name="address" id="address" placeholder="Adress"></div>
+            <div class="field"><input type="text" name="vat" id="vat" placeholder="VAT number"></div>
             <div class="field"><textarea type="text" name="comments" id="comments" placeholder="extra Info" rows="1"></textarea></div>
             <div class="buttons">
                 <div class="back">Wijzig</div>
                 <div class="user_submit">Verstuur</div>
+            </div>
+        </div>
+    </div>
+    <div id="crate_info" class="">
+        <div class="container">
+            <div class="head">What is Lorem Ipsum?</div>
+            <div class="info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</div>
+            <div class="buttons">
+                <div class="btn yellow" id="cancel">Annuleer</div>
             </div>
         </div>
     </div>
