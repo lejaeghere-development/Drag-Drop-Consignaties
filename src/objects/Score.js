@@ -14,17 +14,27 @@ export default class Score extends Phaser.GameObjects.Group {
         super(game);
     }
     setUp() {
+        this.scoreShowed= false;
         setScaleFactor.call(this, false);
         this.emitter = EventEmitter.getObj();
         this.emitter.on('score:show', this.showScore.bind(this))
         this.emitter.on('game:resize', this.onResize.bind(this));
         this.emitter.on('emitter:reset', () => {
+            // this.scoreShowed= false;
+            /* this.remove(true);
+            this.emitter.off('score:show');
+            this.emitter.off('game:resize');
+            this.emitter.off('emitter:reset'); */
             EventEmitter.kill();
         });
     }
 
     init() {}
     async showScore() {
+        // if(this.scoreShowed) return false;
+
+        this.scoreShowed= true;
+        console.log("showScore")
 
         this.scoreHead = this.scene.make.text({
                 x: this.extraLeftPer + 1100 * this.scaleFact + this.extraTop/2,
@@ -35,7 +45,7 @@ export default class Score extends Phaser.GameObjects.Group {
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(140 * this.scaleFact) + 'px Montserrat-Bold' : '' + String(140 * this.scaleFact) + 'px Montserrat-Bold',
+                    font: (Global.isMobile) ? '' + String(140 * this.scaleFact) + 'px greycliff-bold' : '' + String(140 * this.scaleFact) + 'px greycliff-bold',
                     fill: '#007892',
                     align: "center"
                 }
@@ -53,7 +63,7 @@ export default class Score extends Phaser.GameObjects.Group {
                     y: 0.5
                 },
                 style: {
-                    font: (Global.isMobile) ? '' + String(60 * this.scaleFact) + 'px Montserrat-Regular' : '' + String(60 * this.scaleFact) + 'px Montserrat-Regular',
+                    font: (Global.isMobile) ? '' + String(60 * this.scaleFact) + 'px greycliff-medium' : '' + String(60 * this.scaleFact) + 'px greycliff-medium',
                     fill: '#007892',
                     align: "center",
                     wordWrap: {
@@ -76,10 +86,12 @@ export default class Score extends Phaser.GameObjects.Group {
             .on('pointerout', this.onHover.bind(this, 'replayBtn', 'replay0000'))
 
         Global.dataToSent['score'] = Global.scoreTotal;
-        await updateData();
+        let updatedData= await updateData();
+        console.log(updatedData,' updateData')
 
     }
     replayGame() {
+     
         this.emitter.emit('game:replay')
     }
     onHover(key, frame) {

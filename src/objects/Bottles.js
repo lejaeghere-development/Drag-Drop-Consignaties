@@ -41,17 +41,20 @@ export default class Bottles extends Phaser.GameObjects.Group {
         this.bottleNew && this.bottleNew.destroy(true);
         this.bottleTwn && this.bottleTwn.remove();
     }
-    addBottle(isNew, bottleData) {
+    addBottle(isNew, bottleData, replace= true) {
         if (isNew) {
+            if(this.bottleNew && !replace) return false;
+
             this.bottleNew && this.bottleNew.destroy(true);
             this.bottleTwn && this.bottleTwn.remove();
-            this.bottleNew = this.create(this.extraLeftPer+600*this.scaleFact/* this.c_w * .25 - 100 * this.scaleFact */, 0, /* 'bottles', */ `${bottleData['bottle_key']}_single`)
+            this.bottleNew = this.create(this.extraLeftPer+this.extraTop/2+(600+1000)*this.scaleFact/* this.c_w * .25 - 100 * this.scaleFact */, 0, /* 'bottles', */ `${bottleData['bottle_key']}_single`)
                 .setScale(this.scaleFact * 1.5)
                 .setData('readyToDrag', false)
                 .setDepth(20 + Global.extraDepth)
 
             this.bottleNew.setInteractive({
                 draggable: true,
+                pixelPerfect:true,
                 cursor: 'pointer'
             })
             this.bottleNew.y = this.c_h - this.extraTop + this.bottleNew.height * this.bottleNew.scaleY / 2;
@@ -69,10 +72,12 @@ export default class Bottles extends Phaser.GameObjects.Group {
             targets: this.bottleNew,
             ease: 'Back.In', // 'Cubic', 'Elastic', 'Bounce', 'Back'
             y: this.c_h - this.extraTop + this.bottleNew.height * this.bottleNew.scaleY / 2,
-            duration: 400,
+            duration: 250,
             repeat: 0, // -1: infinity
+            delay:0,
             yoyo: false,
             onComplete: function (bottleNew) {
+                bottleNew.setVisible(false);
                 bottleNew.setData('readyToDrag', true);
                 bottleNew
                     .setData('fromList', true)
@@ -84,7 +89,7 @@ export default class Bottles extends Phaser.GameObjects.Group {
         });
     }
     showBottle() {
-
+        this.bottleNew.setVisible(true);
         this.bottleTwn = this.scene.tweens.add({
             targets: this.bottleNew,
             ease: 'Back.Out', // 'Cubic', 'Elastic', 'Bounce', 'Back'
@@ -93,6 +98,7 @@ export default class Bottles extends Phaser.GameObjects.Group {
             repeat: 0, // -1: infinity
             yoyo: false,
             onComplete: function (bottleNew) {
+               
                 bottleNew.setData('readyToDrag', true);
                 bottleNew
                     .setData('fromList', true)
@@ -133,10 +139,13 @@ export default class Bottles extends Phaser.GameObjects.Group {
                     yoyo: false,
                     onComplete: function(){
                         gameObject.destroy(true, true);
+                        // this.bottleNew=null;
                         this.emitter.emit('bin:reset_bin');
                     }.bind(this)
                 });
+              
             }else{
+                
                 gameObject.setData('readyToDrag', false)
                 this.scene.tweens.add({
                     targets: gameObject,
@@ -163,8 +172,16 @@ export default class Bottles extends Phaser.GameObjects.Group {
                 repeat: 0, // -1: infinity
                 yoyo: false,onComplete: function(){
                     gameObject.destroy(true, true);
+                    if(!Global.crateCanBeDragged){
+                        if(Global.crateType == "custom"){
+                            setTimeout(() => {
+                                this.emitter.emit('bottle:add_new', Global.lastBottleKey, true);
+                            }, 500)
+                        }
+                    }
                 }.bind(this)
             });
+            
         }
     }
     onResize(){
@@ -174,7 +191,7 @@ export default class Bottles extends Phaser.GameObjects.Group {
             this.bottleTwn && this.bottleTwn.remove();
             this.bottleNew
             .setScale(this.scaleFact * 1.5)
-            .setPosition(this.extraLeftPer+600*this.scaleFact, this.c_h - this.extraTop - this.bottleNew.height * this.bottleNew.scaleY * .45 - 150 * this.scaleFact)
+            .setPosition(this.extraLeftPer+this.extraTop/2+(600+1000)*this.scaleFact, this.c_h - this.extraTop - this.bottleNew.height * this.bottleNew.scaleY * .45 - 150 * this.scaleFact)
             .setData('initX', this.bottleNew.x)
             .setData('initY', this.bottleNew.y);
         

@@ -8,10 +8,9 @@ import { isMobile, isMobileOnly } from "mobile-device-detect";
 import "./style.scss";
 import { Global } from "./objects/global";
 var isIOS = getMobileOperatingSystem() == "iOS";
-import {
-    uuid
-} from "uuidv4";
+
 import { createUser, sendEmail } from "./objects/api";
+import { uuid } from "uuidv4";
 Global.dpr= Math.min(window.devicePixelRatio, 1.75);
 let DEFAULT_WIDTH = 2208*Global.dpr;
 let DEFAULT_HEIGHT = 1242*Global.dpr;
@@ -28,7 +27,7 @@ let isFirefox = navigator.userAgent.indexOf("Firefox") != -1;
 
 const config = {
     fullscreenTarget: document.getElementById("game-sec"),
-    type: isFirefox && !isIOS ? Phaser.AUTO : Phaser.CANVAS,
+    type: isFirefox && !isIOS ? Phaser.AUTO : Phaser.AUTO,
     transparent: true,
     antialias:true,
     scale: {
@@ -51,12 +50,17 @@ const config = {
 };
 
 window.addEventListener("load", async () => {
-    
-    localStorage.setItem('uuid', uuid())
-    // localStorage.setItem('uuid', '14d474f8-4509-4141-848c-279513cb409b');
+    if(window.userConfig.length>0){
+        let userConfig= JSON.parse(window.userConfig.replace(/&quot;/g, '"'));
+        if(Object.keys(userConfig).length>0){
+            Global.defaultCrateExists=true;
+        }
+    }
+
+    localStorage.setItem('uuid', uuid());
 
     // await sendEmail('saif', 'saifulkanneth@gmail.com', '123', 'hello', window.location.href)
-    let response= await createUser();
+    // let response= await createUser();
 
     startGame();
 });

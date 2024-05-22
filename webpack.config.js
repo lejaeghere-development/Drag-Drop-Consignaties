@@ -10,14 +10,19 @@ const isProduction = options.production;
 
 const webpackConfig = {
     entry: {
-        main: ["@babel/polyfill", path.resolve(__dirname, "src/index.js")],
+        index: ["@babel/polyfill", path.resolve(__dirname, "src/index.js")],
+        login: ["@babel/polyfill", path.resolve(__dirname, "src/login.js")],
+        register: ["@babel/polyfill", path.resolve(__dirname, "src/register.js")],
+        forgotPassword: ["@babel/polyfill", path.resolve(__dirname, "src/forgotPassword.js")],
+        changePassword: ["@babel/polyfill", path.resolve(__dirname, "src/changePassword.js")],
+        recoverPassword: ["@babel/polyfill", path.resolve(__dirname, "src/recoverPassword.js")],
     },
     output: {
         path: !isProduction ?
             path.resolve(__dirname, "dist") :
             path.resolve(__dirname, "dist", "[git-revision-hash]"),
         publicPath: isProduction ? "./" : "/",
-        filename: "main.bundle.js",
+        filename: '[name].js'
     },
     watch: false,
     plugins: [
@@ -26,7 +31,32 @@ const webpackConfig = {
         new HtmlWebpackPlugin({
             template: "./index.html",
             filename: "index.html",
-            inject: "body",
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./login.html",
+            filename: "login.html",
+            chunks: ['login']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./register.html",
+            filename: "register.html",
+            chunks: ['register']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./changePassword.html",
+            filename: "changePassword.html",
+            chunks: ['changePassword']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./forgotPassword.html",
+            filename: "forgotPassword.html",
+            chunks: ['forgotPassword']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./recoverPassword.html",
+            filename: "recoverPassword.html",
+            chunks: ['recoverPassword']
         }),
         new CopyWebpackPlugin([{
             from: "assets",

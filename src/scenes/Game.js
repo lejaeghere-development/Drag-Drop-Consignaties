@@ -18,30 +18,43 @@ export default class Game extends Phaser.Scene {
         super({
             key: "Game"
         });
+       
+        document.querySelector("#crate_info #cancel").addEventListener("click", this.hideCrateInfo.bind(this))
+        document.querySelector("#crate_info2 #cancel").addEventListener("click", this.hideCrateInfo2.bind(this))
     }
     preload() {
     }
     init() {}
     create() {
+        
         setScaleFactor.call(this, true);
         this.emitter = EventEmitter.getObj();
         this.emitter.on('game:replay', this.replayGame.bind(this))
         this.emitter.on('game:skip', this.calculateScore.bind(this));
+        this.emitter.on('crate_info:show', this.showCrateInfo.bind(this));
+        this.emitter.on('crate_info:hide', this.hideCrateInfo.bind(this));
 
+        this.emitter.on('crate_info2:show', this.showCrateInfo2.bind(this));
+        this.emitter.on('crate_info2:hide', this.hideCrateInfo2.bind(this));
+        
 
         this.BGGr = this.add.graphics();
         this.BGGr.fillStyle(0xffffff, 1.0);
         this.BGGr.fillRect(0,0,this.c_w, this.c_h)
 
-        this.BG= this.add.image(this.c_w*.5, this.extraTop + 300*this.scaleFact, 'BG')
+      /*   this.BG= this.add.image(this.c_w*.5, this.extraTop + 300*this.scaleFact, 'BG')
         .setOrigin(0.5, 0)
-        .setScale((this.c_w-this.extraLeftPer)*.00025);
+        .setScale((this.c_w-this.extraLeftPer)*.00025); */
 
 
         this.header= new Header(this);
         this.header.setUp();
         this.header.init();
 
+
+        this.bin= new Bin(this);
+        this.bin.setUp();
+        this.bin.init();
 
         this.rack= new Rack(this);
         this.rack.setUp();
@@ -57,6 +70,9 @@ export default class Game extends Phaser.Scene {
         this.searchBox.setUp();
         this.searchBox.init();
 
+
+    
+
         this.crates= new Crates(this);
         this.crates.setUp();
         this.crates.init();
@@ -65,9 +81,7 @@ export default class Game extends Phaser.Scene {
         this.bottles.setUp();
         this.bottles.init();
 
-        this.bin= new Bin(this);
-        this.bin.setUp();
-        this.bin.init();
+   
 
         this.register= new Register(this);
         this.register.setUp();
@@ -96,18 +110,52 @@ export default class Game extends Phaser.Scene {
         /* setTimeout(() => {
             this.emitter.emit('game:skip');
         }, 2000) */
+
+
+        // this.emitter.emit('game:skip');
+    }
+
+    showCrateInfo(){
+        if(Global.popupActive) return false;
+
+        Global.popupActive= true;
+        document.querySelector("#crate_info").classList.add("active");
+    }
+    showCrateInfo2(){
+        if(Global.popupActive) return false;
+
+        Global.popupActive= true;
+        document.querySelector("#crate_info2").classList.add("active");
+    }
+    hideCrateInfo(){
+        Global.popupActive= false;
+        document.querySelector("#crate_info").classList.remove("active");
+    }
+    hideCrateInfo2(){
+        Global.popupActive= false;
+        document.querySelector("#crate_info2").classList.remove("active");
     }
     calculateScore(){
-        Global.scoreTotal=0;
+        let combination= {}
+        Object.keys(Global.crateData).forEach((key) => {
+            combination[key]= Global.crateData[key]['filledBottles']
+        })
+        console.log(combination,' combination')
+        setTimeout(() => {
+            Global.scoreTotal=0;
         Object.keys(Global.crateData).forEach((key) => {
             if(Global.crateData[key]['filledBottles']){
                 Global.scoreTotal += Global.crateData[key]['filledBottles'].length*60;
             }
         });
-        this.renderer.snapshot(image => {
+        console.log(Global.crateData,'Global.crateData')
+        this.startX= (this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 1300) * this.scaleFact);
+        // console.log(this.startX,this.c_w-this.startX/2-100*this.scaleFact,'__width');
+        this.renderer.snapshotArea(this.startX, (this.extraTop+300 * this.scaleFact), (this.c_w-this.startX), (this.c_h-this.extraTop-300 * this.scaleFact), image => {
 
-         
-            const snap = this.textures.createCanvas('snap', image.width, image.height);
+            let snapKey= `snap${++Global.snapCnt}`;
+            console.log(snapKey,'snapKey')
+            const snap = this.textures.createCanvas(snapKey, image.width, image.height);
 
             snap.draw(0, 0, image);
 
@@ -117,11 +165,11 @@ export default class Game extends Phaser.Scene {
             let img = new Image();
             img.onload = async function() {
                 let canvas = document.createElement('canvas');
-                canvas.width =  image.width/2;
-                canvas.height =  image.height/2;
+                canvas.width =  image.width;
+                canvas.height =  image.height;
                 let ctx = canvas.getContext('2d');
     
-                ctx.drawImage(img, 0, 0, image.width/2, image.height/2);
+                ctx.drawImage(img, 0, 0, image.width, image.height);
                 let resizedBase64 = canvas.toDataURL('image/jpeg'); // Change to 'image/png' for PNG format
 
                 await saveImage(resizedBase64);
@@ -130,7 +178,8 @@ export default class Game extends Phaser.Scene {
             img.src = base64;
 
            
-        }, 'image/jpeg');
+        }, 'image/jpeg', 1.0);
+        }, 250)
 
        
 
