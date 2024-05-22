@@ -5,7 +5,7 @@ import {
 } from "./global";
 import { uuid } from "uuidv4";
 
-const BASE_URL='https://www.apexexp.in/Games/Deliveryves/';
+const BASE_URL='./';//'https://www.apexexp.in/Games/Deliveryves/';
 
 let imageName=null;
 
