@@ -85,7 +85,6 @@ async function addNewEmailAddress(){
         }, 100);
         emailCreateTO= setTimeout(hideEmailInfo.bind(this), 1000)
     }
-    console.log(res['response']);
 }
 function hideEmailInfo(){
     document.querySelector(".new_email .info").classList.remove("active");
