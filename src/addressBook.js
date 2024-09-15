@@ -24,7 +24,6 @@ window.onload = async function () {
     
     userAddressData= await fetchAllUserAddress();
     userAddressData= userAddressData['address_info']
-    console.log(userAddressData);
 
     
     fillEmails();
