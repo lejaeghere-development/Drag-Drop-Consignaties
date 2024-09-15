@@ -1,5 +1,173 @@
 [
    {
+      "name": "APPELAERE",
+      "type": "fruitsap",
+      "bottle_key": "APPELAERE6",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "75CL"
+   },
+   {
+      "name": "CHAUDFONTAINE BRUIS",
+      "type": "water",
+      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL",
+      "crate_category": 24,
+      "total_bottles":20,
+      "volume": "50CL"
+   },
+   {
+      "name": "CORNET OAKED",
+      "type": "bieren",
+      "bottle_key": "Bottle-CORNETOAKED",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "FEVER TREE GINGER BEER",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-FEVER-TREE-GINGER-BEER",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "FUZE TEA",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-FUZETEA",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "GOUDEN CAROLUS TRIPLE",
+      "type": "bieren",
+      "bottle_key": "Bottle-GOUDENCAROLUSTRIPLE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "ICHTEGEM OUD BRUIN",
+      "type": "bieren",
+      "bottle_key": "Bottle-ICHTEGEM-OUD-BRUIN",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "25CL"
+   },
+   {
+      "name": "INEX CHOCO HALFVOL",
+      "type": "melk",
+      "bottle_key": "Bottle-INEX-CHOCO-HALFVOL",
+      "crate_category": 24,
+      "total_bottles":12,
+      "volume": "100CL"
+   },
+   {
+      "name": "OLYMPIA MAGERE MELK",
+      "type": "melk",
+      "bottle_key": "OLYMPIA_MAGERE_MELK",
+      "crate_category": 24,
+      "total_bottles":20,
+      "volume": "50CL"
+   },
+   {
+      "name": "ORDAL AGRUM ZERO",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-ORDAL-AGRUM-ZERO",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "100CL"
+   },
+   {
+      "name": "ORDAL BRUISWATER",
+      "type": "water",
+      "bottle_key": "Bottle-ORDAL-BRUISWATER6",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "100CL"
+   },
+   {
+      "name": "ORDAL BRUISWATER",
+      "type": "water",
+      "bottle_key": "Bottle-ORDAL-BRUISWATER",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "ORDAL LIMONADE ORANGE",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-ORDAL-LIMONADE-ORANGE",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "100CL"
+   },
+   {
+      "name": "ORDAL MINERAAL PLAT",
+      "type": "water",
+      "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT6",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "100CL"
+   },
+   {
+      "name": "ORDAL MINERAALWATER",
+      "type": "water",
+      "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "20CL"
+   },
+   {
+      "name": "RITCHIE GRAPEFRUIT",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-RITCHIE-GRAPEFRUIT",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "27,5CL"
+   },
+   {
+      "name": "RITCHIE ORANGE",
+      "type": "frisdrank",
+      "bottle_key": "Bottle-RITCHIE-ORANGE",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "27,5CL"
+   },
+   {
+      "name": "RODENBACH GRAND CRU",
+      "type": "bieren",
+      "bottle_key": "Bottle-RODENBACH-GRAND-CRU",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "SINAASAPPELAERE",
+      "type": "fruitsap",
+      "bottle_key": "Bottle-SINAASAPPELAERE",
+      "crate_category": 6,
+      "total_bottles":6,
+      "volume": "75CL"
+   },
+   {
+      "name": "SINT BERNARDUS 12",
+      "type": "bieren",
+      "bottle_key": "Bottle-SINT-BERNARDUS-12",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
+      "name": "VEDETT",
+      "type": "bieren",
+      "bottle_key": "Bottle-VEDETT",
+      "crate_category": 24,
+      "total_bottles":24,
+      "volume": "33CL"
+   },
+   {
       "name": "ACQUA PANNA",
       "type": "water",
       "bottle_key": "ACQUA_PANNA",
@@ -210,7 +378,7 @@
    {
       "name": "CHAUDFONTAINE BRUIS",
       "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL",
+      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL_25CL",
       "crate_category": 24,
       "total_bottles":24,
       "volume": "25CL"
@@ -946,7 +1114,7 @@
    {
       "name": "OLYMPIA MAGERE MELK",
       "type": "zuivel",
-      "bottle_key": "OLYMPIA_MAGERE_MELK",
+      "bottle_key": "OLYMPIA_MAGERE_MELK_1L",
       "crate_category": 24,
       "total_bottles":12,
       "volume": "1L"
@@ -1305,7 +1473,7 @@
    },
    {
       "name": "SPORTZOT 0%",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "SPORTZOT_NA",
       "crate_category": 24,
       "total_bottles":24,
@@ -1329,7 +1497,7 @@
    },
    {
       "name": "STELLA",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "STELLA",
       "crate_category": 24,
       "total_bottles":24,
@@ -1337,7 +1505,7 @@
    },
    {
       "name": "STELLA 0.0%",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "STELLA_NA",
       "crate_category": 24,
       "total_bottles":24,
@@ -1505,7 +1673,7 @@
    },
    {
       "name": "VIVEN MASTER IPA",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "VIVEN_MASTER_IPA",
       "crate_category": 24,
       "total_bottles":24,
@@ -1513,7 +1681,7 @@
    },
    {
       "name": "VIVEN NADA IPA",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "VIVEN_NADA_IPA_NA",
       "crate_category": 24,
       "total_bottles":24,
@@ -1521,7 +1689,7 @@
    },
    {
       "name": "WESTMALLE DUBBEL",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "WESTMALLE_DUBBEL",
       "crate_category": 24,
       "total_bottles":24,
@@ -1529,7 +1697,7 @@
    },
    {
       "name": "WESTMALLE TRIPEL",
-      "type": "bier",
+      "type": "bieren",
       "bottle_key": "WESTMALLE_TRIPEL",
       "crate_category": 24,
       "total_bottles":24,
@@ -1559,4 +1727,5 @@
       "total_bottles": 6,
       "volume": "1L"
    }
+
 ]

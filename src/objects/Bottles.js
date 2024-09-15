@@ -14,17 +14,15 @@ export default class Bottles extends Phaser.GameObjects.Group {
         setScaleFactor.call(this, false);
         this.emitter = EventEmitter.getObj();
 
-        this.emitter.on('bottle:add_new', this.addBottle.bind(this, true));
-        this.emitter.on('bottle:add_into_crate', this.addBottle.bind(this, false))
+        Global.emitter.on('bottle:add_new', this.addBottle.bind(this, true));
+        Global.emitter.on('bottle:add_into_crate', this.addBottle.bind(this, false))
 
-        this.emitter.on('crate_selection:hide', this.showOrHideUI.bind(this, true));
-        this.emitter.on('game:skip', this.onSkip.bind(this));
-        this.emitter.on('game:resize', this.onResize.bind(this));
-        this.emitter.on('bottle:remove', this.removeBottle.bind(this));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
-        // this.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
+        Global.emitter.on('crate_selection:hide', this.showOrHideUI.bind(this, true));
+        Global.emitter.on('game:skip', this.onSkip.bind(this));
+        Global.emitter.on('game:resize', this.onResize.bind(this));
+        Global.emitter.on('bottle:remove', this.removeBottle.bind(this));
+      
+        // Global.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
     }
 
     init() {
@@ -38,16 +36,16 @@ export default class Bottles extends Phaser.GameObjects.Group {
         this.setVisible(status)
     }
     removeBottle(){
-        this.bottleNew && this.bottleNew.destroy(true);
+        this.bottleNew && this.bottleNew.destroy(true, true);
         this.bottleTwn && this.bottleTwn.remove();
     }
     addBottle(isNew, bottleData, replace= true) {
         if (isNew) {
             if(this.bottleNew && !replace) return false;
 
-            this.bottleNew && this.bottleNew.destroy(true);
+            this.bottleNew && this.bottleNew.destroy(true, true);
             this.bottleTwn && this.bottleTwn.remove();
-            this.bottleNew = this.create(this.extraLeftPer+this.extraTop/2+(600+1000)*this.scaleFact/* this.c_w * .25 - 100 * this.scaleFact */, 0, /* 'bottles', */ `${bottleData['bottle_key']}_single`)
+            this.bottleNew = this.create(this.extraLeftPer+this.extraTop/2+(Global.lastOrientation=="portrait"?2200:1600)*this.scaleFact/* this.c_w * .25 - 100 * this.scaleFact */, 0, /* 'bottles', */ `${bottleData['bottle_key']}_single`)
                 .setScale(this.scaleFact * 1.5)
                 .setData('readyToDrag', false)
                 .setDepth(20 + Global.extraDepth)
@@ -66,7 +64,11 @@ export default class Bottles extends Phaser.GameObjects.Group {
 
     }
     onSkip(){
-        if(!this.bottleNew || Global.popupActive) return false;
+/*         setTimeout(() => {
+            alert(Global.popupActive)
+        }, 1000) */
+        if(!this.bottleNew /* || Global.popupActive */) return false;
+        
         
         this.bottleTwn = this.scene.tweens.add({
             targets: this.bottleNew,
@@ -112,21 +114,23 @@ export default class Bottles extends Phaser.GameObjects.Group {
     onBottleDrag(pointer, gameObject, dragX, dragY) {
         if (!Global.crateActivated || Global.popupActive) return false;
 
+        Global.totalBottles= Global.choosenTotalBottles;
         let _frame = gameObject.frame.name;
         if (!gameObject.getData('readyToDrag') || _frame.indexOf("crate") !== -1) return false;
 
         gameObject.x = dragX;
         gameObject.y = dragY;
 
-        this.emitter.emit('crate:check_on_drag', gameObject.getBounds(), gameObject.texture.key);
-        this.emitter.emit('bin:check_on_drag', gameObject.getBounds(), gameObject.texture.key, 1)
+        Global.emitter.emit('crate:check_on_drag', gameObject.getBounds(), gameObject.texture.key);
+        Global.emitter.emit('bin:check_on_drag', gameObject.getBounds(), gameObject.texture.key, 1)
     }
     onBottleDragEnd(pointer, gameObject, dragX, dragY) {
         if (!Global.crateActivated || Global.popupActive) return false;
 
         let _frame = gameObject.frame.name;
-
+       
         if (!gameObject.getData('fromList') || _frame.indexOf("crate") !== -1) return false;
+
         if (!Global.bottleOnCrate) {
             if(Global.canDispose){
                 gameObject.disableInteractive();
@@ -137,15 +141,13 @@ export default class Bottles extends Phaser.GameObjects.Group {
                     duration: 150,
                     repeat: 0, // -1: infinity
                     yoyo: false,
-                    onComplete: function(){
+                    onComplete: function(gameObject){
                         gameObject.destroy(true, true);
                         // this.bottleNew=null;
-                        this.emitter.emit('bin:reset_bin');
-                    }.bind(this)
+                        Global.emitter.emit('bin:reset_bin');
+                    }.bind(this, gameObject)
                 });
-              
             }else{
-                
                 gameObject.setData('readyToDrag', false)
                 this.scene.tweens.add({
                     targets: gameObject,
@@ -162,7 +164,7 @@ export default class Bottles extends Phaser.GameObjects.Group {
             }
             
         } else {
-            this.emitter.emit('crate:add_crate_bottle');
+            Global.emitter.emit('crate:add_crate_bottle');
       
             this.scene.tweens.add({
                 targets: gameObject,
@@ -170,16 +172,16 @@ export default class Bottles extends Phaser.GameObjects.Group {
                 scale: 0,
                 duration: 150,
                 repeat: 0, // -1: infinity
-                yoyo: false,onComplete: function(){
+                yoyo: false,onComplete: function(gameObject){
                     gameObject.destroy(true, true);
                     if(!Global.crateCanBeDragged){
                         if(Global.crateType == "custom"){
                             setTimeout(() => {
-                                this.emitter.emit('bottle:add_new', Global.lastBottleKey, true);
+                                Global.emitter.emit('bottle:add_new', Global.lastBottleKey, true);
                             }, 500)
                         }
                     }
-                }.bind(this)
+                }.bind(this, gameObject)
             });
             
         }
@@ -191,7 +193,10 @@ export default class Bottles extends Phaser.GameObjects.Group {
             this.bottleTwn && this.bottleTwn.remove();
             this.bottleNew
             .setScale(this.scaleFact * 1.5)
-            .setPosition(this.extraLeftPer+this.extraTop/2+(600+1000)*this.scaleFact, this.c_h - this.extraTop - this.bottleNew.height * this.bottleNew.scaleY * .45 - 150 * this.scaleFact)
+
+            .setPosition(this.extraLeftPer+this.extraTop/2+(Global.lastOrientation=="portrait"?2200:1600)*this.scaleFact, this.c_h - this.extraTop - this.bottleNew.height * this.bottleNew.scaleY * .45 - 150 * this.scaleFact)
+            .setData('readyToDrag', true)
+            .setData('fromList', true)
             .setData('initX', this.bottleNew.x)
             .setData('initY', this.bottleNew.y);
         

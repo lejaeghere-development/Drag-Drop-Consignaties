@@ -91,7 +91,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
     this.loadPer = this.scene.make
       .text({
         x: this.c_w * 0.5,
-        y: this.c_h * 0.5 * 1.4 + 250 * this.scaleFact,
+        y: this.c_h * 0.5 * 1.4 + (Global.isMobile?1.5:1) * 250 * this.scaleFact,
         text: "0%",
         origin: {
           x: 0.5,
@@ -100,7 +100,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
         style: {
           font: Global.isMobile
             ? "" +
-              String(((15 * this.scaleFact) / 0.5) * (Global.dpr || 1)) +
+              String(((30 * this.scaleFact) / 0.5) * (Global.dpr || 1)) +
               `px ${loaderFont}`
             : "" +
               String(((15 * this.scaleFact) / 0.5) * (Global.dpr || 1)) +

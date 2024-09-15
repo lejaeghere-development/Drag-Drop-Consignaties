@@ -12,6 +12,7 @@ export default class Loader extends Phaser.Scene {
         });
     }
     init() {
+
         setScaleFactor.call(this, true);
         this.appLoader = new AppLoader(this);
         this.appLoader.init(
@@ -20,17 +21,21 @@ export default class Loader extends Phaser.Scene {
           );
     }
     preload(v) {
+    
       let asset_version = "4.0.0";
       this.load.image('BG', './assets/BG.png?v=1.0');
       this.load.atlas('items', `./assets/items.png?v=${asset_version}`, `./assets/items.json?v=${asset_version}`);
-       this.load.plugin('rexdropshadowpipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexdropshadowpipelineplugin.min.js', true);    
+      //  this.load.plugin('rexdropshadowpipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexdropshadowpipelineplugin.min.js', true);    
       jsonData.forEach((json) => {
         this.load.image(`${json['bottle_key']}_single`, `./assets/bottles/singles/${json['bottle_key']}.png?v=1.0`);
         this.load.image(`${json['bottle_key']}_group`, `./assets/bottles/group/${json['bottle_key']}.png?v=1.0`);
       });
-      
+      this.load.plugin('rextoggleswitchplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextoggleswitchplugin.min.js', true);  
     }
     create(){
+      if(!window.isLoggedIn){
+        window.hideHint= localStorage.getItem('hideHint');
+      }
         this.scene.start("Game");
     }
 }

@@ -13,13 +13,14 @@ export default class Intro extends Phaser.GameObjects.Group {
     setUp() {
         setScaleFactor.call(this, false);
         this.emitter = EventEmitter.getObj();
-        this.emitter.on('crate_selection:hide', this.hideCrateSelection.bind(this));
-        this.emitter.on('crate_selection:enable', this.enableCrates.bind(this));
-        this.emitter.on('game:resize', this.onResize.bind(this));
-        this.emitter.on('game:skip', this.onSkip.bind(this));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
+        Global.emitter.on('crate_selection:hide', this.hideCrateSelection.bind(this));
+        Global.emitter.on('crate_selection:enable', this.enableCrates.bind(this));
+        Global.emitter.on('game:resize', this.onResize.bind(this));
+        Global.emitter.on('game:skip', this.onSkip.bind(this));
+        Global.emitter.on('crate:select', this.selectCrate.bind(this));
+
+        
+    
     }
 
     init() {
@@ -27,6 +28,7 @@ export default class Intro extends Phaser.GameObjects.Group {
         this.isFirst= true;
         this.title = this.create(this.c_w * .5, this.c_h * .5 - 400 * this.scaleFact, 'items', 'title0000')
             .setDepth(1001)
+            .setAlpha(0)
             .setScale(this.scaleFact * .8);
 
        
@@ -173,7 +175,7 @@ export default class Intro extends Phaser.GameObjects.Group {
                 cursor: 'pointer'
             })
             .on('pointerdown', () => {
-                this.emitter.emit('crate_info:show');
+                Global.emitter.emit('crate_info:show');
             })
 
 
@@ -199,25 +201,33 @@ export default class Intro extends Phaser.GameObjects.Group {
 
         this.add(this.crate_24custom_infoTxt);
 
+        if(Global.isIntroFirst){
+            Global.isIntroFirst= false;
+            this.selectCrate.call(this, 24, 'fixed');
+        }
+        
      
     }
-    selectCrate(bottles, crateType) {
+    selectCrate(bottles, crateType, byForce= false) {
+
         if(Global.popupActive) return false;
         
+        
         Global.totalBottles = bottles;
+        Global.choosenTotalBottles= Global.totalBottles;
         Global.crateType = crateType;
-
+        // alert(Global.totalBottles)
 
         this.clear(true, true);
 
         // alert("DS")
         Global.crateActivated = true;
-        this.emitter.emit('crate:add_crate');
-        this.emitter.emit('search:show');
-        this.emitter.emit('crate_selection:hide');
+        Global.emitter.emit('crate:add_crate', byForce);
+        Global.emitter.emit('search:show');
+        // Global.emitter.emit('crate_selection:hide'); Disabled crate rack display immediatly first time.
     }
     hideCrateSelection() {
-        this.emitter.emit('header:update_crate_status', 'change')
+        Global.emitter.emit('header:update_crate_status', 'change')
         this.setVisible(false);
     }
     onResize(){

@@ -16,6 +16,7 @@ const webpackConfig = {
         forgotPassword: ["@babel/polyfill", path.resolve(__dirname, "src/forgotPassword.js")],
         changePassword: ["@babel/polyfill", path.resolve(__dirname, "src/changePassword.js")],
         recoverPassword: ["@babel/polyfill", path.resolve(__dirname, "src/recoverPassword.js")],
+        addressBook: ["@babel/polyfill", path.resolve(__dirname, "src/addressBook.js")],
     },
     output: {
         path: !isProduction ?
@@ -57,6 +58,11 @@ const webpackConfig = {
             template: "./recoverPassword.html",
             filename: "recoverPassword.html",
             chunks: ['recoverPassword']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./addressBook.html",
+            filename: "addressBook.html",
+            chunks: ['addressBook']
         }),
         new CopyWebpackPlugin([{
             from: "assets",

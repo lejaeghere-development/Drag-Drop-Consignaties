@@ -13,39 +13,50 @@ export default class Register extends Phaser.GameObjects.Group {
 
         if(!Global.formInitiated){
             Global.formInitiated= true;
-            document.querySelector(".user_submit").addEventListener("click", this.onSubmit.bind(this))
+            document.querySelector(".user_submit").addEventListener("click", () => {
+                this.onSubmit();
+            })
             let inputs = document.querySelectorAll(".user_form input");
             inputs.forEach((input) => {
-                input.addEventListener("keyup", this.validateData.bind(this, false))
+                input.addEventListener("keyup", () =>{
+                    this.validateData(false);
+                })
             });
             document.querySelector(".user_form .back").addEventListener("click", () => {
                 document.querySelector(".form_bg").classList.remove("active");
                 document.querySelector(".user_form").classList.remove("active")
-                this.emitter.emit('game:show')
+         
+                Global.emitter.emit('game:show')
+                Global.emitter.emit('popup_update', false);
+                Global.emitter.emit('crate:select', (Global.totalBottles!=0?Global.totalBottles:24), 'fixed', true);
             });
         }
-        
     }
     setUp() {
         setScaleFactor.call(this, false);
         this.emitter = EventEmitter.getObj();
-        this.emitter.on('game:skip', this.showRegister.bind(this));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
+        
+        Global.emitter.on('game:skip', this.showRegister.bind(this));
+        Global.emitter= this.emitter;
+        this.registerActive = true;
     }
     init() {
 
     }
     showRegister() {
+      
         if(window.isLoggedIn){
             document.querySelector(".user_form #name")!=null && document.querySelector("#name").remove();
             document.querySelector(".user_form #email")!=null && document.querySelector("#email").remove();
             document.querySelector(".user_form #mobile")!=null && document.querySelector("#mobile").remove();
-            document.querySelector(".user_form #comments")!=null && document.querySelector("#comments").remove();
+            // document.querySelector(".user_form #comments")!=null && document.querySelector("#comments").remove();
             document.querySelector(".user_form #address")!=null && document.querySelector("#address").remove();
             document.querySelector(".user_form #vat")!=null && document.querySelector("#vat").remove();
             
+        }else{
+            // document.querySelector(".user_form #name")!=null && document.querySelector("#name").remove();
+            // document.querySelector(".user_form #mobile")!=null && document.querySelector("#mobile").remove();
+
         }
       
         document.querySelector(".form_bg").classList.add("active");
@@ -79,7 +90,7 @@ export default class Register extends Phaser.GameObjects.Group {
             document.querySelector(".user_form").classList.add("active")
             this.registerActive=true;
         }else{
-            this.emitter.emit('score:show');
+            Global.emitter.emit('score:show');
         } */
 
     }
@@ -88,17 +99,19 @@ export default class Register extends Phaser.GameObjects.Group {
 
     }
     validateData(shouldValidate) {
+
         if (!this.registerActive) return false;
+
 
         let isValid = true;
         this.username = document.querySelector(".user_form #name")!=null?document.querySelector(".user_form #name").value.trim():window.username;
         this.email = document.querySelector(".user_form #email")!=null?document.querySelector(".user_form #email").value.trim():window.email;
         this.mobile = document.querySelector(".user_form #mobile")!=null?document.querySelector(".user_form #mobile").value.trim():window.mobile;
         this.comments = document.querySelector(".user_form #comments")!=null?document.querySelector(".user_form #comments").value.trim():window.comments;
-        this.address = document.querySelector(".user_form #address")!=null?document.querySelector(".user_form #address").value.trim():window.address;
+        this.address = document.querySelector(".user_form #address")!=null?document.querySelector(".user_form #address").value.trim():window.addressSelected;
         this.vat = document.querySelector(".user_form #vat")!=null?document.querySelector(".user_form #vat").value.trim():window.vat;
 
-        console.log("validateDatavalidateData")
+       
         if (this.username.length == 0 && shouldValidate && document.querySelector(".user_form #name")!=null) {
             document.querySelector(".user_form #name").classList.add("error");
             isValid = false;
@@ -133,7 +146,7 @@ export default class Register extends Phaser.GameObjects.Group {
             document.querySelector(".user_form #address").classList.remove("error")
         }
 
-        
+       
 
         /* if ((this.comments.length == 0) && shouldValidate && document.querySelector(".user_form #comments")!=null) {
             document.querySelector(".user_form #comments").classList.add("error");
@@ -152,7 +165,7 @@ export default class Register extends Phaser.GameObjects.Group {
     }
 
     async onDataSent() {
-
+       
         if(!window.isLoggedIn){
             Global.dataToSent['username'] = this.username;
             Global.dataToSent['email'] = this.email;
@@ -177,7 +190,9 @@ export default class Register extends Phaser.GameObjects.Group {
         document.querySelector(".form_bg").classList.remove("active");
         document.querySelector(".user_form").classList.remove("active")
 
-        this.emitter.emit('score:show');
+
+        Global.emitter.emit('score:show');
+        Global.emitter.emit('popup_update', true);
         await sendEmail(this.username, this.email, this.mobile, this.comments, this.vat, this.address, window.location.href);
     }
 

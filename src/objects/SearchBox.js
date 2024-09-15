@@ -14,13 +14,11 @@ export default class SearchBox extends Phaser.GameObjects.Group {
     }
     setUp() {
         this.emitter = EventEmitter.getObj();
-        this.emitter.on('search:show', this.showSearch.bind(this));
-        this.emitter.on('search:hide', this.hideSearch.bind(this));
-        this.emitter.on('game:skip', this.hideSearch.bind(this));
-        this.emitter.on('game:show', this.showSearch.bind(this));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
+        Global.emitter.on('search:show', this.showSearch.bind(this));
+        Global.emitter.on('search:hide', this.hideSearch.bind(this));
+        Global.emitter.on('game:skip', this.hideSearch.bind(this));
+        Global.emitter.on('game:show', this.showSearch.bind(this));
+       
     }
     init() {
 
@@ -37,7 +35,7 @@ export default class SearchBox extends Phaser.GameObjects.Group {
                 
                 drinkTypes= ["water", "frisdrank", "fruitsap", "bieren", "melk", "wijn", "zuivel"]
             }
-            const matchingData = this.jsonDataPartial.filter(item => ((item.name.toLowerCase().includes(searchTerm) || item.type.toLowerCase().includes(searchTerm)) && drinkTypes.indexOf(item.type) !== -1));
+            const matchingData = this.jsonDataPartial.filter(item => ((item.name.toLowerCase().includes(searchTerm) || item.type.toLowerCase().includes(searchTerm)) && drinkTypes.indexOf(item.type) !== -1 && (!Global.isToggleOn || (Global.isToggleOn && item.total_bottles==24))));
 
             // const matchingData = this.jsonDataPartial.filter(item => item.name.toLowerCase().includes(searchTerm) || item.type.toLowerCase().includes(searchTerm));
 
@@ -85,14 +83,14 @@ export default class SearchBox extends Phaser.GameObjects.Group {
             
             drinkTypes= ["water", "frisdrank", "fruitsap", "bieren", "melk", "wijn", "zuivel"]
         }
-        console.log(drinkTypes,'drinkTypesdrinkTypes')
+
         const searchTerm = searchBox.value.trim().toLowerCase();
-        const matchingData = this.jsonDataPartial.filter(item => ((item.name.toLowerCase().includes(searchTerm) || item.type.toLowerCase().includes(searchTerm)) && drinkTypes.indexOf(item.type) !== -1));
+        const matchingData = this.jsonDataPartial.filter(item => ((item.name.toLowerCase().includes(searchTerm) || item.type.toLowerCase().includes(searchTerm)) && drinkTypes.indexOf(item.type) !== -1 && (!Global.isToggleOn || (Global.isToggleOn && item.total_bottles==24))));
 
         this.displaySuggestions(matchingData);
     }
     showSearch() {
-        this.jsonDataPartial = jsonData.filter(((data) => data['crate_category'] === Global.totalBottles));
+        this.jsonDataPartial = jsonData.filter(((data) => data['crate_category'] === Global.totalBottles || true));
         document.querySelector("#search-container").classList.add("active");
         document.querySelector(".search_bottles").classList.add("active");
         
@@ -122,18 +120,26 @@ export default class SearchBox extends Phaser.GameObjects.Group {
             // names must be equal
             return 0;
         });
-
         if (suggestions.length > 0) {
             suggestions.forEach(item => {
                 const suggestionElement = document.createElement('div');
                 suggestionElement.classList.add('suggestion');
                 suggestionElement.textContent = `${item.name.toUpperCase()} - ${item.volume.toUpperCase()} - ${item.total_bottles}/crate`;
-                suggestionElement.addEventListener('click', () => {
+                suggestionElement.dataset.crateCategory=item.crate_category;
+                suggestionElement.addEventListener('click', (v) => {
+                    // v.preventDefault();
+                    // v.stopImmediatePropagation();
+                   
                     // Handle suggestion selection (you can redirect, perform an action, etc.)
-                    this.emitter.emit('bottle:add_new', item);
+                    Global.emitter.emit('bottle:add_new', item);
                     Global.lastBottleKey= item;
+                    // Global.emitter.emit('crate:add_crate');
                     suggestionsContainer.innerHTML = '';
                     searchBox.value = '';
+                    if(Global.lastCrateCategory != suggestionElement.dataset.crateCategory){
+                        Global.lastCrateCategory=suggestionElement.dataset.crateCategory;
+                        Global.emitter.emit('crate:select', suggestionElement.dataset.crateCategory, Global.isToggleOn?'custom':'fixed');
+                    }
                 });
                 suggestionsContainer.appendChild(suggestionElement);
             });

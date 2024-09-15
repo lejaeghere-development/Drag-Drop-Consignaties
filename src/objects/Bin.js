@@ -20,14 +20,13 @@ export default class Bin extends Phaser.GameObjects.Group {
         // this.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
         this.emitter.on('game:resize', this.onResize.bind(this));
         this.emitter.on('game:show', this.showGame.bind(this));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
+    
     }
 
     init() {
         this.bin= this.create(this.c_w-this.extraLeftPer-200*this.scaleFact, this.c_h-this.extraTop-300*this.scaleFact, 'items', 'bin0000')
         .setDepth(0)
+        .setAlpha(!Global.isMobile)
         .setScale(this.scaleFact*.4)
 
         this.setVisible(false);

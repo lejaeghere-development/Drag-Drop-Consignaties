@@ -36,11 +36,16 @@ function setScaleFactor(isRoot) {
     (window.innerHeight / (window.innerWidth + this.extraLeftPer * 2.25)) * 0.85 * Global.dpr; //window.innerWidth
   this.moveSteps = 0;
 
-  if (!Global.isMobile && Global.desktop_orientation == "portrait") {
+  if(Global.lastOrientation == 'portrait'){
+    this.scaleFact =
+    (window.innerHeight / (window.innerWidth + this.extraLeftPer * 2.25)) * 0.25 * Global.dpr; //window.innerWidth
+  this.moveSteps = 0;
+  }
+  /* if (!Global.isMobile && Global.desktop_orientation == "portrait") {
     this.extraLeftPer = 0;
     this.extraTop = 0;
     this.scaleFact = 1.4;
-  }
+  } */
 }
 
 export {

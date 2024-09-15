@@ -15,19 +15,20 @@ export default class PreLoader extends Phaser.Scene {
     }
     create() {
         setScaleFactor.call(this, true);
-
+  
         this.loadGame();
     }
  
     loadGame(){
         
-        Global.curr_state="preloader";
-        Global.curr_state_obj= this;
-        window.addEventListener("resize", Global.onResize);
-        Global.onResize();
-      
+        // Global.curr_state="preloader";
+        // Global.curr_state_obj= this;
+        // window.addEventListener("resize", Global.onResize);
+        // Global.onResize();
+       this.proceedNext();
     }
     proceedNext(){
+  
         Global.curr_state="";
         Global.curr_state_obj=null;
         this.scene.start("Loader");

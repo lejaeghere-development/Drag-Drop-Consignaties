@@ -1,4 +1,5 @@
 var Global = {
+    isIntroFirst:true,
     isMobile: false,
     gameTry: 0,
     bgMusic: null,
@@ -6,10 +7,19 @@ var Global = {
     dpr:1,
     desktop_orientation: null,
     scoreTotal: 0,
+    rackFullInfoShown:false,
+    addressID:-1,
     gameStarted:false,
+    lastCrateCategory:null,
     selectedBottleType:null,
     viewMode:"landscape",
+    headerTriggered:false,
+    rackTriggered:false,
+    filledTotal:0,
     totalBottles: 0, 
+    choosenTotalBottles:0,
+    canUseCustomToggle:false,
+    customCrateCnt:0,
     formInitiated:false,
     cratesCreated:0,
     bottleOnCrate:false,
@@ -21,6 +31,7 @@ var Global = {
     extraDepth: 5000,
     snapCnt:0,
     canDispose:false,
+    isEmptyRemains:true,
     extraCrate:null,
     errorTO:null,
     rackInfoToSave:[],
@@ -31,6 +42,7 @@ var Global = {
         "email": "",
         "mobile": "",
         "score":"",
+        "addressID":""
     },
     showInfo:function(errorTxt){
         Global.errorTO && clearTimeout(Global.errorTO);

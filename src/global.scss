@@ -1,0 +1,70 @@
+@mixin homepage-transform($args...) {
+    $platforms: moz, webkit, ms, o;
+
+    @each $platform in $platforms {
+        -#{$platform}-transform: $args;
+    }
+
+    transform:$args;
+}
+@mixin homepage-transition($args...) {
+    $platforms: moz, webkit, ms, o;
+
+    @each $platform in $platforms {
+        -#{$platform}-transition: $args;
+    }
+
+    transition:$args;
+}
+@mixin for-wide-screen {
+    @media (min-width: 1700px) {
+        @content;
+    }
+}
+
+@mixin for-mobile-screen {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+
+@mixin for-tab-portrait-screen {
+    @media (min-width: 600px) and (max-width: 1024px) and (max-aspect-ratio: 13/10) {
+        @content;
+    }
+}
+
+@mixin for-mobile-portrait-screen1 {
+    @media (max-width: 600px) and (max-aspect-ratio: 13/10) {
+        @content;
+    }
+}
+@mixin for-mobile-portrait-screen {
+    @media (max-width: 1024px) and (max-aspect-ratio: 13/10) {
+        @content;
+    }
+}
+@mixin dashboard-landscape-limit {
+    @media (max-width: 1280px){
+        @content;
+    }
+}
+@mixin for-mobile-landscape-screen {
+    @media (max-width: 1024px) and (min-aspect-ratio: 13/10){
+        @content;
+    }
+}
+
+@mixin for-mobile-landscape-only {
+    @media only screen and (min-device-width: 200px) and (max-device-width: 1024px) and (orientation: landscape) and (min-aspect-ratio: 13/12){
+
+        @content;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* overflow-x: hidden; */
+}

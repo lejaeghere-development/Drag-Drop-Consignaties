@@ -26,9 +26,9 @@ window.onload = function () {
     document.body.classList.add("active");
     localStorage.setItem('uuid', uuid())
 
-    nameField = document.querySelector("#username");
+    // nameField = document.querySelector("#username");
     emailField = document.querySelector("#email");
-    mobileField = document.querySelector("#mobile");
+    // mobileField = document.querySelector("#mobile");
     passwordField = document.querySelector("#password");
 
     registerBtn = document.querySelector("#registerBtn");
@@ -36,6 +36,10 @@ window.onload = function () {
     loginBtn.addEventListener("click", () => {
         location.href= './login.php';
     });
+
+    // nameField!=null && nameField.remove();
+    // mobileField!=null && mobileField.remove();
+            
 
     registerBtn.addEventListener("click", doRegister);
 }
@@ -45,9 +49,9 @@ async function doRegister() {
     if (registerActive || !checkIfValid()) return false;
 
     registerActive= true;
-    let username= nameField.value.trim();
+    let username= 'NA';//nameField.value.trim();
     let email= emailField.value.trim();
-    let mobile= mobileField.value.trim();
+    let mobile= '00';//mobileField.value.trim();
     let password= passwordField.value.trim();
     
     let registerData= await registerCheck(username, email, mobile, password);
@@ -62,6 +66,9 @@ async function doRegister() {
         if(registerData['message'] == 'dUser'){
             Global.showInfo('Gebruiker bestaat met dezelfde gebruikersnaam');
         }
+        if(registerData['message'] == 'Error'){
+            Global.showInfo('Error');
+        }
     }
 }
 
@@ -72,10 +79,10 @@ function checkIfValid() {
     mobileError = false;
     passwordError = false;
 
-    if (nameField.value.trim().length == 0) {
-        isValid = false;
-        nameError = true;
-    }
+    // if (nameField.value.trim().length == 0) {
+    //     isValid = false;
+    //     nameError = true;
+    // }
 
     if (emailField.value.trim().length == 0) {
         isValid = false;
@@ -85,10 +92,10 @@ function checkIfValid() {
         isValid = false;
         emailError = true;
     }
-    if ((mobileField.value.trim().length == 0 || isNaN(mobileField.value.trim()))) {
-        isValid = false;
-        mobileError = true;
-    }
+    // if ((mobileField.value.trim().length == 0 || isNaN(mobileField.value.trim()))) {
+    //     isValid = false;
+    //     mobileError = true;
+    // }
     if ((passwordField.value.trim().length ==0)) {
         isValid = false;
         passwordError = true;

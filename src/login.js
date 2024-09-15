@@ -44,8 +44,13 @@ async function doLogin() {
     console.log(loginData,'loginData');
     loginActive= false;
     if(loginData['message'] == 'Success'){
+        if(loginData['admin']){
+            location.href='./addressBook.php';
+        }else{
+            location.href='./index.php';
+        }
         // localStorage.setItem('uuid', loginData['uuid'])
-        location.href='./index.php';
+       
     }else{
         if(loginData['message'] == 'IPassword'){
             Global.showInfo('ongeldig wachtwoord');

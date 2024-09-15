@@ -1,3 +1,4 @@
+import { CANVAS } from "phaser";
 import EventEmitter from "./event-emitter";
 import {
     Global
@@ -11,26 +12,41 @@ const jsonData = require('../../bottle-data/bottles.json');
 export default class Rack extends Phaser.GameObjects.Group {
     constructor(game) {
         super(game);
-
-        document.querySelector("#delete_confirm #confirm").addEventListener("click", this.deleteSecondRack.bind(this));
-        document.querySelector("#delete_confirm #cancel").addEventListener("click", this.hideDeleteConfirm.bind(this));
+        if(!Global.rackTriggered){
+            Global.rackTriggered= true;
+            document.querySelector("#delete_confirm #confirm").addEventListener("click", (v) => {
+                v.preventDefault();
+                v.stopImmediatePropagation();
+                this.deleteSecondRack();
+            });
+            document.querySelector("#delete_confirm #cancel").addEventListener("click", (v) => {
+                v.preventDefault();
+                v.stopImmediatePropagation();
+                this.hideDeleteConfirm();
+            });
+        }
+       
 
     }
     setUp() {
+        Global.totalCustomCrates=0;
         setScaleFactor.call(this, false);
         this.emitter = EventEmitter.getObj();
-        this.emitter.on('rack:check_on_drag', this.checkOnDrag.bind(this))
-        this.emitter.on('rack:hide_highlight', this.hideHighlight.bind(this))
-        this.emitter.on('rack:check_to_place', this.checkToPlace.bind(this))
-        this.emitter.on('rack:reset_position', this.resetCrateOnRack.bind(this))
-        this.emitter.on('game:skip', this.onSkip.bind(this));
-        this.emitter.on('game:resize', this.onResize.bind(this));
-        this.emitter.on('game:show', this.showGame.bind(this))
-        this.emitter.on('crate_selection:hide', this.showOrHideUI.bind(this, true));
-        this.emitter.on('emitter:reset', () => {
-            EventEmitter.kill();
-        });
-        // this.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
+        Global.emitter.on('rack:check_on_drag', this.checkOnDrag.bind(this))
+        Global.emitter.on('rack:hide_highlight', this.hideHighlight.bind(this))
+        Global.emitter.on('rack:check_to_place', this.checkToPlace.bind(this))
+        Global.emitter.on('rack:reset_position', this.resetCrateOnRack.bind(this))
+        Global.emitter.on('game:skip', this.onSkip.bind(this));
+        Global.emitter.on('game:resize', this.onResize.bind(this));
+        Global.emitter.on('game:show', this.showGame.bind(this))
+        Global.emitter.on('crate_selection:hide', this.showOrHideUI.bind(this, true));
+        Global.emitter.on('rack:update_availability', this.calculateFilledTotal.bind(this));
+        Global.emitter.on('rack:highlight_empty_space', this.highlightEmptySpaces.bind(this))
+        Global.emitter.on('rack:hide_all_clickable', this.hideAllClickable.bind(this))
+        Global.emitter.on('rack:reset_swap_crate', this.resetSelectedSwapCrate.bind(this))
+
+        
+        // Global.emitter.on('crate_selection:enable', this.showOrHideUI.bind(this, false));
 
         // this.rack1
 
@@ -52,6 +68,19 @@ export default class Rack extends Phaser.GameObjects.Group {
             'rack2_shelf4_right':[],
             'rack2_shelf4_left':[]
         }; */
+
+        this.highlightsClickable={
+
+        };
+        this.crateSelectedToRemove=null;
+        this.crateSelectedToSwap= null;
+        this.highlightRef=null;
+        this.lastCustomCrate=null;
+        this.lastCustomCrateInfo=null;
+        this.lastcustomCrateIndex=null;
+        this.canCheckDrag= false;
+        this.dragStartKey= null;
+        this.dragProgressKey= null;
         Global.crateData = {
             "rack1_left_1": {
                 'status': 'empty',
@@ -60,7 +89,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -940
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_right_1": {
                 'status': 'empty',
@@ -69,7 +99,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -940
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_left_2": {
                 'status': 'empty',
@@ -78,7 +109,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -485
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_right_2": {
                 'status': 'empty',
@@ -87,7 +119,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -485
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_left_3": {
                 'status': 'empty',
@@ -96,7 +129,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -30
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_right_3": {
                 'status': 'empty',
@@ -105,7 +139,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -30
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_left_4": {
                 'status': 'taken',
@@ -114,7 +149,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: 425
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack1_right_4": {
                 'status': 'taken',
@@ -123,7 +159,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: 425
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_left_1": {
                 'status': 'empty',
@@ -132,7 +169,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -940
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_right_1": {
                 'status': 'empty',
@@ -141,7 +179,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -940
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_left_2": {
                 'status': 'empty',
@@ -150,7 +189,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -485
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_right_2": {
                 'status': 'empty',
@@ -159,7 +199,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -485
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_left_3": {
                 'status': 'empty',
@@ -168,7 +209,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: -30
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_right_3": {
                 'status': 'empty',
@@ -177,7 +219,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: -30
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_left_4": {
                 'status': 'empty',
@@ -186,7 +229,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: -180,
                     y: 425
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             },
             "rack2_right_4": {
                 'status': 'empty',
@@ -195,7 +239,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                     x: 180,
                     y: 425
                 },
-                "isBig": false
+                "isBig": false,
+                "crateType":null
             }
         }
         this.rackInfo = {
@@ -211,7 +256,25 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.isBigCrate = false;
         this.crateDragged = false;
     }
+    calculateFilledTotal(){
+       Global.filledTotal=0;
+       Object.keys(Global.crateData).forEach((key) => {
+            if(Global.crateData[key]['filledBottles'] !== null && Global.crateData[key]['filledBottles'].length>0){
+                if(
+                    (!Global.crateData[key]['isBig'] ||
+                    (Global.crateData[key]['isBig'] && key.indexOf('left') !==-1))/*  && 
+                    (this.rack1.visible || (!this.rack1.visible && key != "rack_right_4")) */
+                ){
 
+                    Global.filledTotal+=Global.crateData[key]['isBig']?1:0.5;
+                }
+           
+            }
+       })
+       /* if(!this.rack1.visible){
+        Global.filledTotal-=1;
+       } */
+    }
     init() {
         this.initConfigDone= false;
 
@@ -239,6 +302,16 @@ export default class Rack extends Phaser.GameObjects.Group {
         .on('pointerover', this.onHover.bind(this, 'deleteBtn', 'closeBtn_10000'))
         .on('pointerout', this.onHover.bind(this, 'deleteBtn', 'closeBtn0000'));
 
+        this.deleteCrateBtn = this.create(this.c_w - this.extraLeftPer - (100 + 200 + 150) * this.scaleFact- this.extraTop/2, this.c_h * .5 - 700 * this.scaleFact, 'items', 'closeBtn_10000')
+        .setScale(this.scaleFact*2)
+        .setAlpha(0)
+        .setInteractive({
+            cursor: 'pointer'
+        })
+        .on('pointerdown', this.checkIfCanRemoveForMobile.bind(this))
+        .on('pointerover', this.onHover.bind(this, 'deleteBtn', 'closeBtn0000'))
+        .on('pointerout', this.onHover.bind(this, 'deleteBtn', 'closeBtn_10000'));
+
         this.addBtn = this.create(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 650 + 150) * this.scaleFact, this.c_h * .5 - 0 * this.scaleFact, 'items', 'addBtn0000')
         .setScale(this.scaleFact*1.3)
         .setVisible(false)
@@ -256,12 +329,80 @@ export default class Rack extends Phaser.GameObjects.Group {
             .setDepth(0)
             .setScale(this.scaleFact * 0.7);
 
+        this.highlightRef= this.highlight;
+
         this.scene.input.on('dragstart', this.onDragStart.bind(this));
         this.scene.input.on('drag', this.onBottleDrag.bind(this));
         this.scene.input.on('dragend', this.onDragEnd.bind(this));
 
     
+       if(Global.isMobile){
+        Object.keys(Global.crateData).forEach((crateDataKey) => {
+            let rack= this[crateDataKey.split("_")[0]];
+            let posData= Global.crateData[crateDataKey]['position'];
 
+            this[`highlight_${crateDataKey}`] = this.create(rack.x+posData.x*this.scaleFact, rack.y + posData.y*this.scaleFact, 'items', 'crate_6_outline0000')
+            .setAlpha(0)
+            .setInteractive()
+            .on('pointerdown', (pointer) => {
+                if(Global.popupActive|| Global.isMobile && (!pointer.target || pointer.target && pointer.target.getContext == undefined)) return false;
+
+                this.isBigCrate= false;
+                this.matchShelfFound=true;
+                this.rackInfo = {
+                    'rack': crateDataKey.split("_")[0],
+                    'shelf': parseInt(crateDataKey.split("_")[2]),
+                    'side': crateDataKey.split("_")[1]
+                }
+                // this.highlightRef=  this[`highlight_${crateDataKey}`];
+                this.highlight.setPosition(rack.x+posData.x*this.scaleFact, rack.y + posData.y*this.scaleFact);
+
+                if(this.crateSelectedToSwap!=null){
+                    Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+                    Global.emitter.emit('rack:hide_all_clickable');
+                }else{
+                    Global.emitter.emit('drop_filled_crate_at', {
+                        x: rack.x+posData.x*this.scaleFact, 
+                        y: rack.y + posData.y*this.scaleFact
+                    })
+                }
+              
+            })
+            .setScale(this.scaleFact * 0.7);
+            this.highlightsClickable[crateDataKey]= this[`highlight_${crateDataKey}`];
+            if(crateDataKey.indexOf("right")!=-1){
+                this[`highlight_${crateDataKey.replace("right", "center")}`] = this.create(rack.x, rack.y + posData.y*this.scaleFact, 'items', 'crate_24_outline0000')
+                .setAlpha(0)
+                .setInteractive()
+                .on('pointerdown', (pointer) => {
+                    if(Global.popupActive|| Global.isMobile && (!pointer.target || pointer.target && pointer.target.getContext == undefined)) return false;
+
+                    this.isBigCrate= true;
+                    this.matchShelfFound=true;
+                    this.rackInfo = {
+                        'rack': crateDataKey.split("_")[0],
+                        'shelf': parseInt(crateDataKey.split("_")[2]),
+                        'side': 'right'
+                    }
+                    // this.highlightRef=  this[`highlight_${crateDataKey}`];
+                    this.highlight.setPosition(rack.x, rack.y + posData.y*this.scaleFact);
+
+                    if(this.crateSelectedToSwap!=null){
+                        Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+                        Global.emitter.emit('rack:hide_all_clickable');
+                    }else{
+                        Global.emitter.emit('drop_filled_crate_at', {
+                            x: rack.x,
+                            y: rack.y + posData.y*this.scaleFact
+                        })
+                    }
+                    
+                })
+                .setScale(this.scaleFact * 0.7);
+                this.highlightsClickable[crateDataKey.replace("right", "center")]=  this[`highlight_${crateDataKey.replace("right", "center")}`];
+            }
+        });
+       }
 
             
 
@@ -281,14 +422,16 @@ export default class Rack extends Phaser.GameObjects.Group {
                 
                 this[`rack1_shelf4_left_info_txt`].setText('Leeggoed');
                
-                // this.emitter.emit('crate_selection:hide');
+                // Global.emitter.emit('crate_selection:hide');
                 // this.showOrHideUI(false)
 
-                
-    }
-    addRack(){
-        if(Global.popupActive) return false;
+              
 
+            }
+    addRack(pointer){
+        if(Global.popupActive|| Global.isMobile && (!pointer.target || pointer.target && pointer.target.getContext == undefined)) return false;
+
+      
         this.deleteBtn.setVisible(true);
         this.addBtn.setVisible(false);
         this.rack1.setVisible(true);
@@ -326,7 +469,6 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.addCrateOnShelf([], this.rack1, '4');
         Global.totalBottles= totalBottles;
         this.updateSkipFrame();
-        // Global.defaultCrateExists=false;
 
         if(Global.extraCrate){
 
@@ -337,12 +479,35 @@ export default class Rack extends Phaser.GameObjects.Group {
                 child.destroy(true, true);
             })
             Global.crateData[`rack2_right_4`]['status']= 'empty';
+            Global.crateData[`rack2_right_4`]['filledBottles']= null;
             Global.extraCrate= null;
         }
-
+        this.calculateCustomCrate();
+        Global.emitter.emit('header:update_crate', 0);
         /* 
        
         */
+        Global.emitter.emit('rack:highlight_empty_space', this.crateSelectedToSwap!=null);
+    }
+    calculateCustomCrate(turnOff=false){
+        if(
+            (this.rack1.visible && Global.totalCustomCrates>=2) ||
+            (!this.rack1.visible && Global.totalCustomCrates>=1) || turnOff
+        ){
+            Global.canUseCustomToggle= false;
+            if((this.rack1.visible && Global.totalCustomCrates>=2) ||
+            (!this.rack1.visible && Global.totalCustomCrates>=1)){
+                Global.emitter.emit('toggle:update', false, false)
+            }else{
+                Global.emitter.emit('toggle:update', false, true)
+            }
+            
+            
+        }else{
+            Global.canUseCustomToggle= true;
+            Global.emitter.emit('toggle:update', true, turnOff)
+        }
+
     }
     showGame(){
         this.children.entries.forEach((child) => {
@@ -350,6 +515,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         });
     }
     onSkip(){
+        return false;
         this.children.entries.forEach((child) => {
             child.disableInteractive();
             if(child !== this.addBtn)
@@ -358,11 +524,63 @@ export default class Rack extends Phaser.GameObjects.Group {
         // this.addBtn.setVisible(false)
         this.deleteBtn.setVisible(false);
     }
+    hideAllClickable(byPass){
+        if(!Global.isMobile) return false;
+
+        Object.keys(this.highlightsClickable).forEach((key) => {
+            this.highlightsClickable[key].setAlpha(0);
+        })
+        this.highlightRef= this.highlight;
+        !byPass && (this.crateSelectedToSwap=null);
+
+      
+    }
+    highlightEmptySpaces(byPass= false){
+        if(!Global.isMobile) return false;
+        let isEmptyRemains= false;
+       
+        this.hideAllClickable(byPass);
+        if(!Global.crateCanBeDragged && !byPass) return false;
+        Object.keys(Global.crateData).forEach((crateDataKey) => {
+            let rack= this[crateDataKey.split("_")[0]];
+
+            if(Global.crateData[crateDataKey]['status'] === 'empty' && rack.visible){                
+                if(
+                    Global.isMobile && 
+                    ((crateDataKey.indexOf("right") !=-1 && Global.crateData[crateDataKey.replace("right","left")]['status'] ==='empty') ||
+                    (crateDataKey.indexOf("left") !=-1 && Global.crateData[crateDataKey.replace("left","right")]['status'] ==='empty')) && 
+                    Global.totalBottles == 24
+    
+                ){
+                    if(crateDataKey.indexOf("right") !=-1){
+                        this[`highlight_${crateDataKey.replace("right","center")}`].setAlpha(1);
+                    }else{
+                        this[`highlight_${crateDataKey.replace("left","center")}`].setAlpha(1);
+                    }
+                  
+                }else if(Global.totalBottles == 6){
+                    this[`highlight_${crateDataKey}`].setAlpha(1);
+                }
+            }
+           
+        });
+     
+    }
+    checkIfCanRemoveForMobile(){
+        if(this.crateSelectedToRemove == null) return false;
+
+        this.deleteCrateBtn.setAlpha(0);
+        Global.canDispose= true;
+        this.matchShelfFound= false;
+        Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToRemove);
+        Global.emitter.emit('rack:hide_all_clickable');
+    }
     addCardInfo(){
         for(let i=1;i<=2;i++){
             for(let j=1;j<=4;j++){
                 this[`rack${i}_shelf${j}_left_info`]= this.create(this[`rack${i}`].x-(650)*this.scaleFact, this[`rack${i}`].y-(900 - 450*(j-1))*this.scaleFact, 'items', 'info_card20000')
                 .setAlpha(0)    
+                .setDepth(100)
                 .setScale(this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_left_info_txt`]= this.scene.make.text({
@@ -380,10 +598,12 @@ export default class Rack extends Phaser.GameObjects.Group {
                         wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
                 })
+                .setDepth(100)
                 .setAlpha(0)
         
                 this[`rack${i}_shelf${j}_right_info`]= this.create(this[`rack${i}`].x+(650)*this.scaleFact, this[`rack${i}`].y-(680 - 450*(j-1))*this.scaleFact, 'items', 'info_card20000')
                 .setAlpha(0)
+                .setDepth(100)
                 .setScale(-this.scaleFact*1.2,this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_right_info_txt`]= this.scene.make.text({
@@ -401,6 +621,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                         wordWrap:{width: this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95}
                     }
                 })
+                .setDepth(100)
                 .setAlpha(0)
             }
         }
@@ -410,20 +631,36 @@ export default class Rack extends Phaser.GameObjects.Group {
     }
 
     onHover(key, frame){
-        // console.log(key, frame,' To Show')
         this[key].setFrame(frame);
     }
-    showDeleteConfirm(){
-        if(Global.popupActive) return false;
+    showDeleteConfirm(pointer){
+        if(Global.popupActive|| Global.isMobile && (!pointer.target || pointer.target && pointer.target.getContext == undefined)) return false;
 
-        Global.popupActive= true;
+        // Global.popupActive= true;
+        Global.emitter.emit('popup_update', true);
         document.querySelector("#delete_confirm").classList.add("active");
     }
     hideDeleteConfirm(){
-        Global.popupActive= false;
+        // Global.popupActive= false;
+        Global.emitter.emit('popup_update', false);
         document.querySelector("#delete_confirm").classList.remove("active");
     }
     deleteSecondRack(defaultAction= false){
+        this.hideDeleteConfirm();
+        if(this.crateSelectedToSwap!=null){             
+             this.hideAllClickable(true);
+             setTimeout(() => {
+                this.prevCrateStats= this.isBigCrate;
+                this.isBigCrate=Global.totalBottles==24;//this.crateSelectedToSwap.getData('isBigCrate')
+                this.matchShelfFound= false;
+                Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+                
+                this.crateSelectedToSwap=null;
+                this.isBigCrate= this.prevCrateStats;
+             }, 0)
+            
+             // this.onDragEnd(pointer, this.crateSelectedToSwap);
+         }
         this.deleteBtn.setVisible(false);
         this.rack1.setVisible(false);
         window.rack1Visible= false;
@@ -436,41 +673,84 @@ export default class Rack extends Phaser.GameObjects.Group {
                 child.getData('crateItems') && child.getData('crateItems').forEach((child) => {
                     let isCrateIndex= child.getData('isCrateIndex');
                     let crateTotalBottles= child.getData('crateTotalBottles');
-
-                    // isCrateIndex && crateTotalBottles>0 && this.emitter.emit('header:update_crate', -1);
+                    if(child.getData('isCustom')){
+                        Global.totalCustomCrates--;
+                        this.calculateCustomCrate();
+                    }
+                    // isCrateIndex && crateTotalBottles>0 && Global.emitter.emit('header:update_crate', -1);
                     if(child.getData('infoBtn')){
                         child.getData('infoBtn').destroy(true);
                     }
                     child.destroy(true);
                     // this.crateFront.setData('infoBtn', this.infoIcon);
                 })
-               
-                child.destroy(true);
+                if(child == this.lastCustomCrate){
+                    this.lastCustomCrate=null;
+                }
+                child && child.destroy && child.destroy(true);
 
+            }else{
             }
-            if(child.getData('rackInfo') && child.getData('rackInfo')['rack'] == 'rack2'){
 
+            if(child.getData('rackInfo') && child.getData('rackInfo')['rack'] == 'rack2'){
+               
+                
                 if(child.getData('rackInfo')['shelf'] == 4 && child.getData('rackInfo')['side'] == 'right' && !disposeCrateFound){
                     this.matchShelfFound= false;
                     disposeCrateFound= true;
                     Global.canDispose= true;
-                    /* for(let i=1;i<=4;i++){
-                        Global.crateData[`rack2_right_${i}`]['status'] = 'taken';
-                        Global.crateData[`rack2_left_${i}`]['status'] = 'taken';
-                    } */
-
+                    
+              
+                    this.checkToPlace(false, child);
                     Global.crateData[`rack2_right_4`]['status'] = 'taken';
+                    Global.crateData[`rack2_right_4`]['filledBottles']= null;
+                    
                     if(child.frame.name.indexOf("24") !== -1){
+                   
                         Global.crateData[`rack2_left_4`]['status'] = 'empty';
+                        Global.crateData[`rack2_left_4`]['filledBottles']= null;
                     }
                     this.hideTag(child.getData('rackInfo'), Global.crateData[`rack2_right_4`]['filledBottles']);
                     child.setData('canShow', false)
-                    // Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['status'] = 'empty';
-                    this.checkToPlace(false, child);
+                    if(child.getData('isCustom')){
+                   
+                        this.lastCustomCrate=null;
+                   }
                 }
+               
             }
         })
-        this.emitter.emit('header:update_crate', 0); // As per new logic
+        setTimeout(() => {
+           
+            if(Global.totalCustomCrates >=2 && this.lastCustomCrate != null){
+                this.lastCustomCrate.getData('crateItems') &&  this.lastCustomCrate.getData('crateItems').forEach((child) => {
+                    let isCrateIndex= child.getData('isCrateIndex');
+                    let crateTotalBottles= child.getData('crateTotalBottles');
+                    if(child.getData('isCustom')){
+                        Global.totalCustomCrates--;
+                        this.calculateCustomCrate();
+                    }
+                    // isCrateIndex && crateTotalBottles>0 && Global.emitter.emit('header:update_crate', -1);
+                    if(child.getData('infoBtn')){
+                        child.getData('infoBtn').destroy(true);
+                    }
+                
+    
+                    child.destroy(true);
+                    // this.crateFront.setData('infoBtn', this.infoIcon);
+                });
+                this.hideTag(this.lastCustomCrateInfo, Global.crateData[this.lastcustomCrateIndex]['filledBottles']);
+    
+                Global.crateData[this.lastcustomCrateIndex]['status'] = 'empty';
+                Global.crateData[this.lastcustomCrateIndex]['filledBottles']= null;
+                Global.crateData[this.lastcustomCrateIndex.replace('_right_','_left_')]['status'] = 'empty';
+                Global.crateData[this.lastcustomCrateIndex.replace('_right_','_left_')]['filledBottles']= null;
+                this.lastCustomCrateInfo=null;
+                this.lastCustomCrate= null;
+                this.lastcustomCrateIndex=null;
+            }
+        }, 250)
+        Global.emitter.emit('header:update_crate', 0); // As per new logic
         for(let j=1;j<=4;j++){
             this[`rack${1}_shelf${j}_left_info`].setVisible(false);
             this[`rack${1}_shelf${j}_right_info`].setVisible(false);
@@ -490,6 +770,8 @@ export default class Rack extends Phaser.GameObjects.Group {
 
             Global.crateData[`rack1_left_${j}`]['status']= 'taken';
             Global.crateData[`rack1_right_${j}`]['status']= 'taken';
+            Global.crateData[`rack1_left_${j}`]['filledBottles']= null;
+            Global.crateData[`rack1_right_${j}`]['filledBottles']= null;
 
         }
         
@@ -503,12 +785,27 @@ export default class Rack extends Phaser.GameObjects.Group {
         let totalBottles= Global.totalBottles;
         Global.totalBottles= 6;
         this.isBigCrate= false;
+
         this.addCrateOnShelf([], this.rack2, '4');
         Global.totalBottles= totalBottles;
         
-        this.hideDeleteConfirm();
+        
         !defaultAction && this.updateSkipFrame();
 
+
+        this.calculateCustomCrate();
+        
+        
+        setTimeout(() => {
+            Global.totalBottles= Global.choosenTotalBottles;
+            Global.emitter.emit('rack:highlight_empty_space');
+        }, 100)
+        // Global.emitter.emit('rack:highlight_empty_space', this.crateSelectedToSwap!=null);
+    }
+    areAllStringsSame(arr) {
+        if (arr.length === 0) return true; // An empty array can be considered all the same
+      
+        return arr.every(str => str === arr[0]);
     }
     showOrHideUI(status){
         if(status && !this.initConfigDone){
@@ -517,29 +814,36 @@ export default class Rack extends Phaser.GameObjects.Group {
                 this.deleteSecondRack(true);
             }
             if(window.userConfig.length>0){
-                window.userConfig= JSON.parse(window.userConfig.replace(/&quot;/g, '"'));
+                window.userConfigClone= JSON.parse(window.userConfig.replace(/&quot;/g, '"'));
                 setTimeout(() => {
                     Global.defaultCrateExists=false;
                  },1000)
+                 
                 setTimeout(() => {
                     for(let rackIndex=1;rackIndex<=2;rackIndex++){
                         for(let shelfIndex=1;shelfIndex<=4;shelfIndex++){
+                            Global.crateType='fixed';
                             if(this[`rack${rackIndex}`].visible){
-                                if(window.userConfig[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_left_${shelfIndex}`].length>1){
+                                if(window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`].length>1){
                                     if(this.rack1.visible || (!this.rack1.visible && shelfIndex!=4)){
-                                        console.log(this.rack1.visible, shelfIndex,' Precautuion Check')
+
                                         this.matchShelfFound=true;
                                         this.rackInfo = {
                                             'rack': `rack${rackIndex}`,
                                             'shelf': shelfIndex,
-                                            'side': 'left'
+                                            'side': 'right'
                                         }
-                                        this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_left_${shelfIndex}`],...window.userConfig[`rack${rackIndex}_right_${shelfIndex}`]], true, `rack${rackIndex}`, 'left', shelfIndex, true);
+                                        let bottleConfig= [...window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`],...window.userConfigClone[`rack${rackIndex}_right_${shelfIndex}`]]
+                                        const isCustom= (!this.areAllStringsSame(bottleConfig));
+                                        if(isCustom){
+                                            Global.crateType="custom"
+                                        }
+                                        this.checkToPlace(true, bottleConfig, true, `rack${rackIndex}`, 'left', shelfIndex, true);
                                         
                                     }
-                                    
+
                                 }else{
-                                    if(window.userConfig[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_left_${shelfIndex}`].length>0){
+                                    if(window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`] && window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`].length>0){
                                         
                                         this.matchShelfFound=true;
                                         //rackKey='', side='', shelfKey=''
@@ -548,9 +852,9 @@ export default class Rack extends Phaser.GameObjects.Group {
                                             'shelf': shelfIndex,
                                             'side': 'left'
                                         }
-                                        this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_left_${shelfIndex}`]], true, `rack${rackIndex}`, 'left', shelfIndex, false);
+                                        this.checkToPlace(true, [...window.userConfigClone[`rack${rackIndex}_left_${shelfIndex}`]], true, `rack${rackIndex}`, 'left', shelfIndex, false);
                                     }
-                                    if(window.userConfig[`rack${rackIndex}_right_${shelfIndex}`] && window.userConfig[`rack${rackIndex}_right_${shelfIndex}`].length>0){
+                                    if(window.userConfigClone[`rack${rackIndex}_right_${shelfIndex}`] && window.userConfigClone[`rack${rackIndex}_right_${shelfIndex}`].length>0){
                                         if(this.rack1.visible || (!this.rack1.visible && shelfIndex!=4)){
                                             this.matchShelfFound=true;
                                             //rackKey='', side='', shelfKey=''
@@ -559,7 +863,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                                                 'shelf': shelfIndex,
                                                 'side': 'right'
                                             }
-                                            this.checkToPlace(true, [...window.userConfig[`rack${rackIndex}_right_${shelfIndex}`]], true, `rack${rackIndex}`, 'right', shelfIndex, false);
+                                            this.checkToPlace(true, [...window.userConfigClone[`rack${rackIndex}_right_${shelfIndex}`]], true, `rack${rackIndex}`, 'right', shelfIndex, false);
                                         }
                                         
                                     }
@@ -568,13 +872,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                             
                         }
                     }
-                    setTimeout(() => {
-                        if(window.isGuest !="true"){
-                            this.emitter.emit('crate:add_crate');
-                        }
-                        
-                        // this.emitter.emit('bottle:add_new', Global.lastBottleKey);
-                    }, 250);
+                    
                     // this.matchShelfFound=false;
                 }, 0);
             }
@@ -584,7 +882,6 @@ export default class Rack extends Phaser.GameObjects.Group {
             //checkToPlace(isNew, filledBottlesOrObject) {
         }
         this.setVisible(status);
-   
         this[`rack1_shelf4_left_info`].setAlpha(status?1:0);
                 this[`rack1_shelf4_left_info_txt`].setAlpha(status?1:0);
         if(!this.rack1.getData('canShow')){
@@ -605,21 +902,32 @@ export default class Rack extends Phaser.GameObjects.Group {
     }
     checkToPlace(isNew, filledBottlesOrObject, prefill= false, rackKey='', side='', shelfKey='', isBig) {
 
+        if(Global.popupActive && ((this.crateSelectedToSwap==null && Global.isMobile)|| !Global.isMobile)) return false;
+        if(Global.isMobile){
+            this.deleteCrateBtn.setAlpha(0);
+            this.crateSelectedToRemove=null;
+        }
+
+     
         if (!this.matchShelfFound) {
+            
+
             if (isNew) {
+            
                 if(!prefill){
-                    this.emitter.emit('crate:reset_position', filledBottlesOrObject);
+                    Global.emitter.emit('crate:reset_position', filledBottlesOrObject);
                 }
                 
             } else {
+               
                 if(Global.canDispose){
                     let filledBottles= filledBottlesOrObject.getData('filledBottles')
-                    filledBottles && this.emitter.emit('header:update_crate', -1);
-
+                    filledBottles && Global.emitter.emit('header:update_crate', -1);
                     [filledBottlesOrObject, ...filledBottlesOrObject.getData('crateItems')].forEach((child) => {
                         child.disableInteractive();
                     })
 
+                    
                     this.scene.tweens.add({
                         targets: [filledBottlesOrObject, ...filledBottlesOrObject.getData('crateItems')],
                         ease: 'Back.In',
@@ -628,80 +936,156 @@ export default class Rack extends Phaser.GameObjects.Group {
                         repeat: 0, // -1: infinity
                         yoyo: false,
                         onComplete: function(){
-                            [filledBottlesOrObject, ...filledBottlesOrObject.getData('crateItems')].forEach((child) => {
-                                child.destroy(true, true);
-                            })
+                            if(filledBottlesOrObject && filledBottlesOrObject.getData('crateItems')){
+                                [filledBottlesOrObject, ...filledBottlesOrObject.getData('crateItems')].forEach((child) => {
+                                    child.destroy(true, true);
+                                })
+                            }
+                           
                             // gameObject
-                            this.emitter.emit('bin:reset_bin');
+                           
+                            Global.emitter.emit('bin:reset_bin');
                         }.bind(this)
                     });
-                }else{
+                    if(filledBottlesOrObject && filledBottlesOrObject.getData('rackInfo') && filledBottlesOrObject.frame.name.indexOf('24')!=-1){
+                        let obj= filledBottlesOrObject.getData('rackInfo');
+                        this.hideTag(filledBottlesOrObject.getData('rackInfo'), Global.crateData[`${obj['rack']}_left_${obj['shelf']}`]['filledBottles']);
+                    }
                     
-                    if (this.isBigCrate) {
-                        let filledBottles= null;
-                        if(Array.isArray(filledBottlesOrObject)){
-                            filledBottles= filledBottlesOrObject;
-                        }else{
-                            let rackInfo = filledBottlesOrObject.getData('rackInfo');
-                            this.rackInfo=rackInfo;
-                            filledBottles= filledBottlesOrObject.getData('filledBottles')
-                        }
-                     
+                    //
+                    let isCustom= false;
+                    filledBottlesOrObject.getData('crateItems').forEach((item) => {
 
-                        if(filledBottles){
-                            this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_left_info`].setAlpha(1)
-                            this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_right_info`].setAlpha(1)
-                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(0,2);
-                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(2,4);
-                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['isBig']= true;
-                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['isBig']= true;
-                            
-                            filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBigCrate)
+                        if(item.getData('isCustom')){
+                            isCustom= true;
                         }
-                       
-                    }else{
+                    })
+                    if(isCustom){
+                        Global.totalCustomCrates--;
+                        this.calculateCustomCrate();
+                    }
+                    
+                }else{
+                  
+                    if (this.isBigCrate) {
+                    
                         let filledBottles= null;
                         if(Array.isArray(filledBottlesOrObject)){
                             filledBottles= filledBottlesOrObject;
+                            
                         }else{
                             let rackInfo = filledBottlesOrObject.getData('rackInfo');
                             this.rackInfo=rackInfo;
                             filledBottles= filledBottlesOrObject.getData('filledBottles')
                         }
                         
-                     
-                        Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]&& (Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottles, Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['isBig']= false);
-                        filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBig)
+                        if(filledBottles){
+                            this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_left_info`].setAlpha(1)
+                            this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_right_info`].setAlpha(1)
+                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['status']='taken';
+                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['status']='taken';
+                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(0,2);
+                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(2,4);
+                            Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['isBig']= true;
+                            Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['isBig']= true;
+                          
+                            // Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['crateType']= Global.crateType;
+                            filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBigCrate)
+                        }
+                       
+                    }else{
 
+                        let filledBottles= null;
+                        if(Array.isArray(filledBottlesOrObject)){
+                            filledBottles= filledBottlesOrObject;
+                        }else{
+                            let rackInfo = filledBottlesOrObject.getData('rackInfo');
+                            this.rackInfo=rackInfo;
+                            filledBottles= filledBottlesOrObject.getData('filledBottles')
+                        }
+                        if(filledBottles){
+                            Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]&& (Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['filledBottles'] =filledBottles, Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['isBig']= false,Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['status']='taken');
+                            filledBottles && this.showTag(this.rackInfo, filledBottles, this.isBig)
+    
+                        }
+                        
                     }
-
-                    this.emitter.emit('rack:reset_position', filledBottlesOrObject);
+                    Global.emitter.emit('rack:reset_position', filledBottlesOrObject);
 
                 }
 
             }
             this.updateSkipFrame();
+            // this.calculateCustomCrate();
             return false;
         } else {
-            this.emitter.emit('header:update_crate', 0);
+            Global.emitter.emit('header:update_crate', 0);
             if (isNew) {
-                this.emitter.emit('header:update_crate_status', 'add');
+                Global.emitter.emit('header:update_crate_status', 'add', prefill);
                 
                 this.addCrateOnShelf(filledBottlesOrObject,undefined, undefined,prefill, rackKey, side, shelfKey, isBig);
-                this.emitter.emit('crate:remove');
+                Global.emitter.emit('crate:remove');
+                
+                
+                if(!prefill && Global.crateType == "custom"){
+                 
+                    this.crateFront.setData('isCustom', true)
+                    Global.totalCustomCrates++;
+                    this.lastCustomCrate=this.crateFront;
+                    this.lastCustomCrateInfo=this.rackInfo;
+                    this.lastcustomCrateIndex=`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`;
+                }else if(prefill){
+                    // alert("DSdfs")
+                    let filledBottles2;
+                    if(Array.isArray(filledBottlesOrObject)){
+                        filledBottles2= filledBottlesOrObject;
+                    }else{
+                        filledBottles2= filledBottlesOrObject.getData('filledBottles')
+                    }
+                    if(filledBottles2.length>1){
+                        let firstItem= filledBottles2[0];
+                        let isCustom= false;
+                        for(let i=1;i<filledBottles2.length;i++){
+                            if(filledBottles2[i]!=firstItem){
+                                isCustom= true;
+                            }
+                        }
+                        if(isCustom){
+                            this.crateFront.setData('isCustom', true)
+                            Global.totalCustomCrates++;
 
+                            this.lastCustomCrate=this.crateFront;
+                            this.lastCustomCrateInfo=this.rackInfo;
+                            this.lastcustomCrateIndex=`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`;
+                        }
+                    }
+
+                   
+                }
+
+                this.calculateCustomCrate(Global.crateType == "custom" && !prefill);
                 if(!prefill){
                     setTimeout(() => {
-                        this.emitter.emit('crate:add_crate');
-                        this.emitter.emit('bottle:add_new', Global.lastBottleKey);
+                        Global.emitter.emit('crate:add_crate');
+                        Global.emitter.emit('bottle:add_new', Global.lastBottleKey);
                     }, 250);
                 }
                 
 
 
             } else {
+         
+                if(this.crateFront == this.lastCustomCrate){
+                    this.lastCustomCrateInfo=this.rackInfo;
+                    this.lastcustomCrateIndex=`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`;
+
+                }
+                    
                 this.rearrageOnShelf(filledBottlesOrObject);
 
+            }
+            if(!prefill){
+                Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['crateType']= Global.crateType;
             }
             let conditionCheck=(prefill?isBig:this.isBigCrate);
             if (conditionCheck) {
@@ -709,7 +1093,11 @@ export default class Rack extends Phaser.GameObjects.Group {
                 Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['status'] = 'taken';
                 Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['isBig'] = true;
                 Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['isBig'] = true;
-
+                // Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['crateType']= Global.crateType;
+                if(!prefill){
+                    // alert("DSA")
+                    // Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['crateType']= Global.crateType;
+                }
                 let filledBottles= null;
                 if(Array.isArray(filledBottlesOrObject)){
                     filledBottles= filledBottlesOrObject;
@@ -723,6 +1111,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                     this[`${this.rackInfo['rack']}_shelf${this.rackInfo['shelf']}_right_info`].setAlpha(1)
                     Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(0,2);
                     Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['filledBottles'] = filledBottles.slice(2,4);
+                    // Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['crateType']= Global.crateType;
                     this.showTag(this.rackInfo, filledBottles, conditionCheck)
                 }
            
@@ -742,14 +1131,15 @@ export default class Rack extends Phaser.GameObjects.Group {
             }
 
             this.updateSkipFrame();
+            // this.calculateCustomCrate();
         }
-       
+
        
     }
     updateSkipFrame(){
         let isEmptyRemains= false;
        
-        console.log('updateSkipFrame')
+
         Object.keys(Global.crateData).forEach((crateDataKey) => {
             let rack= this[crateDataKey.split("_")[0]];
 
@@ -758,21 +1148,27 @@ export default class Rack extends Phaser.GameObjects.Group {
 
             }
         });
-        console.log(isEmptyRemains,'isEmptyRemains',Global.defaultCrateExists)
-        if(isEmptyRemains){
-            this.emitter.emit('header:update_skip_frame', 'skip');
-            this.emitter.emit('header:hide_ready_info');
+        Global.isEmptyRemains=isEmptyRemains;
+        if(!isEmptyRemains && !Global.rackFullInfoShown){
+            Global.rackFullInfoShown= true;
+            Global.emitter.emit('header:show_ready_info');
+        }
+        /* if(isEmptyRemains){
+            Global.emitter.emit('header:update_skip_frame', 'skip');
+            Global.emitter.emit('header:hide_ready_info');
         }else{
             if(!Global.defaultCrateExists){
-                this.emitter.emit('header:update_skip_frame', 'ready');
-                this.emitter.emit('header:show_ready_info');
+                Global.emitter.emit('header:update_skip_frame', 'ready');
+                Global.emitter.emit('header:show_ready_info');
             }
             
-        }
+        } */
         
     }
     hideTag(rackInfo, items){
+
         if(items == null) return false;
+
         if(items.length>1){
             this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info`].setAlpha(0);
             this[`${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info_txt`].setAlpha(0);
@@ -788,6 +1184,7 @@ export default class Rack extends Phaser.GameObjects.Group {
     }
     showTag(rackInfo, items, isBigCrate){
 
+        if(items == null) return false;
         let card1Str='';
         let card2Str='';
         let totalBottles=0
@@ -896,6 +1293,10 @@ export default class Rack extends Phaser.GameObjects.Group {
         
         this.highlight.setAlpha(0)
 
+        this.lastCustomCrate=gameObject;
+        this.lastCustomCrateInfo=this.rackInfo;
+        this.lastcustomCrateIndex=`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`;
+
         gameObject.setData('rackInfo', this.rackInfo);
         gameObject.setData('isBigCrate', this.isBigCrate);
         // gameObject.setPosition(this.highlight.x, this.highlight.y);
@@ -908,12 +1309,13 @@ export default class Rack extends Phaser.GameObjects.Group {
         // this.add(this.crateMaskGr);
         // gameObject.setData('maskGr', this.crateMaskGr);
         [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
-            // child.setMask(this.crateMaskGr.createGeometryMask())
-            /* updateDepth && */ child.setDepth(child.getData('initDepth') + this.rackInfo['shelf'] * 8);
+            if(child.getData('rackInfo')){
+                child.setData('rackInfo',this.rackInfo);
+            }
+            child.setDepth(child.getData('initDepth') + this.rackInfo['shelf'] * 8);
         });
         this.killAllTweens(gameObject);
         [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
-            // child.setMask(this.crateMaskGr.createGeometryMask())
             child.setData('readyToDrag', false);
             this.scene.tweens.add({
                 targets: child,
@@ -990,7 +1392,6 @@ export default class Rack extends Phaser.GameObjects.Group {
             // alert("S");
             let rackInfo= gameObject.getData('rackInfo');
             [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
-                // child.setMask(this.crateMaskGr.createGeometryMask())
 
                 /* updateDepth && */ child.setDepth(child.getData('initDepth') + (rackInfo['shelf']) * 8);
             });
@@ -1015,7 +1416,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                 targets: this.scaleObj,
                 ease: 'Back.Out',
                 value: 1,
-                duration: 350,
+                duration: Global.isMobile?150:350,
                 repeat: 0, // -1: infinity
                 yoyo: false,
                 onUpdate: function (twn) {
@@ -1035,12 +1436,16 @@ export default class Rack extends Phaser.GameObjects.Group {
         }
 
     }
-    onDragStart(pointer, gameObject, dragX, dragY) {
+    onDragStart(pointer, gameObject) {
         if (!Global.crateActivated || Global.popupActive) return false;
 
+        this.dragStartKey= null;
+        this.dragProgressKey= null;
 
-        //   this.isBigCrate = (crateFrame.indexOf('6') == -1);
+        this.canCheckDrag= false;
+          this.isBigCrate = gameObject.getData('isBigCrate');//(crateFrame.indexOf('6') == -1);
         if (gameObject.getData('insideRack')) {
+
             if (!gameObject.getData('readyToDrag')) return false;
 
 
@@ -1057,6 +1462,7 @@ export default class Rack extends Phaser.GameObjects.Group {
             if (isBigCrate) {
                 Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['status'] = 'empty';
                 Global.crateData[`${rackInfo['rack']}_right_${rackInfo['shelf']}`]['status'] = 'empty';
+
                 if(Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['filledBottles']){
                     this.hideTag(rackInfo, Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['filledBottles']);
                     this.hideTag(rackInfo, Global.crateData[`${rackInfo['rack']}_right_${rackInfo['shelf']}`]['filledBottles']);
@@ -1066,6 +1472,9 @@ export default class Rack extends Phaser.GameObjects.Group {
                 
                 Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['filledBottles'] = null;
                 Global.crateData[`${rackInfo['rack']}_right_${rackInfo['shelf']}`]['filledBottles'] = null;
+
+
+
             } else {
                 Global.crateData[`${rackInfo['rack']}_${rackInfo['side']}_${rackInfo['shelf']}`]['status'] = 'empty';
                 this.hideTag(rackInfo, Global.crateData[`${rackInfo['rack']}_${rackInfo['side']}_${rackInfo['shelf']}`]['filledBottles']);
@@ -1076,7 +1485,7 @@ export default class Rack extends Phaser.GameObjects.Group {
 
             }
 
-
+            // this.dragStartKey=`${rackInfo['rack']}_left_${rackInfo['shelf']}`;
             
             this.crateDragged = true;
 
@@ -1099,15 +1508,18 @@ export default class Rack extends Phaser.GameObjects.Group {
             this.scaleObj = {
                 'value': 1
             }
-
+            this.shrinkTwn && this.shrinkTwn.remove();
+            gameObject.setData('twnBeforeDelete', true)
             this.shrinkTwn = this.scene.tweens.add({
                 targets: this.scaleObj,
                 ease: 'Back.Out',
-                value: `*=1.5`,
-                duration: 350,
+                value: Global.isMobile?`*=1.1`:`*=1.5`,
+                duration:350,
                 repeat: 0, // -1: infinity
                 yoyo: false,
+                onStart: function(){  this.crateSelectedToRemove= gameObject;}.bind(this),
                 onUpdate: function (twn) {
+                   
                     [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
                         child.setScale(child.getData('initScale') * this.scaleObj['value'])
                         if (child.getData('filledIndex') !== 0) {
@@ -1118,7 +1530,16 @@ export default class Rack extends Phaser.GameObjects.Group {
                     // this.shrinkScalFact= twn.progress;
                     this.shrinkFact = 1 + twn.progress * .5
                    
-                }.bind(this)
+                }.bind(this),
+                onComplete: function(gameObject){
+                    if(Global.isMobile && this.crateSelectedToRemove !=null){
+                        this.crateSelectedToRemove= gameObject;
+                        this.deleteCrateBtn.setAlpha(1);
+                        this.deleteCrateBtn.setDepth(gameObject.depth+1);
+                        this.deleteCrateBtn.setPosition(gameObject.x, gameObject.y+50*this.scaleFact)
+                    }
+                    this.canCheckDrag= true;
+                }.bind(this, gameObject)
             });
 
 
@@ -1126,6 +1547,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.onBottleDrag(pointer, gameObject, gameObject.x, gameObject.y)
     }
     onBottleDrag(pointer, gameObject, dragX, dragY) {
+        
         if (!Global.crateActivated || Global.popupActive) return false;
 
         if (gameObject.getData('insideRack')) {
@@ -1140,19 +1562,25 @@ export default class Rack extends Phaser.GameObjects.Group {
                     child.y = dragY;
                 }
             })
-
-            this.emitter.emit('rack:check_on_drag', gameObject.getBounds(), gameObject.frame.name)
-            this.emitter.emit('bin:check_on_drag', gameObject.getBounds(), gameObject.frame.name, 0.1)
+            if(this.canCheckDrag){
+                Global.emitter.emit('rack:check_on_drag', gameObject.getBounds(), gameObject.frame.name)
+                Global.emitter.emit('bin:check_on_drag', gameObject.getBounds(), gameObject.frame.name, 0.1)
+            }
+           
 
         }
     }
     onDragEnd(pointer, gameObject, dragX, dragY) {
         if (!Global.crateActivated || Global.popupActive) return false;
 
+        // gameObject.setData('twnBeforeDelete', false);
         if (gameObject.getData('insideRack')) {
+
             if (!gameObject.getData('readyToDrag')) return false;
             this.crateDragged = false;
-            this.emitter.emit('rack:check_to_place', false, gameObject);
+
+           
+            Global.emitter.emit('rack:check_to_place', false, gameObject);
 
         }
     }
@@ -1196,8 +1624,8 @@ export default class Rack extends Phaser.GameObjects.Group {
                 if(filledBottles.length === 0){
                     Global.extraCrate= this.crate;
                     this[`rack2_shelf4_right_info`].setAlpha(1);
-                    this[`rack2_shelf4_right_info_txt`].setAlpha(1);
-                    this[`rack2_shelf4_right_info_txt`].setText('Leeggoed');
+                    this[`rack2_shelf4_right_info_txt`] && this[`rack2_shelf4_right_info_txt`].scene && this[`rack2_shelf4_right_info_txt`].setAlpha(1);
+                    this[`rack2_shelf4_right_info_txt`] && this[`rack2_shelf4_right_info_txt`].scene && this[`rack2_shelf4_right_info_txt`].setText('Leeggoed');
                 }
         } else {
             this.crate = this.create(this.highlight.x, this.highlight.y + 120 * this.scaleFact, 'items', filledBottles.length== 0?`crate_${bottleCnt}_empty0000`:`crate_${bottleCnt}_10000`)
@@ -1231,6 +1659,7 @@ export default class Rack extends Phaser.GameObjects.Group {
      
         if(filledBottles.length== 0){
             setTimeout(function(crateFront, crate){
+                this.infoIcon && this.infoIcon.destroy();
                 this.infoIcon= this.create(crateFront.x+crateFront.width*crateFront.scaleX*.4, crateFront.y-250*this.scaleFact, 'items','infoBtn0000')
             .setScale(this.scaleFact)
             .setAlpha(0)
@@ -1239,7 +1668,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                 cursor: 'pointer'
             })
             .on('pointerdown', () => {
-                this.emitter.emit('crate_info2:show');
+                Global.emitter.emit('crate_info2:show');
             })
             .setDepth(8 + shelfFactor);
 
@@ -1269,6 +1698,7 @@ export default class Rack extends Phaser.GameObjects.Group {
             .setData('insideRack', true)
             .setData('readyToDrag', true)
             .setScale(this.scaleFact * 0.7);
+
         this.crate.setData('rackInfo', this.rackInfo);
         this.crate.setData('isCrateIndex', true);
         this.crate.setData('crateTotalBottles', filledBottles.length);
@@ -1279,17 +1709,25 @@ export default class Rack extends Phaser.GameObjects.Group {
         if(filledBottles.length>0){
             this.crateFront
             .setInteractive({
-                draggable: true,
+                draggable: !Global.isMobile,
                 cursor: 'pointer'
 
-            });
+            })
+            if(Global.isMobile){
+                this.crateFront.on('pointerdown', this.onRackCrateClick.bind(this, this.crateFront))
+            }
+            
 
             this.crate
             .setInteractive({
-                draggable: true,
+                draggable: !Global.isMobile,
                 cursor: 'pointer'
 
-            });
+            })
+            if(Global.isMobile){
+                this.crate.on('pointerdown', this.onRackCrateClick.bind(this, this.crateFront))
+            }
+            
         }
 
        
@@ -1298,6 +1736,7 @@ export default class Rack extends Phaser.GameObjects.Group {
             this[`bottle_set${i}`] = this.create(this.crate.x /* - (Math.ceil(this.bottleSets/2)-i)*500*this.scaleFact */ , this.crate.y + (i - 2.5) * (filledBottles.length==6?70:70) * this.scaleFact, /* `bottles_group_${Global.totalBottles}`, */ filledBottles[i - 1])
                 .setScale(this.scaleFact * 0.7)
                 .setData('filledIndex', i)
+                // .setData('')
                 .setData('filled', false)
                 .setDepth((i == 1 ? 2 : i + 3) + shelfFactor);
             createItems.push(this[`bottle_set${i}`]);
@@ -1324,7 +1763,6 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.addCrateMask(this.crate, false);
         [this.crate, ...this.crate.getData('crateItems')].forEach((child) => {
             child.setData('initDepth', child.depth - shelfFactor)
-            // child.setMask(this.crateMaskGr.createGeometryMask())
             // child.setData('rack', this)
             child.setData('placeScale', child.scaleX)
             this.scene.tweens.add({
@@ -1342,7 +1780,53 @@ export default class Rack extends Phaser.GameObjects.Group {
         })
 
 
+        // this.calculateCustomCrate();
+    }
+    resetSelectedSwapCrate(){
+        if(this.crateSelectedToSwap == null) return false;
+        Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+    }
+    onRackCrateClick(crate, pointer){
+    
+        if(Global.popupActive || Global.isMobile && (!pointer.target || pointer.target && pointer.target.getContext == undefined)) return false;
 
+        if(Global.isMobile){
+            this.deleteCrateBtn.setAlpha(0);
+            this.crateSelectedToRemove=null
+        }
+       
+        if(this.crateSelectedToSwap == crate){
+            Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+            this.crateSelectedToSwap= null;
+            this.hideAllClickable();
+            return false
+        };
+
+        if(this.crateSelectedToSwap!=null){
+           
+            // this.matchShelfFound= false;
+            Global.emitter.emit('rack:check_to_place', false, this.crateSelectedToSwap);
+            // this.onDragEnd(pointer, this.crateSelectedToSwap);
+        }
+        
+        // this.rackInfo = {
+        //     'rack': crateDataKey.split("_")[0],
+        //     'shelf': parseInt(crateDataKey.split("_")[2]),
+        //     'side': crateDataKey.split("_")[1]
+        // }
+        setTimeout(() => {
+
+            this.isBigCrate = crate.getData('isBigCrate');
+            Global.totalBottles= this.isBigCrate?24:6;
+            Global.emitter.emit('rack:highlight_empty_space', true);
+            this.crateSelectedToSwap= crate;
+
+            this.onDragStart(pointer, crate)
+        }, this.crateSelectedToSwap!=null?150:0)
+        // if(this.crateSelectedToSwap!=null) return false;
+        
+
+       
     }
     hideHighlight() {
         this.highlight.setAlpha(0);
@@ -1354,42 +1838,55 @@ export default class Rack extends Phaser.GameObjects.Group {
 
         this.dragCrateName = crateFrame;
         this.matchedRack = null;
-        this.rackInfo = this.checkForRackPlacement(boundsA2, boundsB, 'rack2', this.dragCrateName)
-        if (this.rackInfo['shelf'] == 0) {
-            this.rackInfo = this.checkForRackPlacement(boundsA1, boundsB, 'rack1', this.dragCrateName);
-            if (this.rackInfo['shelf'] !== 0) {
+        let rackInfo = this.checkForRackPlacement(boundsA2, boundsB, 'rack2', this.dragCrateName)
+       
+        if (rackInfo['shelf'] == 0) {
+            rackInfo = this.checkForRackPlacement(boundsA1, boundsB, 'rack1', this.dragCrateName);
+            if (rackInfo['shelf'] !== 0) {
                 this.matchedRack = this.rack1;
             }
         } else {
             this.matchedRack = this.rack2;
         }
+        if(this.dragStartKey == null){
+            this.dragStartKey=`${rackInfo['rack']}_left_${rackInfo['shelf']}`;
+        }
+        this.dragProgressKey=`${rackInfo['rack']}_left_${rackInfo['shelf']}`;
 
         this.isBigCrate = (crateFrame.indexOf('6') == -1);
         if (this.matchedRack != null) {
-          
-            if (
-                (!this.isBigCrate && Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['status'] === 'empty') ||
-                (this.isBigCrate &&
-                    Global.crateData[`${this.rackInfo['rack']}_left_${this.rackInfo['shelf']}`]['status'] === 'empty' &&
-                    Global.crateData[`${this.rackInfo['rack']}_right_${this.rackInfo['shelf']}`]['status'] === 'empty'
-                )
-            ) {
-                // this.highlight.setFrame
-                this.highlight.setAlpha(1);
-                // this.matchCrateType=
-                this.matchShelfFound = true;
 
+            if (
+                ((!this.isBigCrate && Global.crateData[`${rackInfo['rack']}_${rackInfo['side']}_${rackInfo['shelf']}`]['status'] === 'empty') ||
+                (this.isBigCrate &&
+                    Global.crateData[`${rackInfo['rack']}_left_${rackInfo['shelf']}`]['status'] === 'empty' &&
+                    Global.crateData[`${rackInfo['rack']}_right_${rackInfo['shelf']}`]['status'] === 'empty'
+                )) /* && (
+                    this.shrinkTwn.totalProgress>=1
+                ) */
+              
+            ) {
+                this.highlight.setAlpha(1);
+               
+                this.matchShelfFound = true;
+                this.rackInfo= rackInfo;
                 this.highlight.setFrame(`crate_${this.isBigCrate?24:6}_outline0000`);
               
                 this.highlight.setPosition(this.matchedRack.x + (this.isBigCrate ? 0 : Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['position'].x) * this.scaleFact, this.matchedRack.y + Global.crateData[`${this.rackInfo['rack']}_${this.rackInfo['side']}_${this.rackInfo['shelf']}`]['position'].y * this.scaleFact)
+               
             } else {
-                this.isBigCrate = false;
+                if(this.dragProgressKey === this.dragStartKey){
+                }else{
+                    this.isBigCrate = false;
+                }
                 this.matchShelfFound = false;
+                this.matchedRack= null;
                 this.highlight.setAlpha(0);
             }
         } else {
             // this.isBigCrate = false;
             this.matchShelfFound = false;
+            this.matchedRack= null;
             this.highlight.setAlpha(0);
         }
     }
@@ -1437,39 +1934,51 @@ export default class Rack extends Phaser.GameObjects.Group {
             }
 
         }
+
         return rackInfo;
     }
     onResize(){
         setScaleFactor.call(this, false);
 
-        this.rack1 && this.rack1.scene && this.rack1.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (150 + 600 + 150) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact)
-        .setScale(this.scaleFact * 1.4);
+        this.rack1 && this.rack1.scene && this.rack1.setPosition(Global.lastOrientation=='portrait'?this.c_w*.5+550*this.scaleFact:(this.c_w - this.extraLeftPer - this.extraTop/2 - (900) * this.scaleFact), this.c_h * .5 + 250 * this.scaleFact)
+        .setScale(this.scaleFact * (Global.lastOrientation=='portrait'?1.4:1.4));
 
 
-        this.infoIcon && this.infoIcon.scene && this.infoIcon.setScale(this.scaleFact).setPosition(this.infoIcon.getData('refItem').x+this.infoIcon.getData('refItem').width*this.infoIcon.getData('refItem').scaleX*.4, this.infoIcon.getData('refItem').y-250*this.scaleFact)
 
-        this.rack2 && this.rack2.scene && this.rack2.setPosition(this.c_w - this.extraLeftPer - this.extraTop - (1340 + 600 + 300) * this.scaleFact, this.c_h * .5 + 250 * this.scaleFact)
-        .setScale(this.scaleFact * 1.4);
+        this.rack2 && this.rack2.scene && this.rack2.setPosition(Global.lastOrientation=='portrait'?this.c_w*.5-550*this.scaleFact:(this.c_w - this.extraLeftPer - this.extraTop - (2240) * this.scaleFact), this.c_h * .5 + 250 * this.scaleFact)
+        .setScale(this.scaleFact * (Global.lastOrientation=='portrait'?1.4:1.4));
 
         this.deleteBtn && this.deleteBtn.scene && this.deleteBtn.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 200 + 150) * this.scaleFact, this.c_h * .5 - 700 * this.scaleFact)
-        .setScale(this.scaleFact*1.2);
+        .setScale(this.scaleFact*(Global.lastOrientation=='portrait'?1.5:1.2));
 
         this.addBtn && this.addBtn.setPosition(this.c_w - this.extraLeftPer - this.extraTop/2 - (100 + 650 + 150) * this.scaleFact, this.c_h * .5 - 0 * this.scaleFact)
         .setScale(this.scaleFact*1.3);
 
         this.highlight.setScale(this.scaleFact * 0.7);
 
-
+        if(Global.isMobile){
+            Object.keys(Global.crateData).forEach((crateDataKey) => {
+                let rack= this[crateDataKey.split("_")[0]];
+                let posData= Global.crateData[crateDataKey]['position'];
+               
+                this[`highlight_${crateDataKey}`].setPosition(rack.x+posData.x*this.scaleFact, rack.y + posData.y*this.scaleFact)
+                .setScale(this.scaleFact * 0.7);
+                if(crateDataKey.indexOf("right")!=-1){
+                    this[`highlight_${crateDataKey.replace("right", "center")}`].setPosition(rack.x, rack.y + posData.y*this.scaleFact)
+                    .setScale(this.scaleFact * 0.7);
+                }
+            });
+        }
         for(let i=1;i<=2;i++){
             for(let j=1;j<=4;j++){
-                this[`rack${i}_shelf${j}_left_info`] && this[`rack${i}_shelf${j}_left_info`].scene && this[`rack${i}_shelf${j}_left_info`].setPosition(this[`rack${i}`].x-(650)*this.scaleFact, this[`rack${i}`].y-(900 - 450*(j-1))*this.scaleFact)
+                this[`rack${i}_shelf${j}_left_info`] && this[`rack${i}_shelf${j}_left_info`].scene && this[`rack${i}_shelf${j}_left_info`].setPosition(this[`rack${i}`].x-(Global.lastOrientation=='portrait'?525:650)*this.scaleFact, this[`rack${i}`].y-(900 - 450*(j-1))*this.scaleFact)
                 .setScale(this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_left_info_txt`] && this[`rack${i}_shelf${j}_left_info_txt`].scene && this[`rack${i}_shelf${j}_left_info_txt`].setPosition(this[`rack${i}_shelf${j}_left_info`].x, this[`rack${i}_shelf${j}_left_info`].y)
                 .setWordWrapWidth(this[`rack${i}_shelf${j}_left_info`].width*this[`rack${i}_shelf${j}_left_info`].scaleX*.95)
                 .setFontSize(34 * this.scaleFact);
 
-                this[`rack${i}_shelf${j}_right_info`] && this[`rack${i}_shelf${j}_right_info`].scene && this[`rack${i}_shelf${j}_right_info`].setPosition(this[`rack${i}`].x+(650)*this.scaleFact, this[`rack${i}`].y-(680 - 450*(j-1))*this.scaleFact)
+                this[`rack${i}_shelf${j}_right_info`] && this[`rack${i}_shelf${j}_right_info`].scene && this[`rack${i}_shelf${j}_right_info`].setPosition(this[`rack${i}`].x+(Global.lastOrientation=='portrait'?525:650)*this.scaleFact, this[`rack${i}`].y-(680 - 450*(j-1))*this.scaleFact)
                 .setScale(-this.scaleFact*1.2,this.scaleFact*1.2);
 
                 this[`rack${i}_shelf${j}_right_info_txt`] && this[`rack${i}_shelf${j}_right_info_txt`].scene && this[`rack${i}_shelf${j}_right_info_txt`].setPosition(this[`rack${i}_shelf${j}_right_info`].x, this[`rack${i}_shelf${j}_right_info`].y)
@@ -1502,7 +2011,6 @@ export default class Rack extends Phaser.GameObjects.Group {
                         .setScale(this.scaleFact*0.7)
                         
                     }
-                    // child.setMask(this.crateMaskGr.createGeometryMask())
                     // child.setPosition(child.getData('initX'), child.getData('initY'))
                 });
                 gameObject.getData('maskGr') && gameObject.getData('maskGr').destroy(true);
@@ -1521,5 +2029,7 @@ export default class Rack extends Phaser.GameObjects.Group {
            
             
         })
+        this.infoIcon && this.infoIcon.scene && this.infoIcon.setScale(this.scaleFact).setPosition(this.infoIcon.getData('refItem').x+this.infoIcon.getData('refItem').width*this.infoIcon.getData('refItem').scaleX*.4, this.infoIcon.getData('refItem').y-250*this.scaleFact)
+
     }
 }
