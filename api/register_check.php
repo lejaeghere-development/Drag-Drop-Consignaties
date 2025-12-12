@@ -15,7 +15,7 @@ if(!$res || ($res && strlen($res['password']) == 0)){
     $activation_code = md5($activation_random);
     $team = explode(".",explode("@",$decoded->email)[1])[0];
 
-    if($res && strlen($res['password']) == 0){
+    if ($res && ($res['password'] === null || $res['password'] === '')){//if($res && strlen($res['password']) == 0){
         $data = array('username' => $decoded->username, 'password' => md5($decoded->password), 'mobile' => $decoded->mobile, 'rack1Visible' => 1);
         $condition = array('email' => $decoded->email);
         $res2 = $obj->updateData('deliveryves_count', $data, $condition);

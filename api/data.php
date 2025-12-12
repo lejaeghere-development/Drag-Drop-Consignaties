@@ -12,17 +12,26 @@ $dataSent= $decodeData->data;
 
 
 $data= array();
+$dataForCount= array();
 foreach($dataSent as $key => $val){
     if(strlen($val) > 0){
         $data[$key]= $val;
+        if($key!=='addressID'){
+                $dataForCount[$key]= $val;
+        }
     }
 
 }
+
 if($_SESSION["uid"]){
+
     $condition = array('uid' => $_SESSION["uid"]);
-    $res = $obj->updateData('deliveryves_count', $data, $condition);
-    if(strlen($data['addressID']) > 0){
+
+
+    $res = $obj->updateData('deliveryves_count', $dataForCount, $condition);
     
+    if(strlen($data['addressID']) > 0){
+
         $rackData= array(
             'rack1Visible' => $data['rack1Visible'],
             'combination' => $data['combination']

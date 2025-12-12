@@ -1,0 +1,1729 @@
+[
+  {
+"name"	"APPELAERE"
+"type"	"fruitsap"
+"sub_type"	"Appel"
+"bottle_key"	"APPELAERE6"
+"crate_category"	6
+"total_bottles"	6
+"volume"	"75CL"
+},{
+name	"CHAUDFONTAINE BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"CHAUDFONTAINE_BRUIS_SMALL"
+crate_category	24
+total_bottles	20
+volume	"50CL"
+},{
+name	"CORNET OAKED"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"Bottle-CORNETOAKED"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+},{
+name	"FEVER TREE GINGER BEER"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"Bottle-FEVER-TREE-GINGER-BEER"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+},{
+name	"FUZE TEA"
+type	"frisdrank"
+sub_type	"Iced Tea"
+bottle_key	"Bottle-FUZETEA"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+},{
+name	"GOUDEN CAROLUS TRIPLE"
+type	"bieren"
+sub_type	"Triple"
+bottle_key	"Bottle-GOUDENCAROLUSTRIPLE"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+6	
+name	"ICHTEGEM OUD BRUIN"
+type	"bieren"
+sub_type	"Bruin"
+bottle_key	"Bottle-ICHTEGEM-OUD-BRUIN"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+7	
+name	"INEX CHOCO HALFVOL"
+type	"melk"
+sub_type	"Chocomelk"
+bottle_key	"Bottle-INEX-CHOCO-HALFVOL"
+crate_category	24
+total_bottles	12
+volume	"100CL"
+8	
+name	"OLYMPIA MAGERE MELK"
+type	"melk"
+sub_type	"Melk"
+bottle_key	"OLYMPIA_MAGERE_MELK"
+crate_category	24
+total_bottles	20
+volume	"50CL"
+9	
+name	"ORDAL AGRUM ZERO"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"Bottle-ORDAL-AGRUM-ZERO"
+crate_category	6
+total_bottles	6
+volume	"100CL"
+10	
+name	"ORDAL BRUISWATER"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"Bottle-ORDAL-BRUISWATER6"
+crate_category	6
+total_bottles	6
+volume	"100CL"
+11	
+name	"ORDAL BRUISWATER"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"Bottle-ORDAL-BRUISWATER"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+12	
+name	"ORDAL LIMONADE ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"Bottle-ORDAL-LIMONADE-ORANGE"
+crate_category	6
+total_bottles	6
+volume	"100CL"
+13	
+name	"ORDAL MINERAALWATER PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"Bottle-ORDAL-MINERAAL-PLAT6"
+crate_category	6
+total_bottles	6
+volume	"100CL"
+14	
+name	"ORDAL MINERAALWATER PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"Bottle-ORDAL-MINERAAL-PLAT"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+15	
+name	"RITCHIE GRAPEFRUIT"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"Bottle-RITCHIE-GRAPEFRUIT"
+crate_category	24
+total_bottles	24
+volume	"27,5CL"
+16	
+name	"RITCHIE ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"Bottle-RITCHIE-ORANGE"
+crate_category	24
+total_bottles	24
+volume	"27,5CL"
+17	
+name	"RODENBACH GRAND CRU"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"Bottle-RODENBACH-GRAND-CRU"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+18	
+name	"SINAASAPPELAERE"
+type	"fruitsap"
+sub_type	"Sinaasappel"
+bottle_key	"Bottle-SINAASAPPELAERE"
+crate_category	6
+total_bottles	6
+volume	"75CL"
+19	
+name	"SINT BERNARDUS 12"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"Bottle-SINT-BERNARDUS-12"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+20	
+name	"VEDETT"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"Bottle-VEDETT"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+21	
+name	"ACQUA PANNA"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"ACQUA_PANNA"
+crate_category	6
+total_bottles	6
+volume	"1L"
+22	
+name	"ALMDUDLER"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"ALMDUDLER"
+crate_category	24
+total_bottles	24
+volume	"35CL"
+23	
+name	"APPELAERE"
+type	"fruitsap"
+sub_type	"Appel"
+bottle_key	"APPELAERE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+24	
+name	"APPLETISER"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"APPLETISER"
+crate_category	24
+total_bottles	24
+volume	"27.5CL"
+25	
+name	"AQUARIUS LEMON SMALL"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_LEMON_33"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+26	
+name	"AQUARIUS LEMON BIG"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_LEMON_50"
+crate_category	24
+total_bottles	24
+volume	"50CL"
+27	
+name	"AQUARIUS ORANGE SMALL"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_ORANGE_33"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+28	
+name	"AQUARIUS ORANGE BIG"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_ORANGE_50"
+crate_category	24
+total_bottles	24
+volume	"50CL"
+29	
+name	"AQUARIUS RED PEACH SMALL"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_RED_PEACH_33"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+30	
+name	"AQUARIUS RED PEACH BIG"
+type	"frisdrank"
+sub_type	"Sport en energie"
+bottle_key	"AQUARIUS_RED_PEACH_50"
+crate_category	24
+total_bottles	24
+volume	"50CL"
+31	
+name	"BAVIK SUPER PILS"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"BAVIK_SUPER_PILS"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+32	
+name	"BOON OUDE GEUZE"
+type	"bieren"
+sub_type	"Gueuze"
+bottle_key	"BOON_OUDE_GEUZE"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+33	
+name	"BOSCOULIS"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"BOSCOULIS"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+34	
+name	"BOURGOGNE DE FLANDRES"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"BOURGOGNE_DE_FLANDRES"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+35	
+name	"BRU BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"BRU_BRUIS_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+36	
+name	"BRU BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"BRU_BRUIS_SMALL_25"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+37	
+name	"BRU BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"BRU_BRUIS_SMALL_50"
+crate_category	24
+total_bottles	18
+volume	"50CL"
+38	
+name	"BRU BRUIS PET"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"BRU_BRUIS_SMALL_50_PET"
+crate_category	24
+total_bottles	24
+volume	"50CL"
+39	
+name	"BRU PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"BRU_PLAT_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+40	
+name	"BRU PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"BRU_PLAT_SMALL_25"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+41	
+name	"BRU PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"BRU_PLAT_SMALL_50"
+crate_category	24
+total_bottles	18
+volume	"50CL"
+42	
+name	"BRUGSE ZOT BLOND"
+type	"bieren"
+sub_type	"Blond, Streekbier"
+bottle_key	"BRUGSE_ZOT_BLOND"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+43	
+name	"CANADA DRY"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"CANADA_DRY"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+44	
+name	"CARLSBERG"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"CARLSBERG"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+45	
+name	"CARLSBERG 0.0%"
+type	"bieren"
+sub_type	"Pils, Alcoholvrij"
+bottle_key	"CARLSBERG_0"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+46	
+name	"CECEMEL"
+type	"melk"
+sub_type	"Chocomelk"
+bottle_key	"CECEMEL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+47	
+name	"CHAUDFONTAINE BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"CHAUDFONTAINE_BRUIS_SMALL_25CL"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+48	
+name	"CHAUDFONTAINE BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"CHAUDFONTAINE_BRUIS_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+49	
+name	"CHAUDFONTAINE LICHT BRUISEND"
+type	"water"
+sub_type	"Licht bruisend"
+bottle_key	"CHAUDFONTAINE_LICHT_BRUISEND"
+crate_category	6
+total_bottles	6
+volume	"1L"
+50	
+name	"CHAUDFONTAINE PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"CHAUDFONTAINE_PLAT_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+51	
+name	"CHAUDFONTAINE PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"CHAUDFONTAINE_PLAT_SMALL"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+52	
+name	"CHIMAY BLAUW"
+type	"bieren"
+sub_type	"Trappist"
+bottle_key	"CHIMAY_BLAUW"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+53	
+name	"CHIMAY WIT"
+type	"bieren"
+sub_type	"Witbier"
+bottle_key	"CHIMAY_WIT"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+54	
+name	"CHOUFFE 0.4% ALCOHOLVRIJ"
+type	"bieren"
+sub_type	"Alcoholvrij"
+bottle_key	"CHOUFFE_NA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+55	
+name	"COCA COLA"
+type	"frisdrank"
+sub_type	"Cola"
+bottle_key	"COCA_COLA_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+56	
+name	"COCA COLA"
+type	"frisdrank"
+sub_type	"Cola"
+bottle_key	"COCA_COLA_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+57	
+name	"COLA LIGHT"
+type	"frisdrank"
+sub_type	"Suikervrij"
+bottle_key	"COLA_LIGHT"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+58	
+name	"COLA ZERO"
+type	"frisdrank"
+sub_type	"Suikervrij"
+bottle_key	"COLA_ZERO_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+59	
+name	"COLA ZERO"
+type	"frisdrank"
+sub_type	"Suikervrij"
+bottle_key	"COLA_ZERO_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+60	
+name	"COLA ZERO PET"
+type	"frisdrank"
+sub_type	"Suikervrij"
+bottle_key	"COLA_ZERO_SMALL_PET"
+crate_category	24
+total_bottles	24
+volume	"50CL"
+61	
+name	"CRISTAL"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"CRISTAL"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+62	
+name	"CRISTAL 0,0%"
+type	"bieren"
+sub_type	"Pils, Alcoholvrij"
+bottle_key	"CRISTAL_NA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+63	
+name	"CRISTAL XTRA"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"CRISTAL_XTRA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+64	
+name	"CRISTALINE PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"CRISTALINE_PLAT"
+crate_category	6
+total_bottles	6
+volume	"1L"
+65	
+name	"CRODINO BIONDO"
+type	"wijn"
+sub_type	"Andere, Alcoholvrij"
+bottle_key	"CRODINO_BIONDO"
+crate_category	24
+total_bottles	24
+volume	"17.5CL"
+66	
+name	"CRODINO ROSSO"
+type	"wijn, Alcoholvrij"
+sub_type	"Andere"
+bottle_key	"CRODINO_ROSSO"
+crate_category	24
+total_bottles	24
+volume	"17.5CL"
+67	
+name	"DUVEL"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"DUVEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+68	
+name	"DUVEL 666"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"DUVEL_666"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+69	
+name	"DUVEL TRIPEL HOP CITRA"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"DUVEL_TRIPEL_HOP_CITRA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+70	
+name	"EAULALA BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"EAULALA_BRUIS"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+71	
+name	"EAULALA PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"EAULALA_PLAT"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+72	
+name	"EVIAN"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"EVIAN"
+crate_category	6
+total_bottles	6
+volume	"1L"
+73	
+name	"FANTA ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"FANTA_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+74	
+name	"FANTA ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"FANTA_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+75	
+name	"FENTIMANS VICTORIAN LEMONADE"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"FENTIMANS_VICTORIAN_LEMONADE"
+crate_category	24
+total_bottles	12
+volume	"27.5CL"
+76	
+name	"FEVER TREE INDIAN TONIC"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"FEVER_TREE_INDIAN_TONIC"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+77	
+name	"FEVER TREE MEDITERENEAN"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"FEVER_TREE_MEDITERENEAN"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+78	
+name	"FRISTI"
+type	"zuivel"
+sub_type	"Kids en baby's"
+bottle_key	"FRISTI"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+79	
+name	"GEROLSTEINER ORANGE LIGHT"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"GEROLSTEINER_ORANGE_LIGHT"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+80	
+name	"GEROLSTEINER ZITRONE LIGHT"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"GEROLSTEINER_ZITRONE_LIGHT"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+81	
+name	"GINI"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"GINI"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+82	
+name	"GORDON SCOTCH"
+type	"bieren"
+sub_type	"Streekbier"
+bottle_key	"GORDON_SCOTCH"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+83	
+name	"GRANINI SINAAS"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"GRANINI_SINAAS"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+84	
+name	"HAPKIN"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"HAPKIN"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+85	
+name	"HOEGAARDEN ROSE"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"HOEGAARDEN_ROSE"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+86	
+name	"HOEGAARDEN WIT"
+type	"bieren"
+sub_type	"Witbier"
+bottle_key	"HOEGAARDEN_WIT"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+87	
+name	"ICE TEA BRUIS"
+type	"frisdrank"
+sub_type	"Iced Tea"
+bottle_key	"ICE_TEA_BRUIS_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+88	
+name	"ICE TEA BRUIS"
+type	"frisdrank"
+sub_type	"Iced Tea"
+bottle_key	"ICE_TEA_BRUIS_SMALL"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+89	
+name	"ICE TEA GREEN"
+type	"frisdrank"
+sub_type	"Iced Tea"
+bottle_key	"ICE_TEA_GREEN"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+90	
+name	"ICE TEA PEACH"
+type	"frisdrank"
+sub_type	"Iced Tea"
+bottle_key	"ICE_TEA_PEACH"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+91	
+name	"ICE TEA ZERO"
+type	"frisdrank"
+sub_type	"Iced Tea, Suikervrij"
+bottle_key	"ICE_TEA_ZERO"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+92	
+name	"INEX CHOCO HALFVOL"
+type	"zuivel"
+sub_type	"Chocomelk"
+bottle_key	"INEX_CHOCO_HALFVOL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+93	
+name	"INEX HALF VOL LACTOSEVRIJ"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_HALF_VOL_LACTOSEVRIJ"
+crate_category	24
+total_bottles	12
+volume	"1L"
+94	
+name	"INEX HALFVOL"
+type	"melk"
+sub_type	"Melk"
+bottle_key	"INEX_HALFVOL_100"
+crate_category	24
+total_bottles	12
+volume	"1L"
+95	
+name	"INEX HALFVOL"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_HALFVOL_50"
+crate_category	24
+total_bottles	20
+volume	"50CL"
+96	
+name	"INEX HALFVOL"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_HALFVOL_20"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+97	
+name	"INEX MAGERE MELK"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_MAGERE_MELK"
+crate_category	24
+total_bottles	12
+volume	"1L"
+98	
+name	"INEX VOLLE MELK"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_VOLLE_MELK_50"
+crate_category	24
+total_bottles	16
+volume	"50CL"
+99	
+name	"INEX VOLLE MELK"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"INEX_VOLLE_MELK_100"
+crate_category	24
+total_bottles	12
+volume	"1L"
+100	
+name	"JUPILER"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"JUPILER"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+101	
+name	"JUPILER"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"JUPILER"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+102	
+name	"JUPILER 0.0%"
+type	"bieren"
+sub_type	"Pils, Blond, Alcoholvrij"
+bottle_key	"JUPILER_NA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+103	
+name	"JUPILER BLUE"
+type	"bieren"
+sub_type	"Pils, Blond, Alcoholvrij"
+bottle_key	"JUPILER_BLUE"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+104	
+name	"KARMELIET TRIPEL"
+type	"bieren"
+sub_type	"Blond, Triple"
+bottle_key	"KARMELIET_TRIPEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+105	
+name	"KASTEELBIER BRUIN"
+type	"bieren"
+sub_type	"Bruin"
+bottle_key	"KASTEELBIER_BRUIN"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+106	
+name	"KASTEELBIER FRAMBOISE"
+type	"bieren"
+sub_type	"Fruitbier"
+bottle_key	"KASTEELBIER_FRAMBOISE"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+107	
+name	"KASTEELBIER ROUGE"
+type	"bieren"
+sub_type	"Fruitbier"
+bottle_key	"KASTEELBIER_ROUGE"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+108	
+name	"KASTEELBIER TRIPEL"
+type	"bieren"
+sub_type	"Blond, Triple"
+bottle_key	"KASTEELBIER_TRIPEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+109	
+name	"KRIEK MAX"
+type	"bieren"
+sub_type	"Fruitbier"
+bottle_key	"KRIEK_MAX"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+110	
+name	"LA CHOUFFE"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"LA_CHOUFFE"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+111	
+name	"LA CHOUFFE SOLEIL"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"LA_CHOUFFE_SOLEIL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+112	
+name	"LA TRAPPE QUADRUPEL"
+type	"bieren"
+sub_type	"Trappist"
+bottle_key	"LA_TRAPPE_QUADRUPEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+113	
+name	"LEFFE BLOND"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"LEFFE_BLOND"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+114	
+name	"LEFFE BLOND 0,0%"
+type	"bieren"
+sub_type	"Blond, Alcoholvrij"
+bottle_key	"LEFFE_BLOND_NA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+115	
+name	"LEFFE BRUIN"
+type	"bieren"
+sub_type	"Bruin"
+bottle_key	"LEFFE_BRUIN"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+116	
+name	"LEFFE BRUIN 0,0%"
+type	"bieren"
+sub_type	"Bruin, Alcoholvrij"
+bottle_key	"LEFFE_BRUIN_NA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+117	
+name	"LIEFMANS FRUIT"
+type	"bieren"
+sub_type	"Fruitbier"
+bottle_key	"LIEFMANS_FRUIT"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+118	
+name	"LIEFMANS FRUIT 0.0%"
+type	"bieren"
+sub_type	"Fruitbier, Alcoholvrij"
+bottle_key	"LIEFMANS_FRUIT_NA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+119	
+name	"LINDEMANS KRIEK"
+type	"bieren"
+sub_type	"Fruitbier"
+bottle_key	"LINDEMANS_KRIEK"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+120	
+name	"LOOZA ACE"
+type	"frisdrank"
+sub_type	"Multifruit"
+bottle_key	"LOOZA_ACE_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+121	
+name	"LOOZA ACE"
+type	"fruitsap"
+sub_type	"Multifruit"
+bottle_key	"LOOZA_ACE_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+122	
+name	"LOOZA APPLE"
+type	"fruitsap"
+sub_type	"Appel"
+bottle_key	"LOOZA_APPLE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+123	
+name	"LOOZA APPLE CHERRY"
+type	"fruitsap"
+sub_type	"Appel/kers"
+bottle_key	"LOOZA_APPLE_CHERRY"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+124	
+name	"LOOZA GRAPEFRUIT"
+type	"fruitsap"
+sub_type	"Pompelmoes"
+bottle_key	"LOOZA_GRAPEFRUIT"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+125	
+name	"LOOZA ORANGE"
+type	"fruitsap"
+sub_type	"Sinaasappel"
+bottle_key	"LOOZA_ORANGE_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+126	
+name	"LOOZA ORANGE"
+type	"fruitsap"
+sub_type	"Sinaasappel"
+bottle_key	"LOOZA_ORANGE_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+127	
+name	"LOOZA TOMATO"
+type	"fruitsap"
+sub_type	"Tomaat"
+bottle_key	"LOOZA_TOMATO"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+128	
+name	"MAES"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"MAES"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+129	
+name	"MINUTEMAID ACE"
+type	"fruitsap"
+sub_type	"Multifruit"
+bottle_key	"MINUTEMAID_ACE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+130	
+name	"MINUTEMAID APPEL"
+type	"fruitsap"
+sub_type	"Appel"
+bottle_key	"MINUTEMAID_APPEL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+131	
+name	"MINUTEMAID APPEL KERS"
+type	"fruitsap"
+sub_type	"Appel/kers"
+bottle_key	"MINUTEMAID_APPEL_KERS"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+132	
+name	"MINUTEMAID ORANGE"
+type	"fruitsap"
+sub_type	"Sinaasappel"
+bottle_key	"MINUTEMAID_ORANGE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+133	
+name	"MINUTEMAID TOMAAT"
+type	"fruitsap"
+sub_type	"Tomaat"
+bottle_key	"MINUTEMAID_TOMAAT"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+134	
+name	"MIRINDA ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"MIRINDA_ORANGE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+135	
+name	"MONT ROUSCOUS PLAT"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"MONT_ROUSCOUS_PLAT"
+crate_category	24
+total_bottles	12
+volume	"1.1L"
+136	
+name	"NESTLE MINERAALWATER"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"NESTLE_MINERAALWATER"
+crate_category	6
+total_bottles	6
+volume	"1.5L"
+137	
+name	"NUTROMA ICE CAFE LATTE"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"NUTROMA_ICE_CAFE_LATTE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+138	
+name	"OASIS TROPICAL"
+type	"frisdrank"
+sub_type	"Andere"
+bottle_key	"OASIS_TROPICAL"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+139	
+name	"OLYMPIA MAGERE MELK"
+type	"zuivel"
+sub_type	"Melk"
+bottle_key	"OLYMPIA_MAGERE_MELK_1L"
+crate_category	24
+total_bottles	12
+volume	"1L"
+140	
+name	"OMER"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"OMER"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+141	
+name	"ORANGINA"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"ORANGINA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+142	
+name	"ORVAL"
+type	"bieren"
+sub_type	"Trappist"
+bottle_key	"ORVAL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+143	
+name	"PEPSI"
+type	"frisdrank"
+sub_type	"Cola"
+bottle_key	"PEPSI"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+144	
+name	"PEPSI MAX"
+type	"frisdrank"
+sub_type	"Cola, Suikervrij"
+bottle_key	"PEPSI_MAX"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+145	
+name	"PEPSI MAX"
+type	"frisdrank"
+sub_type	"Cola, Suikervrij"
+bottle_key	"PEPSI_MAX"
+crate_category	24
+total_bottles	12
+volume	"1L"
+146	
+name	"PERELAERE"
+type	"fruitsap"
+sub_type	"Peer"
+bottle_key	"PERELAERE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+147	
+name	"PERRIER"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"PERRIER_SMALL"
+crate_category	24
+total_bottles	28
+volume	"20CL"
+148	
+name	"PERRIER PET"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"PERRIER_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+149	
+name	"PIEDBOEUF BRUIN"
+type	"bieren"
+sub_type	"Bruin"
+bottle_key	"PIEDBOEUF_BRUIN"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+150	
+name	"PRIMUS"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"PRIMUS"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+151	
+name	"QUINTINE BIO BLOND"
+type	"bieren"
+sub_type	"Blond"
+bottle_key	"QUINTINE_BIO_BLOND"
+crate_category	24
+total_bottles	12
+volume	"33CL"
+152	
+name	"RITCHIE COLA ZERO"
+type	"frisdrank"
+sub_type	"Cola, Suikervrij"
+bottle_key	"RITCHIE_COLA_ZERO"
+crate_category	24
+total_bottles	24
+volume	"27.5CL"
+153	
+name	"RITCHIE LEMON"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"RITCHIE_LEMON"
+crate_category	24
+total_bottles	24
+volume	"27.5CL"
+154	
+name	"ROCHEFORT 10%"
+type	"bieren"
+sub_type	"Trappist"
+bottle_key	"ROCHEFORT_10"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+155	
+name	"ROCHEFORT 8%"
+type	"bieren"
+sub_type	"Trappist"
+bottle_key	"ROCHEFORT_8"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+156	
+name	"RODENBACH"
+type	"bieren"
+sub_type	"Andere"
+bottle_key	"RODENBACH"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+157	
+name	"ROMAN COLA"
+type	"frisdrank"
+sub_type	"Cola"
+bottle_key	"ROMAN_COLA"
+crate_category	24
+total_bottles	12
+volume	"1L"
+158	
+name	"ROMAN ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"ROMAN_ORANGE"
+crate_category	24
+total_bottles	12
+volume	"1L"
+159	
+name	"ROYAL BLISS AGRUM"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"ROYAL_BLISS_AGRUM"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+160	
+name	"ROYAL BLISS BITTER LEMON"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"ROYAL_BLISS_BITTER_LEMON"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+161	
+name	"ROYAL BLISS GINGER ALE"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"ROYAL_BLISS_GINGER_ALE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+162	
+name	"ROYAL BLISS TONIC"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"ROYAL_BLISS_TONIC"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+163	
+name	"SAN PELLEGRINO"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"SAN_PELLEGRINO"
+crate_category	6
+total_bottles	6
+volume	"1L"
+164	
+name	"SCHWEPPES AGRUM"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_AGRUM"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+165	
+name	"SCHWEPPES GINGER ALE"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_GINGER_ALE"
+crate_category	24
+total_bottles	12
+volume	"20CL"
+166	
+name	"SCHWEPPES PINK TONIC"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_PINK_TONIC"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+167	
+name	"SCHWEPPES PREMIUM HIBISCUS"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_PREMIUM_HIBISCUS"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+168	
+name	"SCHWEPPES PREMIUM TONIC LIME"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_PREMIUM_TONIC_LIME"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+169	
+name	"SCHWEPPES TONIC"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"SCHWEPPES_TONIC"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+170	
+name	"SEVEN UP"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"SEVEN_UP"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+171	
+name	"SINAASAPPELAERE"
+type	"frisdrank"
+sub_type	"Sinaasappel"
+bottle_key	"SINAASAPPELAERE"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+172	
+name	"SPA BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"SPA_BRUIS_SMALL_25"
+crate_category	24
+total_bottles	28
+volume	"25CL"
+173	
+name	"SPA BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"SPA_BRUIS_SMALL_50"
+crate_category	24
+total_bottles	18
+volume	"50CL"
+174	
+name	"SPA BRUIS"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"SPA_BRUIS_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+175	
+name	"SPA FINESSE"
+type	"water"
+sub_type	"Licht bruisend"
+bottle_key	"SPA_FINESSE"
+crate_category	6
+total_bottles	6
+volume	"1L"
+176	
+name	"SPA FRUIT CITRON"
+type	"water"
+sub_type	"Water met smaakje"
+bottle_key	"SPA_FRUIT_CITRON"
+crate_category	24
+total_bottles	28
+volume	"25CL"
+177	
+name	"SPA FRUIT MANGO - APRIC"
+type	"water"
+sub_type	"Water met smaakje"
+bottle_key	"SPA_FRUIT_MANGO_APRIC"
+crate_category	24
+total_bottles	24
+volume	"40CL"
+178	
+name	"SPA FRUIT ORANGE"
+type	"water"
+sub_type	"Water met smaakje"
+bottle_key	"SPA_FRUIT_ORANGE"
+crate_category	24
+total_bottles	28
+volume	"25CL"
+179	
+name	"SPA FRUIT STRAWB - RASPB"
+type	"water"
+sub_type	"Water met smaakje"
+bottle_key	"SPA_FRUIT_STRAWB_RASPB"
+crate_category	24
+total_bottles	28
+volume	"25CL"
+180	
+name	"SPA REINE"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"SPA_REINE_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+181	
+name	"SPA REINE"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"SPA_REINE_SMALL_50"
+crate_category	24
+total_bottles	18
+volume	"50CL"
+182	
+name	"SPA REINE"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"SPA_REINE_SMALL_33"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+183	
+name	"SPA REINE"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"SPA_REINE_SMALL_25"
+crate_category	24
+total_bottles	28
+volume	"25CL"
+184	
+name	"SPORTZOT 0%"
+type	"bieren"
+sub_type	"Blond, Alcoholvrij, Streekbier"
+bottle_key	"SPORTZOT_NA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+185	
+name	"SPRITE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"SPRITE_BIG"
+crate_category	6
+total_bottles	6
+volume	"1L"
+186	
+name	"SPRITE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"SPRITE_SMALL"
+crate_category	24
+total_bottles	24
+volume	"20CL"
+187	
+name	"STELLA"
+type	"bieren"
+sub_type	"Pils, Blond"
+bottle_key	"STELLA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+188	
+name	"STELLA 0.0%"
+type	"bieren"
+sub_type	"Pils, Blond, Alcoholvrij"
+bottle_key	"STELLA_NA"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+189	
+name	"TONISSTEINER AGRUM"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_AGRUM_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+190	
+name	"TONISSTEINER AGRUM"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_AGRUM_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+191	
+name	"TONISSTEINER CITRON"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_CITRON_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+192	
+name	"TONISSTEINER CITRON"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_CITRON_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+193	
+name	"TONISSTEINER FRUCHTEKORB"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_FRUCHTEKORB_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+194	
+name	"TONISSTEINER FRUCHTEKORB"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_FRUCHTEKORB_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+195	
+name	"TONISSTEINER ICE BREAK"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_ICE_BREAK_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+196	
+name	"TONISSTEINER ICE BREAK"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_ICE_BREAK_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+197	
+name	"TONISSTEINER LEMON GINGER"
+type	"frisdrank"
+sub_type	"Tonic en mixers"
+bottle_key	"TONISSTEINER_LEMON_GINGER"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+198	
+name	"TONISSTEINER MEDIUM"
+type	"water"
+sub_type	"Licht bruisend"
+bottle_key	"TONISSTEINER_MEDIUM"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+199	
+name	"TONISSTEINER NARANJA"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_NARANJA_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+200	
+name	"TONISSTEINER NARANJA"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_NARANJA_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+201	
+name	"TONISSTEINER ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_ORANGE_25"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+202	
+name	"TONISSTEINER ORANGE"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_ORANGE_75"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+203	
+name	"TONISSTEINER PINK FIT"
+type	"frisdrank"
+sub_type	"Limonade"
+bottle_key	"TONISSTEINER_PINK_FIT"
+crate_category	24
+total_bottles	20
+volume	"25CL"
+204	
+name	"TONISSTEINER SPRUDEL"
+type	"water"
+sub_type	"Bruisend"
+bottle_key	"TONISSTEINER_SPRUDEL"
+crate_category	24
+total_bottles	12
+volume	"75CL"
+205	
+name	"VITTEL"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"VITTEL_100"
+crate_category	24
+total_bottles	12
+volume	"1L"
+206	
+name	"VITTEL"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"VITTEL_50"
+crate_category	24
+total_bottles	20
+volume	"50CL"
+207	
+name	"VITTEL"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"VITTEL_25"
+crate_category	24
+total_bottles	24
+volume	"25CL"
+208	
+name	"VICHY CELESTINS PET"
+type	"water"
+sub_type	"Niet bruisend"
+bottle_key	"VICHY_CELESTINS"
+crate_category	6
+total_bottles	6
+volume	"1.15L"
+209	
+name	"VIVEN MASTER IPA"
+type	"bieren"
+sub_type	"IPA"
+bottle_key	"VIVEN_MASTER_IPA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+210	
+name	"VIVEN NADA IPA"
+type	"bieren"
+sub_type	"IPA, Alcoholvrij"
+bottle_key	"VIVEN_NADA_IPA_NA"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+211	
+name	"WESTMALLE DUBBEL"
+type	"bieren"
+sub_type	"Bruin"
+bottle_key	"WESTMALLE_DUBBEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+212	
+name	"WESTMALLE TRIPEL"
+type	"bieren"
+sub_type	"Triple"
+bottle_key	"WESTMALLE_TRIPEL"
+crate_category	24
+total_bottles	24
+volume	"33CL"
+213	
+name	"WELDENHOF BIO APPEL"
+type	"fruitsap"
+sub_type	"Appel, Bio"
+bottle_key	"WELDENHOF_BIO_APPEL"
+crate_category	6
+total_bottles	6
+volume	"1L"
+214	
+name	"WELDENHOF BIO MULTI"
+type	"fruitsap"
+sub_type	"Multifruit, Bio"
+bottle_key	"WELDENHOF_BIO_MULTI"
+crate_category	6
+total_bottles	6
+volume	"1L"
+215	
+name	"WELDENHOF BIO SINAAS"
+type	"fruitsap"
+sub_type	"Sinaasappel, Bio"
+bottle_key	"WELDENHOF_BIO_SINAAS"
+crate_category	6
+total_bottles	6
+volume	"1L"

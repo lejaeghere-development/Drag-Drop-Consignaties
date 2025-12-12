@@ -5,11 +5,17 @@ require_once ('libs/functions.php');
 $obj = new Functions("usa");
 
 $addressInfo=array();
+$userInfo=array();
 $query = $obj->myPdo->from('deliveryves_count')->select(array('uid','email'));
 $results= $query->fetchAll();
 foreach ($results as $res) {
     if($res['admin'] != 1){
+        $userInfo[$res['email']]= array();
         $addressInfo[$res['email']]= array();
+
+        $userInfo[$res['email']]['racks']= $res['racks'];
+        $userInfo[$res['email']]['showEmpty']=$res['show_empty'];
+
         $addressQ = $obj->myPdo->from('deliveryves_address')->select(array())->where('uid', $res['uid']);
         $addressR= $addressQ->fetchAll();
         foreach ($addressR as $resA) {
@@ -47,7 +53,8 @@ for($i=0; $i< count($res); $i++){
 
 
 echo base64_encode(json_encode(array(
-    "address_info" => $addressInfo
+    "address_info" => $addressInfo,
+    "user_info" => $userInfo
 )));
 
 ?>

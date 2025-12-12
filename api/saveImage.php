@@ -40,6 +40,6 @@ $filepath = $folderpath . '/' . $filename;
 
 // Saving the decoded image data to the file
 $res= file_put_contents($filepath, $image_data);
-echo json_encode($res);
+echo base64_encode(json_encode($res));
 
 ?>

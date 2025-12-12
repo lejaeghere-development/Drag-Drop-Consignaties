@@ -12,7 +12,7 @@ require_once ('libs/functions.php');
 date_default_timezone_set('America/Los_Angeles');
 $obj = new Functions("usa");// Start with PHPMailer class
 $decodeData= json_decode(base64_decode($_POST['data']));
-$domainBase='https://www.apexexp.in/Games/Deliveryves/';//https://www.fit-it.be/krattenrek/
+$domainBase='https://www.fit-it.be/krattenrek/';
 $query = $obj->myPdo->from('deliveryves_count')->select(array('username, uid'))->where('email', $decodeData->email);
 $res= $query->fetch();
 

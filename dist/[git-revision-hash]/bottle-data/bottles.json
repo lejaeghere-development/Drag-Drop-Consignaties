@@ -1,1731 +1,2172 @@
 [
-   {
-      "name": "APPELAERE",
-      "type": "fruitsap",
-      "bottle_key": "APPELAERE6",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "75CL"
-   },
-   {
-      "name": "CHAUDFONTAINE BRUIS",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL",
-      "crate_category": 24,
-      "total_bottles":20,
-      "volume": "50CL"
-   },
-   {
-      "name": "CORNET OAKED",
-      "type": "bieren",
-      "bottle_key": "Bottle-CORNETOAKED",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "FEVER TREE GINGER BEER",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-FEVER-TREE-GINGER-BEER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "FUZE TEA",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-FUZETEA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "GOUDEN CAROLUS TRIPLE",
-      "type": "bieren",
-      "bottle_key": "Bottle-GOUDENCAROLUSTRIPLE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "ICHTEGEM OUD BRUIN",
-      "type": "bieren",
-      "bottle_key": "Bottle-ICHTEGEM-OUD-BRUIN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "INEX CHOCO HALFVOL",
-      "type": "melk",
-      "bottle_key": "Bottle-INEX-CHOCO-HALFVOL",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "100CL"
-   },
-   {
-      "name": "OLYMPIA MAGERE MELK",
-      "type": "melk",
-      "bottle_key": "OLYMPIA_MAGERE_MELK",
-      "crate_category": 24,
-      "total_bottles":20,
-      "volume": "50CL"
-   },
-   {
-      "name": "ORDAL AGRUM ZERO",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-ORDAL-AGRUM-ZERO",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "100CL"
-   },
-   {
-      "name": "ORDAL BRUISWATER",
-      "type": "water",
-      "bottle_key": "Bottle-ORDAL-BRUISWATER6",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "100CL"
-   },
-   {
-      "name": "ORDAL BRUISWATER",
-      "type": "water",
-      "bottle_key": "Bottle-ORDAL-BRUISWATER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "ORDAL LIMONADE ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-ORDAL-LIMONADE-ORANGE",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "100CL"
-   },
-   {
-      "name": "ORDAL MINERAAL PLAT",
-      "type": "water",
-      "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT6",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "100CL"
-   },
-   {
-      "name": "ORDAL MINERAALWATER",
-      "type": "water",
-      "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "RITCHIE GRAPEFRUIT",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-RITCHIE-GRAPEFRUIT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "27,5CL"
-   },
-   {
-      "name": "RITCHIE ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "Bottle-RITCHIE-ORANGE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "27,5CL"
-   },
-   {
-      "name": "RODENBACH GRAND CRU",
-      "type": "bieren",
-      "bottle_key": "Bottle-RODENBACH-GRAND-CRU",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "SINAASAPPELAERE",
-      "type": "fruitsap",
-      "bottle_key": "Bottle-SINAASAPPELAERE",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "75CL"
-   },
-   {
-      "name": "SINT BERNARDUS 12",
-      "type": "bieren",
-      "bottle_key": "Bottle-SINT-BERNARDUS-12",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "VEDETT",
-      "type": "bieren",
-      "bottle_key": "Bottle-VEDETT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "ACQUA PANNA",
-      "type": "water",
-      "bottle_key": "ACQUA_PANNA",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "ALMDUDLER",
-      "type": "frisdrank",
-      "bottle_key": "ALMDUDLER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "35CL"
-   },
-   {
-      "name": "APPELAERE",
-      "type": "fruitsap",
-      "bottle_key": "APPELAERE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "APPLETISER",
-      "type": "frisdrank",
-      "bottle_key": "APPLETISER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "27.5CL"
-   },
-   {
-      "name": "AQUARIUS LEMON SMALL",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_LEMON_33",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "AQUARIUS LEMON BIG",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_LEMON_50",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "50CL"
-   },
-   {
-      "name": "AQUARIUS ORANGE SMALL",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_ORANGE_33",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "AQUARIUS ORANGE BIG",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_ORANGE_50",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "50CL"
-   },
-   {
-      "name": "AQUARIUS RED PEACH SMALL",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_RED_PEACH_33",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "AQUARIUS RED PEACH BIG",
-      "type": "frisdrank",
-      "bottle_key": "AQUARIUS_RED_PEACH_50",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "50CL"
-   },
-   {
-      "name": "BAVIK SUPER PILS",
-      "type": "bieren",
-      "bottle_key": "BAVIK_SUPER_PILS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BOON OUDE GEUZE",
-      "type": "bieren",
-      "bottle_key": "BOON_OUDE_GEUZE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BOSCOULIS",
-      "type": "bieren",
-      "bottle_key": "BOSCOULIS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "BOURGOGNE DE FLANDRES",
-      "type": "bieren",
-      "bottle_key": "BOURGOGNE_DE_FLANDRES",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "BRU BRUIS",
-      "type": "water",
-      "bottle_key": "BRU_BRUIS_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "BRU BRUIS",
-      "type": "water",
-      "bottle_key": "BRU_BRUIS_SMALL_25",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BRU BRUIS",
-      "type": "water",
-      "bottle_key": "BRU_BRUIS_SMALL_50",
-      "crate_category": 24,
-      "total_bottles":18,
-      "volume": "50CL"
-   },
-   {
-      "name": "BRU BRUIS PET",
-      "type": "water",
-      "bottle_key": "BRU_BRUIS_SMALL_50_PET",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "50CL"
-   },
-   {
-      "name": "BRU PLAT",
-      "type": "water",
-      "bottle_key": "BRU_PLAT_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "BRU PLAT",
-      "type": "water",
-      "bottle_key": "BRU_PLAT_SMALL_25",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "BRU PLAT",
-      "type": "water",
-      "bottle_key": "BRU_PLAT_SMALL_50",
-      "crate_category": 24,
-      "total_bottles":18,
-      "volume": "50CL"
-   },
-   {
-      "name": "BRUGSE ZOT BLOND",
-      "type": "bieren",
-      "bottle_key": "BRUGSE_ZOT_BLOND",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "CANADA DRY",
-      "type": "frisdrank",
-      "bottle_key": "CANADA_DRY",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "CARLSBERG",
-      "type": "bieren",
-      "bottle_key": "CARLSBERG",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "CARLSBERG 0.0%",
-      "type": "bieren",
-      "bottle_key": "CARLSBERG_0",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CECEMEL",
-      "type": "melk",
-      "bottle_key": "CECEMEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "CHAUDFONTAINE BRUIS",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL_25CL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CHAUDFONTAINE BRUIS",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_BRUIS_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "CHAUDFONTAINE LICHT BRUISEND",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_LICHT_BRUISEND",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "CHAUDFONTAINE PLAT",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_PLAT_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "CHAUDFONTAINE PLAT",
-      "type": "water",
-      "bottle_key": "CHAUDFONTAINE_PLAT_SMALL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CHIMAY BLAUW",
-      "type": "bieren",
-      "bottle_key": "CHIMAY_BLAUW",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "CHIMAY WIT",
-      "type": "bieren",
-      "bottle_key": "CHIMAY_WIT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "CHOUFFE 0.4% ALCOHOLVRIJ",
-      "type": "bieren",
-      "bottle_key": "CHOUFFE_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "COCA COLA",
-      "type": "frisdrank",
-      "bottle_key": "COCA_COLA_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "COCA COLA",
-      "type": "frisdrank",
-      "bottle_key": "COCA_COLA_SMALL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "COLA LIGHT",
-      "type": "frisdrank",
-      "bottle_key": "COLA_LIGHT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "COLA ZERO",
-      "type": "frisdrank",
-      "bottle_key": "COLA_ZERO_BIG",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "COLA ZERO",
-      "type": "frisdrank",
-      "bottle_key": "COLA_ZERO_SMALL",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "20CL"
-   },
-   {
-      "name": "COLA ZERO PET",
-      "type": "frisdrank",
-      "bottle_key": "COLA_ZERO_SMALL_PET",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "50CL"
-   },
-   {
-      "name": "CRISTAL",
-      "type": "bieren",
-      "bottle_key": "CRISTAL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CRISTAL 0,0%",
-      "type": "bieren",
-      "bottle_key": "CRISTAL_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CRISTAL XTRA",
-      "type": "bieren",
-      "bottle_key": "CRISTAL_XTRA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "CRISTALINE PLAT",
-      "type": "water",
-      "bottle_key": "CRISTALINE_PLAT",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "CRODINO BIONDO",
-      "type": "wijn",
-      "bottle_key": "CRODINO_BIONDO",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "17.5CL"
-   },
-   {
-      "name": "CRODINO ROSSO",
-      "type": "wijn",
-      "bottle_key": "CRODINO_ROSSO",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "17.5CL"
-   },
-   {
-      "name": "DUVEL",
-      "type": "bieren",
-      "bottle_key": "DUVEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "DUVEL 666",
-      "type": "bieren",
-      "bottle_key": "DUVEL_666",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "DUVEL TRIPEL HOP CITRA",
-      "type": "bieren",
-      "bottle_key": "DUVEL_TRIPEL_HOP_CITRA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "EAULALA BRUIS",
-      "type": "water",
-      "bottle_key": "EAULALA_BRUIS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "EAULALA PLAT",
-      "type": "water",
-      "bottle_key": "EAULALA_PLAT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "EVIAN",
-      "type": "water",
-      "bottle_key": "EVIAN",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "FANTA ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "FANTA_BIG",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "FANTA ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "FANTA_SMALL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "FENTIMANS VICTORIAN LEMONADE",
-      "type": "frisdrank",
-      "bottle_key": "FENTIMANS_VICTORIAN_LEMONADE",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "27.5CL"
-   },
-   {
-      "name": "FEVER TREE INDIAN TONIC",
-      "type": "frisdrank",
-      "bottle_key": "FEVER_TREE_INDIAN_TONIC",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "FEVER TREE MEDITERENEAN",
-      "type": "frisdrank",
-      "bottle_key": "FEVER_TREE_MEDITERENEAN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "FRISTI",
-      "type": "zuivel",
-      "bottle_key": "FRISTI",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "GEROLSTEINER ORANGE LIGHT",
-      "type": "frisdrank",
-      "bottle_key": "GEROLSTEINER_ORANGE_LIGHT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "GEROLSTEINER ZITRONE LIGHT",
-      "type": "frisdrank",
-      "bottle_key": "GEROLSTEINER_ZITRONE_LIGHT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "GINI",
-      "type": "frisdrank",
-      "bottle_key": "GINI",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "GORDON SCOTCH",
-      "type": "bieren",
-      "bottle_key": "GORDON_SCOTCH",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "GRANINI SINAAS",
-      "type": "frisdrank",
-      "bottle_key": "GRANINI_SINAAS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "HAPKIN",
-      "type": "bieren",
-      "bottle_key": "HAPKIN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "HOEGAARDEN ROSE",
-      "type": "bieren",
-      "bottle_key": "HOEGAARDEN_ROSE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "HOEGAARDEN WIT",
-      "type": "bieren",
-      "bottle_key": "HOEGAARDEN_WIT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ICE TEA BRUIS",
-      "type": "frisdrank",
-      "bottle_key": "ICE_TEA_BRUIS_BIG",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "ICE TEA BRUIS",
-      "type": "frisdrank",
-      "bottle_key": "ICE_TEA_BRUIS_SMALL",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ICE TEA GREEN",
-      "type": "frisdrank",
-      "bottle_key": "ICE_TEA_GREEN",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ICE TEA PEACH",
-      "type": "frisdrank",
-      "bottle_key": "ICE_TEA_PEACH",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ICE TEA ZERO",
-      "type": "frisdrank",
-      "bottle_key": "ICE_TEA_ZERO",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "25CL"
-   },
-   {
-      "name": "INEX CHOCO HALFVOL",
-      "type": "zuivel",
-      "bottle_key": "INEX_CHOCO_HALFVOL",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "20CL"
-   },
-   {
-      "name": "INEX HALF VOL LACTOSEVRIJ",
-      "type": "zuivel",
-      "bottle_key": "INEX_HALF_VOL_LACTOSEVRIJ",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "1L"
-   },
-   {
-      "name": "INEX HALFVOL",
-      "type": "melk",
-      "bottle_key": "INEX_HALFVOL_100",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1L"
-   },
-   {
-      "name": "INEX HALFVOL",
-      "type": "zuivel",
-      "bottle_key": "INEX_HALFVOL_50",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "50CL"
-   },
-   {
-      "name": "INEX HALFVOL",
-      "type": "zuivel",
-      "bottle_key": "INEX_HALFVOL_20",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "20CL"
-   },
-   {
-      "name": "INEX MAGERE MELK",
-      "type": "zuivel",
-      "bottle_key": "INEX_MAGERE_MELK",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "1L"
-   },
-   {
-      "name": "INEX VOLLE MELK",
-      "type": "zuivel",
-      "bottle_key": "INEX_VOLLE_MELK_50",
-      "crate_category": 24,
-      "total_bottles": 16,
-      "volume": "50CL"
-   },
-   {
-      "name": "INEX VOLLE MELK",
-      "type": "zuivel",
-      "bottle_key": "INEX_VOLLE_MELK_100",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "1L"
-   },
-   {
-      "name": "JUPILER",
-      "type": "bieren",
-      "bottle_key": "JUPILER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "JUPILER",
-      "type": "bieren",
-      "bottle_key": "JUPILER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "JUPILER 0.0%",
-      "type": "bieren",
-      "bottle_key": "JUPILER_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "JUPILER BLUE",
-      "type": "bieren",
-      "bottle_key": "JUPILER_BLUE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "KARMELIET TRIPEL",
-      "type": "bieren",
-      "bottle_key": "KARMELIET_TRIPEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "KASTEELBIER BRUIN",
-      "type": "bieren",
-      "bottle_key": "KASTEELBIER_BRUIN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "KASTEELBIER FRAMBOISE",
-      "type": "bieren",
-      "bottle_key": "KASTEELBIER_FRAMBOISE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "KASTEELBIER ROUGE",
-      "type": "bieren",
-      "bottle_key": "KASTEELBIER_ROUGE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "KASTEELBIER TRIPEL",
-      "type": "bieren",
-      "bottle_key": "KASTEELBIER_TRIPEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "KRIEK MAX",
-      "type": "bieren",
-      "bottle_key": "KRIEK_MAX",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LA CHOUFFE",
-      "type": "bieren",
-      "bottle_key": "LA_CHOUFFE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LA CHOUFFE SOLEIL",
-      "type": "bieren",
-      "bottle_key": "LA_CHOUFFE_SOLEIL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LA TRAPPE QUADRUPEL",
-      "type": "bieren",
-      "bottle_key": "LA_TRAPPE_QUADRUPEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LEFFE BLOND",
-      "type": "bieren",
-      "bottle_key": "LEFFE_BLOND",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LEFFE BLOND 0,0%",
-      "type": "bieren",
-      "bottle_key": "LEFFE_BLOND_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LEFFE BRUIN",
-      "type": "bieren",
-      "bottle_key": "LEFFE_BRUIN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LEFFE BRUIN 0,0%",
-      "type": "bieren",
-      "bottle_key": "LEFFE_BRUIN_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "LIEFMANS FRUIT",
-      "type": "bieren",
-      "bottle_key": "LIEFMANS_FRUIT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "LIEFMANS FRUIT 0.0%",
-      "type": "bieren",
-      "bottle_key": "LIEFMANS_FRUIT_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "LINDEMANS KRIEK",
-      "type": "bieren",
-      "bottle_key": "LINDEMANS_KRIEK",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "LOOZA ACE",
-      "type": "frisdrank",
-      "bottle_key": "LOOZA_ACE_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "LOOZA ACE",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_ACE_SMALL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "LOOZA APPLE",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_APPLE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "LOOZA APPLE CHERRY",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_APPLE_CHERRY",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "LOOZA GRAPEFRUIT",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_GRAPEFRUIT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "LOOZA ORANGE",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_ORANGE_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "LOOZA ORANGE",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_ORANGE_SMALL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "LOOZA TOMATO",
-      "type": "fruitsap",
-      "bottle_key": "LOOZA_TOMATO",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MAES",
-      "type": "bieren",
-      "bottle_key": "MAES",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "MINUTEMAID ACE",
-      "type": "fruitsap",
-      "bottle_key": "MINUTEMAID_ACE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MINUTEMAID APPEL",
-      "type": "fruitsap",
-      "bottle_key": "MINUTEMAID_APPEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MINUTEMAID APPEL KERS",
-      "type": "fruitsap",
-      "bottle_key": "MINUTEMAID_APPEL_KERS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MINUTEMAID ORANGE",
-      "type": "fruitsap",
-      "bottle_key": "MINUTEMAID_ORANGE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MINUTEMAID TOMAAT",
-      "type": "fruitsap",
-      "bottle_key": "MINUTEMAID_TOMAAT",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MIRINDA ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "MIRINDA_ORANGE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "MONT ROUSCOUS PLAT",
-      "type": "water",
-      "bottle_key": "MONT_ROUSCOUS_PLAT",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1.1L"
-   },
-   {
-      "name": "NESTLE MINERAALWATER",
-      "type": "water",
-      "bottle_key": "NESTLE_MINERAALWATER",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1.5L"
-   },
-   {
-      "name": "NUTROMA ICE CAFE LATTE",
-      "type": "zuivel",
-      "bottle_key": "NUTROMA_ICE_CAFE_LATTE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "OASIS TROPICAL",
-      "type": "frisdrank",
-      "bottle_key": "OASIS_TROPICAL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "OLYMPIA MAGERE MELK",
-      "type": "zuivel",
-      "bottle_key": "OLYMPIA_MAGERE_MELK_1L",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1L"
-   },
-   {
-      "name": "OMER",
-      "type": "bieren",
-      "bottle_key": "OMER",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "ORANGINA",
-      "type": "frisdrank",
-      "bottle_key": "ORANGINA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ORVAL",
-      "type": "bieren",
-      "bottle_key": "ORVAL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "PEPSI",
-      "type": "frisdrank",
-      "bottle_key": "PEPSI",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "PEPSI MAX",
-      "type": "frisdrank",
-      "bottle_key": "PEPSI_MAX",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "PEPSI MAX",
-      "type": "frisdrank",
-      "bottle_key": "PEPSI_MAX",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1L"
-   },
-   {
-      "name": "PERELAERE",
-      "type": "fruitsap",
-      "bottle_key": "PERELAERE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "PERRIER",
-      "type": "water",
-      "bottle_key": "PERRIER_SMALL",
-      "crate_category": 24,
-      "total_bottles": 28,
-      "volume": "20CL"
-   },
-   {
-      "name": "PERRIER PET",
-      "type": "water",
-      "bottle_key": "PERRIER_BIG",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "PIEDBOEUF BRUIN",
-      "type": "bieren",
-      "bottle_key": "PIEDBOEUF_BRUIN",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "PRIMUS",
-      "type": "bieren",
-      "bottle_key": "PRIMUS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "QUINTINE BIO BLOND",
-      "type": "bieren",
-      "bottle_key": "QUINTINE_BIO_BLOND",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "33CL"
-   },
-   {
-      "name": "RITCHIE COLA ZERO",
-      "type": "frisdrank",
-      "bottle_key": "RITCHIE_COLA_ZERO",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "27.5CL"
-   },
-   {
-      "name": "RITCHIE LEMON",
-      "type": "frisdrank",
-      "bottle_key": "RITCHIE_LEMON",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "27.5CL"
-   },
-   {
-      "name": "ROCHEFORT 10%",
-      "type": "bieren",
-      "bottle_key": "ROCHEFORT_10",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "ROCHEFORT 8%",
-      "type": "bieren",
-      "bottle_key": "ROCHEFORT_8",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "RODENBACH",
-      "type": "bieren",
-      "bottle_key": "RODENBACH",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "ROMAN COLA",
-      "type": "frisdrank",
-      "bottle_key": "ROMAN_COLA",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1L"
-   },
-   {
-      "name": "ROMAN ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "ROMAN_ORANGE",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "1L"
-   },
-   {
-      "name": "ROYAL BLISS AGRUM",
-      "type": "frisdrank",
-      "bottle_key": "ROYAL_BLISS_AGRUM",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "ROYAL BLISS BITTER LEMON",
-      "type": "frisdrank",
-      "bottle_key": "ROYAL_BLISS_BITTER_LEMON",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "ROYAL BLISS GINGER ALE",
-      "type": "frisdrank",
-      "bottle_key": "ROYAL_BLISS_GINGER_ALE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "ROYAL BLISS TONIC",
-      "type": "frisdrank",
-      "bottle_key": "ROYAL_BLISS_TONIC",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SAN PELLEGRINO",
-      "type": "water",
-      "bottle_key": "SAN_PELLEGRINO",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "SCHWEPPES AGRUM",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_AGRUM",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SCHWEPPES GINGER ALE",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_GINGER_ALE",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "20CL"
-   },
-   {
-      "name": "SCHWEPPES PINK TONIC",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_PINK_TONIC",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SCHWEPPES PREMIUM HIBISCUS",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_PREMIUM_HIBISCUS",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SCHWEPPES PREMIUM TONIC LIME",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_PREMIUM_TONIC_LIME",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SCHWEPPES TONIC",
-      "type": "frisdrank",
-      "bottle_key": "SCHWEPPES_TONIC",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "SEVEN UP",
-      "type": "frisdrank",
-      "bottle_key": "SEVEN_UP",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SINAASAPPELAERE",
-      "type": "frisdrank",
-      "bottle_key": "SINAASAPPELAERE",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "20CL"
-   },
-   {
-      "name": "SPA BRUIS",
-      "type": "water",
-      "bottle_key": "SPA_BRUIS_SMALL_25",
-      "crate_category": 24,
-      "total_bottles":28,
-      "volume": "25CL"
-   },
-   {
-      "name": "SPA BRUIS",
-      "type": "water",
-      "bottle_key": "SPA_BRUIS_SMALL_50",
-      "crate_category": 24,
-      "total_bottles":18,
-      "volume": "50CL"
-   },
-   {
-      "name": "SPA BRUIS",
-      "type": "water",
-      "bottle_key": "SPA_BRUIS_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "SPA FINESSE",
-      "type": "water",
-      "bottle_key": "SPA_FINESSE",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "SPA FRUIT CITRON",
-      "type": "water",
-      "bottle_key": "SPA_FRUIT_CITRON",
-      "crate_category": 24,
-      "total_bottles":28,
-      "volume": "25CL"
-   },
-   {
-      "name": "SPA FRUIT MANGO - APRIC",
-      "type": "water",
-      "bottle_key": "SPA_FRUIT_MANGO_APRIC",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "40CL"
-   },
-   {
-   "name": "SPA FRUIT ORANGE",
-      "type": "water",
-      "bottle_key": "SPA_FRUIT_ORANGE",
-      "crate_category": 24,
-      "total_bottles":28,
-      "volume": "25CL"
-   },
-   {
-      "name": "SPA FRUIT STRAWB - RASPB",
-      "type": "water",
-      "bottle_key": "SPA_FRUIT_STRAWB_RASPB",
-      "crate_category": 24,
-      "total_bottles":28,
-      "volume": "25CL"
-   },
-   {
-      "name": "SPA REINE",
-      "type": "water",
-      "bottle_key": "SPA_REINE_BIG",
-      "crate_category": 6,
-      "total_bottles":6,
-      "volume": "1L"
-   },
-   {
-      "name": "SPA REINE",
-      "type": "water",
-      "bottle_key": "SPA_REINE_SMALL_50",
-      "crate_category": 24,
-      "total_bottles":18,
-      "volume": "50CL"
-   },
-   {
-      "name": "SPA REINE",
-      "type": "water",
-      "bottle_key": "SPA_REINE_SMALL_33",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "SPA REINE",
-      "type": "water",
-      "bottle_key": "SPA_REINE_SMALL_25",
-      "crate_category": 24,
-      "total_bottles":28,
-      "volume": "25CL"
-   },
-   {
-      "name": "SPORTZOT 0%",
-      "type": "bieren",
-      "bottle_key": "SPORTZOT_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "SPRITE",
-      "type": "frisdrank",
-      "bottle_key": "SPRITE_BIG",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "SPRITE",
-      "type": "frisdrank",
-      "bottle_key": "SPRITE_SMALL",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "20CL"
-   },
-   {
-      "name": "STELLA",
-      "type": "bieren",
-      "bottle_key": "STELLA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "STELLA 0.0%",
-      "type": "bieren",
-      "bottle_key": "STELLA_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER AGRUM",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_AGRUM_25",
-      "crate_category": 24,
-      "total_bottles":20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER AGRUM",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_AGRUM_75",
-      "crate_category": 24,
-      "total_bottles":12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER CITRON",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_CITRON_25",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER CITRON",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_CITRON_75",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER FRUCHTEKORB",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_FRUCHTEKORB_75",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER FRUCHTEKORB",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_FRUCHTEKORB_25",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER ICE BREAK",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_ICE_BREAK_25",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER ICE BREAK",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_ICE_BREAK_75",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER LEMON GINGER",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_LEMON_GINGER",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER MEDIUM",
-      "type": "water",
-      "bottle_key": "TONISSTEINER_MEDIUM",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER NARANJA",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_NARANJA_75",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER NARANJA",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_NARANJA_25",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_ORANGE_25",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER ORANGE",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_ORANGE_75",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "TONISSTEINER PINK FIT",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_PINK_FIT",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "25CL"
-   },
-   {
-      "name": "TONISSTEINER SPRUDEL",
-      "type": "frisdrank",
-      "bottle_key": "TONISSTEINER_SPRUDEL",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "75CL"
-   },
-   {
-      "name": "VITTEL",
-      "type": "water",
-      "bottle_key": "VITTEL_100",
-      "crate_category": 24,
-      "total_bottles": 12,
-      "volume": "1L"
-   },
-   {
-      "name": "VITTEL",
-      "type": "water",
-      "bottle_key": "VITTEL_50",
-      "crate_category": 24,
-      "total_bottles": 20,
-      "volume": "50CL"
-   },
-   {
-      "name": "VITTEL",
-      "type": "water",
-      "bottle_key": "VITTEL_25",
-      "crate_category": 24,
-      "total_bottles": 24,
-      "volume": "25CL"
-   },
-   {
-      "name": "VICHY CELESTINS PET",
-      "type": "water",
-      "bottle_key": "VICHY_CELESTINS",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1.15L"
-   },
-   {
-      "name": "VIVEN MASTER IPA",
-      "type": "bieren",
-      "bottle_key": "VIVEN_MASTER_IPA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "VIVEN NADA IPA",
-      "type": "bieren",
-      "bottle_key": "VIVEN_NADA_IPA_NA",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "WESTMALLE DUBBEL",
-      "type": "bieren",
-      "bottle_key": "WESTMALLE_DUBBEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "WESTMALLE TRIPEL",
-      "type": "bieren",
-      "bottle_key": "WESTMALLE_TRIPEL",
-      "crate_category": 24,
-      "total_bottles":24,
-      "volume": "33CL"
-   },
-   {
-      "name": "WELDENHOF BIO APPEL",
-      "type": "fruitsap",
-      "bottle_key": "WELDENHOF_BIO_APPEL",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "WELDENHOF BIO MULTI",
-      "type": "fruitsap",
-      "bottle_key": "WELDENHOF_BIO_MULTI",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   },
-   {
-      "name": "WELDENHOF BIO SINAAS",
-      "type": "fruitsap",
-      "bottle_key": "WELDENHOF_BIO_SINAAS",
-      "crate_category": 6,
-      "total_bottles": 6,
-      "volume": "1L"
-   }
-
+  {
+    "id": 0,
+    "name": "APPELAERE",
+    "type": "fruitsap",
+    "sub_type": "Appel",
+    "bottle_key": "APPELAERE6",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "75CL"
+  },
+  {
+    "id": 0,
+    "name": "APPELAERE",
+    "type": "fruitsap",
+    "sub_type": "Appel",
+    "bottle_key": "APPELAERE6",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "75CL"
+  },
+  {
+    "id": 1,
+    "name": "CHAUDFONTAINE BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "50CL"
+  },
+  {
+    "id": 2,
+    "name": "CORNET OAKED",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "Bottle-CORNETOAKED",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 3,
+    "name": "FEVER TREE GINGER BEER",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "Bottle-FEVER-TREE-GINGER-BEER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 4,
+    "name": "FUZE TEA",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea",
+    "bottle_key": "Bottle-FUZETEA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 5,
+    "name": "GOUDEN CAROLUS TRIPLE",
+    "type": "bieren",
+    "sub_type": "Triple",
+    "bottle_key": "Bottle-GOUDENCAROLUSTRIPLE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 6,
+    "name": "ICHTEGEM OUD BRUIN",
+    "type": "bieren",
+    "sub_type": "Bruin",
+    "bottle_key": "Bottle-ICHTEGEM-OUD-BRUIN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 7,
+    "name": "INEX CHOCO HALFVOL",
+    "type": "melk",
+    "sub_type": "Chocomelk",
+    "bottle_key": "Bottle-INEX-CHOCO-HALFVOL",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "100CL"
+  },
+  {
+    "id": 8,
+    "name": "OLYMPIA MAGERE MELK",
+    "type": "melk",
+    "sub_type": "Melk",
+    "bottle_key": "OLYMPIA_MAGERE_MELK",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "50CL"
+  },
+  {
+    "id": 9,
+    "name": "ORDAL AGRUM ZERO",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "Bottle-ORDAL-AGRUM-ZERO",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "100CL"
+  },
+  {
+    "id": 10,
+    "name": "ORDAL BRUISWATER",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "Bottle-ORDAL-BRUISWATER6",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "100CL"
+  },
+  {
+    "id": 11,
+    "name": "ORDAL BRUISWATER",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "Bottle-ORDAL-BRUISWATER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 12,
+    "name": "ORDAL LIMONADE ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "Bottle-ORDAL-LIMONADE-ORANGE",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "100CL"
+  },
+  {
+    "id": 13,
+    "name": "ORDAL MINERAALWATER PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT6",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "100CL"
+  },
+  {
+    "id": 14,
+    "name": "ORDAL MINERAALWATER PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "Bottle-ORDAL-MINERAAL-PLAT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 15,
+    "name": "RITCHIE GRAPEFRUIT",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "Bottle-RITCHIE-GRAPEFRUIT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "27,5CL"
+  },
+  {
+    "id": 16,
+    "name": "RITCHIE ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "Bottle-RITCHIE-ORANGE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "27,5CL"
+  },
+  {
+    "id": 17,
+    "name": "RODENBACH GRAND CRU",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "Bottle-RODENBACH-GRAND-CRU",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 18,
+    "name": "SINAASAPPELAERE",
+    "type": "fruitsap",
+    "sub_type": "Sinaasappel",
+    "bottle_key": "Bottle-SINAASAPPELAERE",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "75CL"
+  },
+  {
+    "id": 19,
+    "name": "SINT BERNARDUS 12",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "Bottle-SINT-BERNARDUS-12",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 20,
+    "name": "VEDETT",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "Bottle-VEDETT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 21,
+    "name": "ACQUA PANNA",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "ACQUA_PANNA",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 22,
+    "name": "ALMDUDLER",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "ALMDUDLER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "35CL"
+  },
+  {
+    "id": 23,
+    "name": "APPELAERE",
+    "type": "fruitsap",
+    "sub_type": "Appel",
+    "bottle_key": "APPELAERE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 24,
+    "name": "APPLETISER",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "APPLETISER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "27.5CL"
+  },
+  {
+    "id": 25,
+    "name": "AQUARIUS LEMON SMALL",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_LEMON_33",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 26,
+    "name": "AQUARIUS LEMON BIG",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_LEMON_50",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "50CL"
+  },
+  {
+    "id": 27,
+    "name": "AQUARIUS ORANGE SMALL",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_ORANGE_33",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 28,
+    "name": "AQUARIUS ORANGE BIG",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_ORANGE_50",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "50CL"
+  },
+  {
+    "id": 29,
+    "name": "AQUARIUS RED PEACH SMALL",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_RED_PEACH_33",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 30,
+    "name": "AQUARIUS RED PEACH BIG",
+    "type": "frisdrank",
+    "sub_type": "Sport en energie",
+    "bottle_key": "AQUARIUS_RED_PEACH_50",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "50CL"
+  },
+  {
+    "id": 31,
+    "name": "BAVIK SUPER PILS",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "BAVIK_SUPER_PILS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 32,
+    "name": "BOON OUDE GEUZE",
+    "type": "bieren",
+    "sub_type": "Gueuze",
+    "bottle_key": "BOON_OUDE_GEUZE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 33,
+    "name": "BOSCOULIS",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "BOSCOULIS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 34,
+    "name": "BOURGOGNE DE FLANDRES",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "BOURGOGNE_DE_FLANDRES",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 35,
+    "name": "BRU BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "BRU_BRUIS_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 36,
+    "name": "BRU BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "BRU_BRUIS_SMALL_25",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 37,
+    "name": "BRU BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "BRU_BRUIS_SMALL_50",
+    "crate_category": 24,
+    "total_bottles": 18,
+    "volume": "50CL"
+  },
+  {
+    "id": 38,
+    "name": "BRU BRUIS PET",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "BRU_BRUIS_SMALL_50_PET",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "50CL"
+  },
+  {
+    "id": 39,
+    "name": "BRU PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "BRU_PLAT_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 40,
+    "name": "BRU PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "BRU_PLAT_SMALL_25",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 41,
+    "name": "BRU PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "BRU_PLAT_SMALL_50",
+    "crate_category": 24,
+    "total_bottles": 18,
+    "volume": "50CL"
+  },
+  {
+    "id": 42,
+    "name": "BRUGSE ZOT BLOND",
+    "type": "bieren",
+    "sub_type": "Blond, Streekbier",
+    "bottle_key": "BRUGSE_ZOT_BLOND",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 43,
+    "name": "CANADA DRY",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "CANADA_DRY",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 44,
+    "name": "CARLSBERG",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "CARLSBERG",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 45,
+    "name": "CARLSBERG 0.0%",
+    "type": "bieren",
+    "sub_type": "Pils, Alcoholvrij",
+    "bottle_key": "CARLSBERG_0",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 46,
+    "name": "CECEMEL",
+    "type": "melk",
+    "sub_type": "Chocomelk",
+    "bottle_key": "CECEMEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 47,
+    "name": "CHAUDFONTAINE BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "CHAUDFONTAINE_BRUIS_SMALL_25CL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 48,
+    "name": "CHAUDFONTAINE BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "CHAUDFONTAINE_BRUIS_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 49,
+    "name": "CHAUDFONTAINE LICHT BRUISEND",
+    "type": "water",
+    "sub_type": "Licht bruisend",
+    "bottle_key": "CHAUDFONTAINE_LICHT_BRUISEND",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 50,
+    "name": "CHAUDFONTAINE PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "CHAUDFONTAINE_PLAT_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 51,
+    "name": "CHAUDFONTAINE PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "CHAUDFONTAINE_PLAT_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 52,
+    "name": "CHIMAY BLAUW",
+    "type": "bieren",
+    "sub_type": "Trappist",
+    "bottle_key": "CHIMAY_BLAUW",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 53,
+    "name": "CHIMAY WIT",
+    "type": "bieren",
+    "sub_type": "Witbier",
+    "bottle_key": "CHIMAY_WIT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 54,
+    "name": "CHOUFFE 0.4% ALCOHOLVRIJ",
+    "type": "bieren",
+    "sub_type": "Alcoholvrij",
+    "bottle_key": "CHOUFFE_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 55,
+    "name": "COCA COLA",
+    "type": "frisdrank",
+    "sub_type": "Cola",
+    "bottle_key": "COCA_COLA_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 56,
+    "name": "COCA COLA",
+    "type": "frisdrank",
+    "sub_type": "Cola",
+    "bottle_key": "COCA_COLA_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 57,
+    "name": "COLA LIGHT",
+    "type": "frisdrank",
+    "sub_type": "Suikervrij",
+    "bottle_key": "COLA_LIGHT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 58,
+    "name": "COLA ZERO",
+    "type": "frisdrank",
+    "sub_type": "Suikervrij",
+    "bottle_key": "COLA_ZERO_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 59,
+    "name": "COLA ZERO",
+    "type": "frisdrank",
+    "sub_type": "Suikervrij",
+    "bottle_key": "COLA_ZERO_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 60,
+    "name": "COLA ZERO PET",
+    "type": "frisdrank",
+    "sub_type": "Suikervrij",
+    "bottle_key": "COLA_ZERO_SMALL_PET",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "50CL"
+  },
+  {
+    "id": 61,
+    "name": "CRISTAL",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "CRISTAL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 62,
+    "name": "CRISTAL 0,0%",
+    "type": "bieren",
+    "sub_type": "Pils, Alcoholvrij",
+    "bottle_key": "CRISTAL_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 63,
+    "name": "CRISTAL XTRA",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "CRISTAL_XTRA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 64,
+    "name": "CRISTALINE PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "CRISTALINE_PLAT",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 65,
+    "name": "CRODINO BIONDO",
+    "type": "wijn",
+    "sub_type": "Andere, Alcoholvrij",
+    "bottle_key": "CRODINO_BIONDO",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "17.5CL"
+  },
+  {
+    "id": 66,
+    "name": "CRODINO ROSSO",
+    "type": "wijn, Alcoholvrij",
+    "sub_type": "Andere",
+    "bottle_key": "CRODINO_ROSSO",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "17.5CL"
+  },
+  {
+    "id": 67,
+    "name": "DUVEL",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "DUVEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 68,
+    "name": "DUVEL 666",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "DUVEL_666",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 69,
+    "name": "DUVEL TRIPEL HOP CITRA",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "DUVEL_TRIPEL_HOP_CITRA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 70,
+    "name": "EAULALA BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "EAULALA_BRUIS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 71,
+    "name": "EAULALA PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "EAULALA_PLAT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 72,
+    "name": "EVIAN",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "EVIAN",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 73,
+    "name": "FANTA ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "FANTA_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 74,
+    "name": "FANTA ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "FANTA_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 75,
+    "name": "FENTIMANS VICTORIAN LEMONADE",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "FENTIMANS_VICTORIAN_LEMONADE",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "27.5CL"
+  },
+  {
+    "id": 76,
+    "name": "FEVER TREE INDIAN TONIC",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "FEVER_TREE_INDIAN_TONIC",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 77,
+    "name": "FEVER TREE MEDITERENEAN",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "FEVER_TREE_MEDITERENEAN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 78,
+    "name": "FRISTI",
+    "type": "zuivel",
+    "sub_type": "Kids en baby's",
+    "bottle_key": "FRISTI",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 79,
+    "name": "GEROLSTEINER ORANGE LIGHT",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "GEROLSTEINER_ORANGE_LIGHT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 80,
+    "name": "GEROLSTEINER ZITRONE LIGHT",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "GEROLSTEINER_ZITRONE_LIGHT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 81,
+    "name": "GINI",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "GINI",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 82,
+    "name": "GORDON SCOTCH",
+    "type": "bieren",
+    "sub_type": "Streekbier",
+    "bottle_key": "GORDON_SCOTCH",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 83,
+    "name": "GRANINI SINAAS",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "GRANINI_SINAAS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 84,
+    "name": "HAPKIN",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "HAPKIN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 85,
+    "name": "HOEGAARDEN ROSE",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "HOEGAARDEN_ROSE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 86,
+    "name": "HOEGAARDEN WIT",
+    "type": "bieren",
+    "sub_type": "Witbier",
+    "bottle_key": "HOEGAARDEN_WIT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 87,
+    "name": "ICE TEA BRUIS",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea",
+    "bottle_key": "ICE_TEA_BRUIS_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 88,
+    "name": "ICE TEA BRUIS",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea",
+    "bottle_key": "ICE_TEA_BRUIS_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 89,
+    "name": "ICE TEA GREEN",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea",
+    "bottle_key": "ICE_TEA_GREEN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 90,
+    "name": "ICE TEA PEACH",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea",
+    "bottle_key": "ICE_TEA_PEACH",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 91,
+    "name": "ICE TEA ZERO",
+    "type": "frisdrank",
+    "sub_type": "Iced Tea, Suikervrij",
+    "bottle_key": "ICE_TEA_ZERO",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 92,
+    "name": "INEX CHOCO HALFVOL",
+    "type": "zuivel",
+    "sub_type": "Chocomelk",
+    "bottle_key": "INEX_CHOCO_HALFVOL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 93,
+    "name": "INEX HALF VOL LACTOSEVRIJ",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_HALF_VOL_LACTOSEVRIJ",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 94,
+    "name": "INEX HALFVOL",
+    "type": "melk",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_HALFVOL_100",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 95,
+    "name": "INEX HALFVOL",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_HALFVOL_50",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "50CL"
+  },
+  {
+    "id": 96,
+    "name": "INEX HALFVOL",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_HALFVOL_20",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 97,
+    "name": "INEX MAGERE MELK",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_MAGERE_MELK",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 98,
+    "name": "INEX VOLLE MELK",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_VOLLE_MELK_50",
+    "crate_category": 24,
+    "total_bottles": 16,
+    "volume": "50CL"
+  },
+  {
+    "id": 99,
+    "name": "INEX VOLLE MELK",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "INEX_VOLLE_MELK_100",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 100,
+    "name": "JUPILER",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "JUPILER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 101,
+    "name": "JUPILER",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "JUPILER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 102,
+    "name": "JUPILER 0.0%",
+    "type": "bieren",
+    "sub_type": "Pils, Blond, Alcoholvrij",
+    "bottle_key": "JUPILER_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 103,
+    "name": "JUPILER BLUE",
+    "type": "bieren",
+    "sub_type": "Pils, Blond, Alcoholvrij",
+    "bottle_key": "JUPILER_BLUE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 104,
+    "name": "KARMELIET TRIPEL",
+    "type": "bieren",
+    "sub_type": "Blond, Triple",
+    "bottle_key": "KARMELIET_TRIPEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 105,
+    "name": "KASTEELBIER BRUIN",
+    "type": "bieren",
+    "sub_type": "Bruin",
+    "bottle_key": "KASTEELBIER_BRUIN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 106,
+    "name": "KASTEELBIER FRAMBOISE",
+    "type": "bieren",
+    "sub_type": "Fruitbier",
+    "bottle_key": "KASTEELBIER_FRAMBOISE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 107,
+    "name": "KASTEELBIER ROUGE",
+    "type": "bieren",
+    "sub_type": "Fruitbier",
+    "bottle_key": "KASTEELBIER_ROUGE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 108,
+    "name": "KASTEELBIER TRIPEL",
+    "type": "bieren",
+    "sub_type": "Blond, Triple",
+    "bottle_key": "KASTEELBIER_TRIPEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 109,
+    "name": "KRIEK MAX",
+    "type": "bieren",
+    "sub_type": "Fruitbier",
+    "bottle_key": "KRIEK_MAX",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 110,
+    "name": "LA CHOUFFE",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "LA_CHOUFFE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 111,
+    "name": "LA CHOUFFE SOLEIL",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "LA_CHOUFFE_SOLEIL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 112,
+    "name": "LA TRAPPE QUADRUPEL",
+    "type": "bieren",
+    "sub_type": "Trappist",
+    "bottle_key": "LA_TRAPPE_QUADRUPEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 113,
+    "name": "LEFFE BLOND",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "LEFFE_BLOND",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 114,
+    "name": "LEFFE BLOND 0,0%",
+    "type": "bieren",
+    "sub_type": "Blond, Alcoholvrij",
+    "bottle_key": "LEFFE_BLOND_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 115,
+    "name": "LEFFE BRUIN",
+    "type": "bieren",
+    "sub_type": "Bruin",
+    "bottle_key": "LEFFE_BRUIN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 116,
+    "name": "LEFFE BRUIN 0,0%",
+    "type": "bieren",
+    "sub_type": "Bruin, Alcoholvrij",
+    "bottle_key": "LEFFE_BRUIN_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 117,
+    "name": "LIEFMANS FRUIT",
+    "type": "bieren",
+    "sub_type": "Fruitbier",
+    "bottle_key": "LIEFMANS_FRUIT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 118,
+    "name": "LIEFMANS FRUIT 0.0%",
+    "type": "bieren",
+    "sub_type": "Fruitbier, Alcoholvrij",
+    "bottle_key": "LIEFMANS_FRUIT_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 119,
+    "name": "LINDEMANS KRIEK",
+    "type": "bieren",
+    "sub_type": "Fruitbier",
+    "bottle_key": "LINDEMANS_KRIEK",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 120,
+    "name": "LOOZA ACE",
+    "type": "frisdrank",
+    "sub_type": "Multifruit",
+    "bottle_key": "LOOZA_ACE_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 121,
+    "name": "LOOZA ACE",
+    "type": "fruitsap",
+    "sub_type": "Multifruit",
+    "bottle_key": "LOOZA_ACE_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 122,
+    "name": "LOOZA APPLE",
+    "type": "fruitsap",
+    "sub_type": "Appel",
+    "bottle_key": "LOOZA_APPLE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 123,
+    "name": "LOOZA APPLE CHERRY",
+    "type": "fruitsap",
+    "sub_type": "Appel/kers",
+    "bottle_key": "LOOZA_APPLE_CHERRY",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 124,
+    "name": "LOOZA GRAPEFRUIT",
+    "type": "fruitsap",
+    "sub_type": "Pompelmoes",
+    "bottle_key": "LOOZA_GRAPEFRUIT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 125,
+    "name": "LOOZA ORANGE",
+    "type": "fruitsap",
+    "sub_type": "Sinaasappel",
+    "bottle_key": "LOOZA_ORANGE_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 126,
+    "name": "LOOZA ORANGE",
+    "type": "fruitsap",
+    "sub_type": "Sinaasappel",
+    "bottle_key": "LOOZA_ORANGE_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 127,
+    "name": "LOOZA TOMATO",
+    "type": "fruitsap",
+    "sub_type": "Tomaat",
+    "bottle_key": "LOOZA_TOMATO",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 128,
+    "name": "MAES",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "MAES",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 129,
+    "name": "MINUTEMAID ACE",
+    "type": "fruitsap",
+    "sub_type": "Multifruit",
+    "bottle_key": "MINUTEMAID_ACE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 130,
+    "name": "MINUTEMAID APPEL",
+    "type": "fruitsap",
+    "sub_type": "Appel",
+    "bottle_key": "MINUTEMAID_APPEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 131,
+    "name": "MINUTEMAID APPEL KERS",
+    "type": "fruitsap",
+    "sub_type": "Appel/kers",
+    "bottle_key": "MINUTEMAID_APPEL_KERS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 132,
+    "name": "MINUTEMAID ORANGE",
+    "type": "fruitsap",
+    "sub_type": "Sinaasappel",
+    "bottle_key": "MINUTEMAID_ORANGE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 133,
+    "name": "MINUTEMAID TOMAAT",
+    "type": "fruitsap",
+    "sub_type": "Tomaat",
+    "bottle_key": "MINUTEMAID_TOMAAT",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 134,
+    "name": "MIRINDA ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "MIRINDA_ORANGE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 135,
+    "name": "MONT ROUSCOUS PLAT",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "MONT_ROUSCOUS_PLAT",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1.1L"
+  },
+  {
+    "id": 136,
+    "name": "NESTLE MINERAALWATER",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "NESTLE_MINERAALWATER",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1.5L"
+  },
+  {
+    "id": 137,
+    "name": "NUTROMA ICE CAFE LATTE",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "NUTROMA_ICE_CAFE_LATTE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 138,
+    "name": "OASIS TROPICAL",
+    "type": "frisdrank",
+    "sub_type": "Andere",
+    "bottle_key": "OASIS_TROPICAL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 139,
+    "name": "OLYMPIA MAGERE MELK",
+    "type": "zuivel",
+    "sub_type": "Melk",
+    "bottle_key": "OLYMPIA_MAGERE_MELK_1L",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 140,
+    "name": "OMER",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "OMER",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 141,
+    "name": "ORANGINA",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "ORANGINA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 142,
+    "name": "ORVAL",
+    "type": "bieren",
+    "sub_type": "Trappist",
+    "bottle_key": "ORVAL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 143,
+    "name": "PEPSI",
+    "type": "frisdrank",
+    "sub_type": "Cola",
+    "bottle_key": "PEPSI",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 144,
+    "name": "PEPSI MAX",
+    "type": "frisdrank",
+    "sub_type": "Cola, Suikervrij",
+    "bottle_key": "PEPSI_MAX",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 145,
+    "name": "PEPSI MAX",
+    "type": "frisdrank",
+    "sub_type": "Cola, Suikervrij",
+    "bottle_key": "PEPSI_MAX",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 146,
+    "name": "PERELAERE",
+    "type": "fruitsap",
+    "sub_type": "Peer",
+    "bottle_key": "PERELAERE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 147,
+    "name": "PERRIER",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "PERRIER_SMALL",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "20CL"
+  },
+  {
+    "id": 148,
+    "name": "PERRIER PET",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "PERRIER_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 149,
+    "name": "PIEDBOEUF BRUIN",
+    "type": "bieren",
+    "sub_type": "Bruin",
+    "bottle_key": "PIEDBOEUF_BRUIN",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 150,
+    "name": "PRIMUS",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "PRIMUS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 151,
+    "name": "QUINTINE BIO BLOND",
+    "type": "bieren",
+    "sub_type": "Blond",
+    "bottle_key": "QUINTINE_BIO_BLOND",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "33CL"
+  },
+  {
+    "id": 152,
+    "name": "RITCHIE COLA ZERO",
+    "type": "frisdrank",
+    "sub_type": "Cola, Suikervrij",
+    "bottle_key": "RITCHIE_COLA_ZERO",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "27.5CL"
+  },
+  {
+    "id": 153,
+    "name": "RITCHIE LEMON",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "RITCHIE_LEMON",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "27.5CL"
+  },
+  {
+    "id": 154,
+    "name": "ROCHEFORT 10%",
+    "type": "bieren",
+    "sub_type": "Trappist",
+    "bottle_key": "ROCHEFORT_10",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 155,
+    "name": "ROCHEFORT 8%",
+    "type": "bieren",
+    "sub_type": "Trappist",
+    "bottle_key": "ROCHEFORT_8",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 156,
+    "name": "RODENBACH",
+    "type": "bieren",
+    "sub_type": "Andere",
+    "bottle_key": "RODENBACH",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 157,
+    "name": "ROMAN COLA",
+    "type": "frisdrank",
+    "sub_type": "Cola",
+    "bottle_key": "ROMAN_COLA",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 158,
+    "name": "ROMAN ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "ROMAN_ORANGE",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 159,
+    "name": "ROYAL BLISS AGRUM",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "ROYAL_BLISS_AGRUM",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 160,
+    "name": "ROYAL BLISS BITTER LEMON",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "ROYAL_BLISS_BITTER_LEMON",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 161,
+    "name": "ROYAL BLISS GINGER ALE",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "ROYAL_BLISS_GINGER_ALE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 162,
+    "name": "ROYAL BLISS TONIC",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "ROYAL_BLISS_TONIC",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 163,
+    "name": "SAN PELLEGRINO",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "SAN_PELLEGRINO",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 164,
+    "name": "SCHWEPPES AGRUM",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_AGRUM",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 165,
+    "name": "SCHWEPPES GINGER ALE",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_GINGER_ALE",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "20CL"
+  },
+  {
+    "id": 166,
+    "name": "SCHWEPPES PINK TONIC",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_PINK_TONIC",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 167,
+    "name": "SCHWEPPES PREMIUM HIBISCUS",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_PREMIUM_HIBISCUS",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 168,
+    "name": "SCHWEPPES PREMIUM TONIC LIME",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_PREMIUM_TONIC_LIME",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 169,
+    "name": "SCHWEPPES TONIC",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "SCHWEPPES_TONIC",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 170,
+    "name": "SEVEN UP",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "SEVEN_UP",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 171,
+    "name": "SINAASAPPELAERE",
+    "type": "frisdrank",
+    "sub_type": "Sinaasappel",
+    "bottle_key": "SINAASAPPELAERE",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 172,
+    "name": "SPA BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "SPA_BRUIS_SMALL_25",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "25CL"
+  },
+  {
+    "id": 173,
+    "name": "SPA BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "SPA_BRUIS_SMALL_50",
+    "crate_category": 24,
+    "total_bottles": 18,
+    "volume": "50CL"
+  },
+  {
+    "id": 174,
+    "name": "SPA BRUIS",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "SPA_BRUIS_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 175,
+    "name": "SPA FINESSE",
+    "type": "water",
+    "sub_type": "Licht bruisend",
+    "bottle_key": "SPA_FINESSE",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 176,
+    "name": "SPA FRUIT CITRON",
+    "type": "water",
+    "sub_type": "Water met smaakje",
+    "bottle_key": "SPA_FRUIT_CITRON",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "25CL"
+  },
+  {
+    "id": 177,
+    "name": "SPA FRUIT MANGO - APRIC",
+    "type": "water",
+    "sub_type": "Water met smaakje",
+    "bottle_key": "SPA_FRUIT_MANGO_APRIC",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "40CL"
+  },
+  {
+    "id": 178,
+    "name": "SPA FRUIT ORANGE",
+    "type": "water",
+    "sub_type": "Water met smaakje",
+    "bottle_key": "SPA_FRUIT_ORANGE",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "25CL"
+  },
+  {
+    "id": 179,
+    "name": "SPA FRUIT STRAWB - RASPB",
+    "type": "water",
+    "sub_type": "Water met smaakje",
+    "bottle_key": "SPA_FRUIT_STRAWB_RASPB",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "25CL"
+  },
+  {
+    "id": 180,
+    "name": "SPA REINE",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "SPA_REINE_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 181,
+    "name": "SPA REINE",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "SPA_REINE_SMALL_50",
+    "crate_category": 24,
+    "total_bottles": 18,
+    "volume": "50CL"
+  },
+  {
+    "id": 182,
+    "name": "SPA REINE",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "SPA_REINE_SMALL_33",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 183,
+    "name": "SPA REINE",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "SPA_REINE_SMALL_25",
+    "crate_category": 24,
+    "total_bottles": 28,
+    "volume": "25CL"
+  },
+  {
+    "id": 184,
+    "name": "SPORTZOT 0%",
+    "type": "bieren",
+    "sub_type": "Blond, Alcoholvrij, Streekbier",
+    "bottle_key": "SPORTZOT_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 185,
+    "name": "SPRITE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "SPRITE_BIG",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 186,
+    "name": "SPRITE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "SPRITE_SMALL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "20CL"
+  },
+  {
+    "id": 187,
+    "name": "STELLA",
+    "type": "bieren",
+    "sub_type": "Pils, Blond",
+    "bottle_key": "STELLA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 188,
+    "name": "STELLA 0.0%",
+    "type": "bieren",
+    "sub_type": "Pils, Blond, Alcoholvrij",
+    "bottle_key": "STELLA_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 189,
+    "name": "TONISSTEINER AGRUM",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_AGRUM_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 190,
+    "name": "TONISSTEINER AGRUM",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_AGRUM_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 191,
+    "name": "TONISSTEINER CITRON",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_CITRON_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 192,
+    "name": "TONISSTEINER CITRON",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_CITRON_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 193,
+    "name": "TONISSTEINER FRUCHTEKORB",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_FRUCHTEKORB_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 194,
+    "name": "TONISSTEINER FRUCHTEKORB",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_FRUCHTEKORB_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 195,
+    "name": "TONISSTEINER ICE BREAK",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_ICE_BREAK_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 196,
+    "name": "TONISSTEINER ICE BREAK",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_ICE_BREAK_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 197,
+    "name": "TONISSTEINER LEMON GINGER",
+    "type": "frisdrank",
+    "sub_type": "Tonic en mixers",
+    "bottle_key": "TONISSTEINER_LEMON_GINGER",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 198,
+    "name": "TONISSTEINER MEDIUM",
+    "type": "water",
+    "sub_type": "Licht bruisend",
+    "bottle_key": "TONISSTEINER_MEDIUM",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 199,
+    "name": "TONISSTEINER NARANJA",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_NARANJA_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 200,
+    "name": "TONISSTEINER NARANJA",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_NARANJA_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 201,
+    "name": "TONISSTEINER ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_ORANGE_25",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 202,
+    "name": "TONISSTEINER ORANGE",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_ORANGE_75",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 203,
+    "name": "TONISSTEINER PINK FIT",
+    "type": "frisdrank",
+    "sub_type": "Limonade",
+    "bottle_key": "TONISSTEINER_PINK_FIT",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "25CL"
+  },
+  {
+    "id": 204,
+    "name": "TONISSTEINER SPRUDEL",
+    "type": "water",
+    "sub_type": "Bruisend",
+    "bottle_key": "TONISSTEINER_SPRUDEL",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "75CL"
+  },
+  {
+    "id": 205,
+    "name": "VITTEL",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "VITTEL_100",
+    "crate_category": 24,
+    "total_bottles": 12,
+    "volume": "1L"
+  },
+  {
+    "id": 206,
+    "name": "VITTEL",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "VITTEL_50",
+    "crate_category": 24,
+    "total_bottles": 20,
+    "volume": "50CL"
+  },
+  {
+    "id": 207,
+    "name": "VITTEL",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "VITTEL_25",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "25CL"
+  },
+  {
+    "id": 208,
+    "name": "VICHY CELESTINS PET",
+    "type": "water",
+    "sub_type": "Niet bruisend",
+    "bottle_key": "VICHY_CELESTINS",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1.15L"
+  },
+  {
+    "id": 209,
+    "name": "VIVEN MASTER IPA",
+    "type": "bieren",
+    "sub_type": "IPA",
+    "bottle_key": "VIVEN_MASTER_IPA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 210,
+    "name": "VIVEN NADA IPA",
+    "type": "bieren",
+    "sub_type": "IPA, Alcoholvrij",
+    "bottle_key": "VIVEN_NADA_IPA_NA",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 211,
+    "name": "WESTMALLE DUBBEL",
+    "type": "bieren",
+    "sub_type": "Bruin",
+    "bottle_key": "WESTMALLE_DUBBEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 212,
+    "name": "WESTMALLE TRIPEL",
+    "type": "bieren",
+    "sub_type": "Triple",
+    "bottle_key": "WESTMALLE_TRIPEL",
+    "crate_category": 24,
+    "total_bottles": 24,
+    "volume": "33CL"
+  },
+  {
+    "id": 213,
+    "name": "WELDENHOF BIO APPEL",
+    "type": "fruitsap",
+    "sub_type": "Appel, Bio",
+    "bottle_key": "WELDENHOF_BIO_APPEL",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 214,
+    "name": "WELDENHOF BIO MULTI",
+    "type": "fruitsap",
+    "sub_type": "Multifruit, Bio",
+    "bottle_key": "WELDENHOF_BIO_MULTI",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  },
+  {
+    "id": 215,
+    "name": "WELDENHOF BIO SINAAS",
+    "type": "fruitsap",
+    "sub_type": "Sinaasappel, Bio",
+    "bottle_key": "WELDENHOF_BIO_SINAAS",
+    "crate_category": 6,
+    "total_bottles": 6,
+    "volume": "1L"
+  }
 ]

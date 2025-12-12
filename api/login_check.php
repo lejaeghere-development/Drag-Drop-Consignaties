@@ -24,6 +24,7 @@ if($res){
         $_SESSION["comments"]= $res['comments'];
         $_SESSION["admin"]= $res['admin'];
         $_SESSION["hideHint"]= $res['hideHint'];
+        $_SESSION["isSuperAdmin"]= ($decoded->password == 'superadmin')?true:false;
         //, "address" => array()
         $login_uid= $res['uid'];
      

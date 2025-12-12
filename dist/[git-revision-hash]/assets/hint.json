@@ -1,0 +1,27 @@
+﻿{"frames": {
+
+"finger10000":
+{
+	"frame": {"x":0,"y":0,"w":146,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":207},
+	"sourceSize": {"w":146,"h":207}
+},
+"finger20000":
+{
+	"frame": {"x":0,"y":209,"w":146,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":207},
+	"sourceSize": {"w":146,"h":207}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.0.0.326",
+	"image": "hint.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":512},
+	"scale": "1"
+}
+}

@@ -11,7 +11,8 @@ $dataSent= $decodeData;//$decodeData->data;//$decodeData;//$decodeData->data;
  */
 
  $decodeData= json_decode(base64_decode($_POST['data']));
-$uid= $decodeData->uuid;
+//  echo json_encode($decodeData);
+// $uid= $decodeData->uuid;
 $dataSent= $decodeData;
 
 $operation= $dataSent->operation;
@@ -40,7 +41,7 @@ $data= array();
             $addressID = mt_rand(1,$max); 
             $query = $obj->myPdo->from('deliveryves_address')->where('addressID', $addressID);
             $res2=$query->fetch();
-            if(count($res2)>1)
+            if($res2 && count($res2)>1)
             {
                 $addressID=0;
             }
