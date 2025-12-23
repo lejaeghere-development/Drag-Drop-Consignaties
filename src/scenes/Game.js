@@ -399,6 +399,9 @@ export default class Game extends Phaser.Scene {
       Global.emitter.emit('crate_selection:enable');
       Global.emitter.emit('crate_selection:hide');
       this.resetRackDefaultVal();
+      setTimeout(() => {
+        Global.prevCrateData = JSON.parse(JSON.stringify(Global.crateData));
+      }, 700);
     }
   }
   setRackDefaultVal() {

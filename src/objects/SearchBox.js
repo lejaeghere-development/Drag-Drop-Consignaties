@@ -288,6 +288,10 @@ export default class SearchBox extends Phaser.GameObjects.Group {
             volume: '',
             crateCategory: 24,
           };
+          Global.customReq[`dummy${Global.customBottles.length + 1}`] = document
+            .querySelector('#search-box')
+            .value.toUpperCase()
+            .trim();
           const textureManager = this.scene.textures;
 
           Global.customBottles.push(customItem);

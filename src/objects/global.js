@@ -9,6 +9,7 @@ var Global = {
   scoreTotal: 0,
   rackFullInfoShown: false,
   addressID: -1,
+  customReq: {},
   gameStarted: false,
   lastCrateCategory: null,
   selectedBottleType: null,

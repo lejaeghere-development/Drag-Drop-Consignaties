@@ -61,7 +61,7 @@ export default class Crates extends Phaser.GameObjects.Group {
 
     setTimeout(() => {
       Global.prevCrateData = JSON.parse(JSON.stringify(Global.crateData));
-    }, 1000);
+    }, 700);
   }
   showOrHideUI(status) {
     this.setVisible(status);

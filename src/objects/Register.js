@@ -230,9 +230,13 @@ export default class Register extends Phaser.GameObjects.Group {
 
     let combination = {};
     Object.keys(Global.crateData).forEach((key) => {
-      combination[key] = Global.crateData[key]['filledBottles'];
+      if (Global.crateData[key]['filledBottles'] != null) {
+        combination[key] = [...Global.crateData[key]['filledBottles']];
+      } else {
+        combination[key] = Global.crateData[key]['filledBottles'];
+      }
     });
-    console.log(JSON.stringify(combination), 'JSON.stringify(combination)');
+
     // Global.dataToSent['comments'] = this.comments;
     Global.dataToSent['vat'] = this.vat;
     Global.dataToSent['address'] = this.address;

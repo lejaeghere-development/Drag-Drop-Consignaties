@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Global } from './global';
 import { uuid } from 'uuidv4';
 
-const BASE_URL = 'https://deliveryves.be/krattenrek/';
-// const BASE_URL = './';
+// const BASE_URL = 'https://deliveryves.be/krattenrek/';
+const BASE_URL = './';
 
 let imageName = null;
 
@@ -127,6 +127,25 @@ async function getLatestConfig(email) {
 }
 
 async function updateData() {
+  Global.dataToSent['combination'] = JSON.parse(
+    Global.dataToSent['combination']
+  );
+  Object.keys(Global.dataToSent['combination']).forEach((cData) => {
+    if (Global.dataToSent['combination'][cData]) {
+      Global.dataToSent['combination'][cData].forEach((cFData, index) => {
+        const isCustom = Object.keys(Global.customReq).indexOf(cFData) != -1;
+
+        if (isCustom) {
+          Global.dataToSent['combination'][cData][index] =
+            Global.customReq[cFData];
+        }
+      });
+    }
+  });
+  Global.dataToSent['combination'] = JSON.stringify(
+    Global.dataToSent['combination']
+  );
+
   const res = await axios.post(
     `${BASE_URL}data.php`,
     {
@@ -201,12 +220,29 @@ async function sendEmail(
   Object.keys(Global.crateData).forEach((key) => {
     if (Global.crateData[key]['filledBottles']) {
       for (let i = 0; i < Global.crateData[key]['filledBottles'].length; i++) {
-        const _name = jsonDataPartial.filter((item) => {
-          return item.bottle_key == Global.crateData[key]['filledBottles'][i];
-        })[0]['name'];
-        const _volume = jsonDataPartial.filter((item) => {
-          return item.bottle_key == Global.crateData[key]['filledBottles'][i];
-        })[0]['volume'];
+        let _name = '';
+        let _volume = '';
+
+        let existsInSet =
+          !Global.customReq[Global.crateData[key]['filledBottles'][i]];
+        let existsInSet2 =
+          jsonDataPartial.filter((item) => {
+            return item.bottle_key == Global.crateData[key]['filledBottles'][i];
+          }).length > 0;
+
+        if (!existsInSet) {
+          _name = Global.customReq[Global.crateData[key]['filledBottles'][i]];
+        } else if (!existsInSet2) {
+          _name = Global.crateData[key]['filledBottles'][i];
+        } else {
+          _name = jsonDataPartial.filter((item) => {
+            return item.bottle_key == Global.crateData[key]['filledBottles'][i];
+          })[0]['name'];
+          _volume = jsonDataPartial.filter((item) => {
+            return item.bottle_key == Global.crateData[key]['filledBottles'][i];
+          })[0]['volume'];
+        }
+
         if (Object.keys(drinks).indexOf(`${_name} - ${_volume}`) == -1) {
           drinks[`${_name} - ${_volume}`] = 0;
         }
@@ -221,16 +257,34 @@ async function sendEmail(
         i < Global.prevCrateData[key]['filledBottles'].length;
         i++
       ) {
-        const _name = jsonDataPartial.filter((item) => {
-          return (
-            item.bottle_key == Global.prevCrateData[key]['filledBottles'][i]
-          );
-        })[0]['name'];
-        const _volume = jsonDataPartial.filter((item) => {
-          return (
-            item.bottle_key == Global.prevCrateData[key]['filledBottles'][i]
-          );
-        })[0]['volume'];
+        let _name = '';
+        let _volume = '';
+        let existsInSet =
+          !Global.customReq[Global.prevCrateData[key]['filledBottles'][i]];
+        let existsInSet2 =
+          jsonDataPartial.filter((item) => {
+            return (
+              item.bottle_key == Global.prevCrateData[key]['filledBottles'][i]
+            );
+          }).length > 0;
+        if (!existsInSet) {
+          _name =
+            Global.customReq[Global.prevCrateData[key]['filledBottles'][i]];
+        } else if (!existsInSet2) {
+          _name = Global.prevCrateData[key]['filledBottles'][i];
+        } else {
+          _name = jsonDataPartial.filter((item) => {
+            return (
+              item.bottle_key == Global.prevCrateData[key]['filledBottles'][i]
+            );
+          })[0]['name'];
+          _volume = jsonDataPartial.filter((item) => {
+            return (
+              item.bottle_key == Global.prevCrateData[key]['filledBottles'][i]
+            );
+          })[0]['volume'];
+        }
+
         if (Object.keys(prevdrinks).indexOf(`${_name} - ${_volume}`) == -1) {
           prevdrinks[`${_name} - ${_volume}`] = 0;
         }
@@ -238,9 +292,22 @@ async function sendEmail(
       }
     }
   });
-  console.log(drinks, 'drinks');
-  console.log(prevdrinks, 'prevdrinks');
-  //Global.prevCrateData
+  Object.keys(Global.crateData).forEach((cData) => {
+    if (
+      Global.crateData[cData] &&
+      Global.crateData[cData]['filledBottles'] &&
+      Global.crateData[cData]['filledBottles'] != null
+    ) {
+      Global.crateData[cData]['filledBottles'].forEach((cFData, index) => {
+        const isCustom = Object.keys(Global.customReq).indexOf(cFData) != -1;
+
+        if (isCustom) {
+          Global.crateData[cData]['filledBottles'][index] =
+            Global.customReq[cFData];
+        }
+      });
+    }
+  });
   const res = await axios.post(
     `${BASE_URL}sendEmail.php`,
     {

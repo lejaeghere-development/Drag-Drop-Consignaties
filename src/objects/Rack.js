@@ -1111,6 +1111,8 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.deleteSecondRack(true);
       }
 
+      // window.userConfig =
+      //   '{&quot;rack2_left_1&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_right_1&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_left_2&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_right_2&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_left_3&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_right_3&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_left_4&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack2_right_4&quot;:[&quot;CARLSBERG_0&quot;,&quot;CARLSBERG_0&quot;],&quot;rack1_left_1&quot;:[&quot;pepsii&quot;,&quot;pepsii&quot;],&quot;rack1_right_1&quot;:[&quot;pepsii&quot;,&quot;pepsii&quot;],&quot;rack1_left_2&quot;:[&quot;dummy2&quot;,&quot;dummy2&quot;],&quot;rack1_right_2&quot;:[&quot;dummy2&quot;,&quot;dummy2&quot;],&quot;rack1_left_3&quot;:[&quot;dummy3&quot;,&quot;dummy3&quot;],&quot;rack1_right_3&quot;:[&quot;dummy3&quot;,&quot;dummy3&quot;],&quot;rack1_left_4&quot;:[&quot;VIVEN_NADA_IPA_NA&quot;,&quot;VIVEN_NADA_IPA_NA&quot;],&quot;rack1_right_4&quot;:[&quot;VIVEN_NADA_IPA_NA&quot;,&quot;VIVEN_NADA_IPA_NA&quot;]}';
       if (window.userConfig.length > 0) {
         window.userConfigClone = JSON.parse(
           window.userConfig.replace(/&quot;/g, '"')
@@ -1671,7 +1673,6 @@ export default class Rack extends Phaser.GameObjects.Group {
   }
   showTag(rackInfo, items, isBigCrate) {
     // return false;
-
     if (items == null) return false;
     let card1Str = '';
     let card2Str = '';
@@ -1699,14 +1700,22 @@ export default class Rack extends Phaser.GameObjects.Group {
       }
 
       let key = null;
-      if (item.indexOf('dummy') != -1) {
-        key = 'dummy';
+      let existsInSet =
+        [...Global.jsonData, ...Global.customBottles].filter(
+          (data) => data['bottle_key'] == item.split('_group')[0]
+        ).length > 0;
+      if (!existsInSet) {
+        if (Global.customReq[item]) {
+          key = Global.customReq[item];
+        } else {
+          key = item;
+        }
       } else {
         key = [...Global.jsonData, ...Global.customBottles].filter(
           (data) => data['bottle_key'] == item.split('_group')[0]
         )[0]['name'];
       }
-      if (key == 'dummy') {
+      if (!existsInSet) {
         _totalBottles = 24;
         _volume = '';
       } else {
@@ -2400,8 +2409,14 @@ export default class Rack extends Phaser.GameObjects.Group {
     }
 
     for (let i = 1; i <= filledBottles.length; i++) {
+      let existsInSet =
+        [...Global.jsonData, ...Global.customBottles].filter(
+          (data) =>
+            data['bottle_key'] == filledBottles[i - 1].split('_group')[0]
+        ).length > 0;
+
       let imgKey =
-        filledBottles[i - 1].indexOf('dummy') != -1
+        !existsInSet || filledBottles[i - 1].indexOf('dummy') != -1
           ? 'dummy'
           : filledBottles[i - 1];
 
