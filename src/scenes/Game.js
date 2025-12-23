@@ -391,7 +391,6 @@ export default class Game extends Phaser.Scene {
       } else {
         window.userConfig = '';
       }
-
       // window.rack1Visible = parseInt(res['rack1Visible']);
 
       window.vat = res['vat'];

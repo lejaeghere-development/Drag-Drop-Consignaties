@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Global } from './global';
 import { uuid } from 'uuidv4';
 
-const BASE_URL = './';
+const BASE_URL = 'https://deliveryves.be/krattenrek/';
+// const BASE_URL = './';
 
 let imageName = null;
 

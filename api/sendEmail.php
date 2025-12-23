@@ -61,7 +61,7 @@ $mail->isHTML(TRUE);
 
 if($_SESSION['loggedin']){ // Logged in
      if($_SESSION["isSuperAdmin"]){
-     $mail->Subject = 'Activeer je drankenplanner';
+     $mail->Subject = 'Activeer je drankplanner';
      $mail->Body = "<html lang='en'>
      <head>
           <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -81,10 +81,11 @@ if($_SESSION['loggedin']){ // Logged in
                     <tr><td align='center' style='padding:40px 20px;'>
                          <img src='".$domainBase."assets/logo.png' style='width:350px;'>
                          <p style='font-weight:bold;'>Hallo,</p>
-                         <p>We hebben een <span style='font-weight:bold;'>nieuwe tool ontwikkeld</span> waarmee je eenvoudig <span style='font-weight:bold;'>wijzigingen in je drankvoorraad</span> kan doorgeven voor je volgende levering. Vanaf nu hoef je hiervoor <span style='font-weight:bold;'>mailen — </span>alles kan snel via deze online drankenplanner.</p>
+                         <p>We hebben een nieuwe tool ontwikkeld waarmee je wijzigingen in je drankvoorraad doorgeeft voor je volgende levering.</p>
+                         <p>Vanaf nu hoef je hiervoor niet meer te mailen — alles kan snel via deze online drankplanner.</p>
                         <p>Registreer je éénmalig via onderstaande link: <a href='https://www.deliveryves.be/krattenrek/register.php'><span style='font-weight:bold;'>deze link</span></a></p>
                         <p><span style='font-weight:bold;'>Belangrijk: </span>wijzigingen altijd <span style='font-weight:bold;'>minstens 2 werkdagen vooraf.</span></p>
-                        <p><span style='font-weight:bold;'>NAME: </span></p>
+                        <p><span style='font-weight:bold;'>NAAM: ".$decodeData->name."</span></p>
                         <p><span style='font-weight:bold;'>Leveradres: </span>".$decodeData->address."</p>
                     
                          

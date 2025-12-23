@@ -30,7 +30,7 @@ if(!$res || ($res && strlen($res['password']) == 0)){
             $_SESSION["username"]=$decoded->username;
             $_SESSION["email"]=$decoded->email;
             $_SESSION["hideHint"]= false;
-           
+               $_SESSION["racks"]=2;
             $_SESSION["sessionId"]=$uid;
             
             if($res && strlen($res['password']) == 0){
@@ -41,6 +41,7 @@ if(!$res || ($res && strlen($res['password']) == 0)){
                 $_SESSION["combination"]='';
                 $_SESSION["uid"]=$uid;
                 $_SESSION["address"]='';
+                $_SESSION["racks"]=2;
             }
             $_SESSION["rack1Visible"]= 1;
     

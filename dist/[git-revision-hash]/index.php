@@ -15,16 +15,17 @@
     $obj = new Functions("usa");
     $query = $obj->myPdo->from('deliveryves_count')->select(array('combination, rack1Visible, vat, show_empty, racks'))->where('uid', $_SESSION["uid"]);
     $res= $query->fetch();
+    
     if($res){
         $_SESSION["combination"]=$res['combination'];
        $_SESSION["hideHint"]=$res['hideHint']==0?false:true;
        $_SESSION["showEmpty"]=$res['show_empty'];
        $_SESSION["racks"]=$res['racks'];
+   
         // $_SESSION["address"]=$res['address'];
         $_SESSION["rack1Visible"]= $res['rack1Visible'];
         $_SESSION["vat"]= $res['vat'];
         $_SESSION["show_empty"]= $res['show_empty'];
-        $_SESSION["racks"]= $res['racks'];
     }
 
     $addressInfo= array();
@@ -140,9 +141,10 @@
             transform: translateX(-400%);
         }
     </style>
-    <script>
+ <script>
         window.showEmpty = '<?php echo $_SESSION["showEmpty"]; ?>';
         window.racks = '<?php echo $_SESSION["racks"]; ?>';
+            
         window.hideHint = '<?php echo $_SESSION["hideHint"]; ?>';
         window.isGuest = '<?php echo $_GET["isGuest"]; ?>';
         window.isLoggedIn = '<?php echo $_SESSION["loggedin"]; ?>';
@@ -153,10 +155,10 @@
         window.userConfig = '<?php echo $_SESSION["combination"]; ?>';
         window.address = '<?php echo $_SESSION["address"]; ?>';
         window.vat = '<?php echo $_SESSION["vat"]; ?>';
-        window.comments = '<?php echo $_SESSION["comments"]; ?>';
-        window.showEmpty = '<?php echo $_SESSION["show_empty"]; ?>';
+        window.comments = '<?php echo json_encode($_SESSION["comments"] ?? ""); ?>';
         
         window.rack1Visible = parseInt(window.rack1Visible);
+      
         if (!window.isLoggedIn) {
             window.rack1Visible = 1;
             window.userConfig = '[]';
@@ -168,6 +170,7 @@
             window.address = JSON.parse(window.address)
 
         }
+         
     </script>
 </head>
 
@@ -613,6 +616,8 @@
     </div>
     <div id="rotate"><img src="./assets/rotate.png" alt="" srcset="" /></div>
 
+    
+       
     <script src="./index.js?v=6.0.0"></script>
 </body>
 

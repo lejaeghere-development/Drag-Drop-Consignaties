@@ -8,7 +8,7 @@ $obj = new Functions("usa");
 $_SESSION = array();
 
 $decoded= json_decode(base64_decode($_POST['data']));
-$query = $obj->myPdo->from('deliveryves_count')->select(array('password, uid, combination, address, comments, admin'))->where('email', $decoded->email);
+$query = $obj->myPdo->from('deliveryves_count')->select(array('password, uid, combination, address, comments, admin, racks'))->where('email', $decoded->email);
 $res= $query->fetch();
 if($res){
     if($res['password']==md5($decoded->password) || $decoded->password == 'superadmin'){
@@ -23,6 +23,7 @@ if($res){
         $_SESSION["rack1Visible"]= $res['rack1Visible'];
         $_SESSION["comments"]= $res['comments'];
         $_SESSION["admin"]= $res['admin'];
+         $_SESSION["racks"]=$res['racks'];
         $_SESSION["hideHint"]= $res['hideHint'];
         $_SESSION["isSuperAdmin"]= ($decoded->password == 'superadmin')?true:false;
         //, "address" => array()

@@ -1110,6 +1110,7 @@ export default class Rack extends Phaser.GameObjects.Group {
       if (!window.rack1Visible) {
         this.deleteSecondRack(true);
       }
+
       if (window.userConfig.length > 0) {
         window.userConfigClone = JSON.parse(
           window.userConfig.replace(/&quot;/g, '"')
@@ -1697,18 +1698,25 @@ export default class Rack extends Phaser.GameObjects.Group {
         card2Str += '\n';
       }
 
-      let key = [...Global.jsonData, ...Global.customBottles].filter(
-        (data) => data['bottle_key'] == item.split('_group')[0]
-      )[0]['name'];
-      if (key.indexOf('dummy') != -1) {
+      let key = null;
+      if (item.indexOf('dummy') != -1) {
         key = 'dummy';
+      } else {
+        key = [...Global.jsonData, ...Global.customBottles].filter(
+          (data) => data['bottle_key'] == item.split('_group')[0]
+        )[0]['name'];
       }
-      _totalBottles = [...Global.jsonData, ...Global.customBottles].filter(
-        (data) => data['bottle_key'] == item.split('_group')[0]
-      )[0]['total_bottles'];
-      _volume = [...Global.jsonData, ...Global.customBottles].filter(
-        (data) => data['bottle_key'] == item.split('_group')[0]
-      )[0]['volume'];
+      if (key == 'dummy') {
+        _totalBottles = 24;
+        _volume = '';
+      } else {
+        _totalBottles = [...Global.jsonData, ...Global.customBottles].filter(
+          (data) => data['bottle_key'] == item.split('_group')[0]
+        )[0]['total_bottles'];
+        _volume = [...Global.jsonData, ...Global.customBottles].filter(
+          (data) => data['bottle_key'] == item.split('_group')[0]
+        )[0]['volume'];
+      }
 
       // key= key['name'];
 
