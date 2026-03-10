@@ -19,7 +19,7 @@ var Global = {
   filledTotal: 0,
   totalBottles: 0,
   choosenTotalBottles: 0,
-  canUseCustomToggle: false,
+  canUseCustomToggle: true,
   customCrateCnt: 0,
   formInitiated: false,
   cratesCreated: 0,

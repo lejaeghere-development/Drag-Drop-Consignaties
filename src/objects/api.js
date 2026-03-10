@@ -5,6 +5,7 @@ import { uuid } from 'uuidv4';
 
 // const BASE_URL = 'https://deliveryves.be/krattenrek/';
 const BASE_URL = './';
+// const BASE_URL = 'https://www.apexexp.in/Games/Deliveryves/';
 
 let imageName = null;
 
@@ -336,25 +337,58 @@ async function sendEmail(
   return JSON.parse(window.atob(res['data']));
 }
 async function saveImage(base64_image) {
+  // imageName = uuid();
+  // const res = await axios.post(
+  //   `${BASE_URL}saveImage.php`,
+  //   {
+  //     data: window.btoa(
+  //       JSON.stringify({
+  //         uid: localStorage.getItem('uuid'),
+  //         imageName: imageName,
+  //         base64_image: base64_image,
+  //       })
+  //     ),
+  //   },
+  //   {
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //   }
+  // );
   imageName = uuid();
-  const res = await axios.post(
-    `${BASE_URL}saveImage.php`,
-    {
-      data: window.btoa(
-        JSON.stringify({
-          uid: localStorage.getItem('uuid'),
-          imageName: imageName,
-          base64_image: base64_image,
-        })
-      ),
-    },
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
-  return JSON.parse(window.atob(res['data']));
+  const blob = base64_image;
+
+  // 1. Create a FormData instance
+  const formData = new FormData();
+
+  // 2. Append the fields exactly as PHP expects them
+  formData.append('uid', localStorage.getItem('uuid'));
+  formData.append('imageName', imageName);
+
+  // 3. Append the blob.
+  // The key must be 'screenshot' to match $_FILES['screenshot'] in PHP.
+  // The third argument provides a filename.
+  formData.append('screenshot', blob, `${imageName}.png`);
+
+  try {
+    const res = await axios.post(
+      `${BASE_URL}saveImage.php`,
+      formData, // Send the FormData object directly
+      {
+        headers: {
+          // Axios sets 'multipart/form-data' automatically when it sees FormData
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    // Your PHP returns a base64 encoded JSON string
+    const decodedResponse = JSON.parse(atob(res.data));
+    // console.log('Upload success:', decodedResponse);
+  } catch (error) {
+    // console.error('Upload failed:', error);
+  }
+  // return JSON.parse(window.atob(res['data']));
 }
 async function processForgotPassword(email) {
   const res = await axios.post(
@@ -454,7 +488,15 @@ async function addNewEmail(email, uid) {
   return JSON.parse(window.atob(res['data']));
 }
 //
-async function addAddress(email, title, housenumber, street, city, postalcode) {
+async function addAddress(
+  email,
+  title,
+  housenumber,
+  street,
+  city,
+  postalcode,
+  racks
+) {
   const res = await axios.post(
     `${BASE_URL}update_address.php`,
     {
@@ -467,6 +509,28 @@ async function addAddress(email, title, housenumber, street, city, postalcode) {
           street,
           city,
           postalcode,
+          racks,
+        })
+      ),
+    },
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }
+  );
+  return JSON.parse(window.atob(res['data']));
+}
+
+async function updateAddressRacks(addressID, racks) {
+  const res = await axios.post(
+    `${BASE_URL}update_address.php`,
+    {
+      data: window.btoa(
+        JSON.stringify({
+          operation: 'UPDATE_RACKS',
+          addressID: addressID,
+          racks,
         })
       ),
     },
@@ -512,6 +576,7 @@ export {
   dochangePassword,
   fetchAllUserAddress,
   deleteAddress,
+  updateAddressRacks,
   addAddress,
   addNewEmail,
   updateHintStatus,

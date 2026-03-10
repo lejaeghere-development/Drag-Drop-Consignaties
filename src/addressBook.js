@@ -4,6 +4,7 @@ import {
   addNewEmail,
   deleteAddress,
   fetchAllUserAddress,
+  updateAddressRacks,
   logout,
   updateInfo,
 } from './objects/api';
@@ -37,12 +38,12 @@ window.onload = async function () {
 
   fillEmails();
 
-  document
-    .querySelector('#inc')
-    .addEventListener('click', updateRacks.bind(this, 1));
-  document
-    .querySelector('#dec')
-    .addEventListener('click', updateRacks.bind(this, -1));
+  // document
+  //   .querySelector('#inc')
+  //   .addEventListener('click', updateRacks.bind(this, 1));
+  // document
+  //   .querySelector('#dec')
+  //   .addEventListener('click', updateRacks.bind(this, -1));
   document
     .querySelector('#edit_update_info')
     .addEventListener('click', enableOrDisableInfoEdit);
@@ -88,34 +89,46 @@ async function addNewEmailAddress() {
   let newEmail = document.querySelector('#new_email').value.trim();
   hideEmailInfo();
   emailCreateTO && clearTimeout(emailCreateTO);
-  if (
-    newEmail.length == 0 ||
-    !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)
-  ) {
-    document.querySelector('.new_email .info').classList.add('active');
-    document.querySelector('.new_email .info').classList.add('error');
-    document.querySelector('.new_email .info').innerHTML =
-      'Ongeldig e-mailadres';
+  // if (
+  //   newEmail.length == 0 ||
+  //   !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)
+  // ) {
+  //   document.querySelector('.new_email .info').classList.add('active');
+  //   document.querySelector('.new_email .info').classList.add('error');
+  //   document.querySelector('.new_email .info').innerHTML =
+  //     'Ongeldig e-mailadres';
+  //   return false;
+  // }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if (newEmail.length === 0 || !emailRegex.test(newEmail)) {
+    const infoLabel = document.querySelector('.new_email .info');
+    infoLabel.classList.add('active', 'error');
+    infoLabel.innerHTML = 'Ongeldig e-mailadres';
     return false;
   }
 
   let uid = uuid();
   let res = await addNewEmail(newEmail, uid);
+
   if (res['response']['code'] == 409) {
     document.querySelector('.new_email .info').classList.add('active');
     document.querySelector('.new_email .info').classList.add('error');
     document.querySelector('.new_email .info').innerHTML =
       res['response']['message'];
   } else if (res['response']['code'] == 200) {
-    userAddressData[newEmail] = {};
+    addressData = await fetchAllUserAddress();
+    console.log(addressData, 'addressData');
+    userAddressData = addressData['address_info'];
+    userInfoData = addressData['user_info'];
+
     document.querySelector('#new_email').value = '';
     document.querySelector('.new_email .info').classList.add('success');
     document.querySelector('.new_email .info').classList.add('active');
     document.querySelector('.new_email .info').innerHTML =
       'Succesvol aangemaakt';
-    document.querySelector(
-      '.app-container>.left .emails'
-    ).innerHTML += `<div class="email"> <div class="icon"><img src="./assets/user.png" alt="" sizes="" srcset=""></div> <div class="txt">${newEmail}</div> </div>`;
+    document.querySelector('.app-container>.left .emails').innerHTML +=
+      `<div class="email"> <div class="icon"><img src="./assets/user.png" alt="" sizes="" srcset=""></div> <div class="txt">${newEmail}</div> </div>`;
     setTimeout(() => {
       let emailEle = document.querySelector(
         '.app-container>.left .emails .email:last-child'
@@ -143,13 +156,29 @@ function updateEmailFilter() {
   emailFilterKey = document.querySelector('#search_eamil').value.trim();
   fillEmails();
 }
-function updateRacks(fact) {
-  racksTotal += fact;
+function updateAddress(email, addressID) {
+  updateAddressRacks(addressID, userAddressData[email][addressID]['racks']);
 
-  racksTotal = Math.min(racksTotal, 4);
-  racksTotal = Math.max(racksTotal, 0);
-  document.querySelector('.user_info_content .ctrl .val').innerHTML =
-    racksTotal;
+  document
+    .querySelector(
+      `.app-container>.right .address[data-address-id='${addressID}']`
+    )
+    .classList.remove('edit');
+}
+function updateRacks(email, addressID, fact) {
+  const _racks = parseInt(userAddressData[email][addressID]['racks']) || 0;
+  const _finalRacks = String(Math.max(1, _racks + fact));
+  userAddressData[email][addressID]['racks'] = _finalRacks;
+  document.querySelector(
+    `.app-container>.right .address[data-address-id='${addressID}'] .ctrl #rack_field`
+  ).innerHTML = _finalRacks;
+
+  // racksTotal += fact;
+
+  // racksTotal = Math.min(racksTotal, 4);
+  // racksTotal = Math.max(racksTotal, 0);
+  // document.querySelector('.user_info_content .ctrl .val').innerHTML =
+  //   racksTotal;
 }
 async function enableOrDisableInfoEdit() {
   if (profileEditEnabled) {
@@ -162,7 +191,7 @@ async function enableOrDisableInfoEdit() {
     await updateInfo(
       activeEmail,
       document.querySelector('#show_crate').checked ? 1 : 0,
-      parseInt(document.querySelector('#rack_field').innerHTML)
+      2 /* parseInt(document.querySelector('#rack_field').innerHTML) */
     );
   }
   profileEditEnabled = !profileEditEnabled;
@@ -182,9 +211,8 @@ function fillEmails() {
   document.querySelector('.app-container>.left .emails').innerHTML = '';
   Object.keys(userAddressData).forEach((email) => {
     if (emailFilterKey.length == 0 || email.indexOf(emailFilterKey) != -1) {
-      document.querySelector(
-        '.app-container>.left .emails'
-      ).innerHTML += `<div class="email"> <div class="icon"><img src="./assets/user.png" alt="" sizes="" srcset=""></div> <div class="txt">${email}</div> </div>`;
+      document.querySelector('.app-container>.left .emails').innerHTML +=
+        `<div class="email"> <div class="icon"><img src="./assets/user.png" alt="" sizes="" srcset=""></div> <div class="txt">${email}</div> </div>`;
       totalEmails++;
     }
   });
@@ -227,8 +255,8 @@ function showAddressInfo(emailEle, email) {
   document.querySelectorAll('.user_info_content .ctrl').forEach((ctrl) => {
     ctrl.classList.add('disabled');
   });
-  document.querySelector('.user_info_content .ctrl .val').innerHTML =
-    userInfoData[email]['racks'];
+  // document.querySelector('.user_info_content .ctrl .val').innerHTML =
+  //   userInfoData[email]['racks'];
   racksTotal = parseInt(userInfoData[email]['racks']);
   document.querySelector('.user_info_content .ctrl #show_crate').checked =
     userInfoData[email]['showEmpty'] == 1;
@@ -249,15 +277,47 @@ function showAddressInfo(emailEle, email) {
     let _title = userAddressData[email][addressID]['title'];
     document.querySelector(
       '.app-container>.right .adresses .content'
-    ).innerHTML += `<div class="address"> <div class="deleteBtn" data-address-id='${addressID}'><img src="./assets/bin.png" alt="" srcset=""></div> <div class="head"> <div class="icon"><img src="./assets/location.png" alt=""></div> <div class="txt">${_title}</div> </div> <div class="info">${_address}</div> </div>`;
+    ).innerHTML +=
+      `<div class="address" data-address-id='${addressID}'><div class="editBtn active" data-address-id='${addressID}'><img src="./assets/edit.png?v=1.0" alt="" srcset=""></div> <div class="ctrl"><div class="label">No. of racks:&nbsp;&nbsp;</div> <div id="dec">-</div> <div class="val" id="rack_field">${userAddressData[email][addressID]['racks']}</div> <div id="inc">+</div> </div><div class="deleteBtn" data-address-id='${addressID}'><img src="./assets/bin.png" alt="" srcset=""></div> <div class="head"> <div class="icon"><img src="./assets/location.png" alt=""></div> <div class="txt">${_title}</div> </div> <div class="info">${_address}</div> <div id="address_update">UPDATE</div></div>`;
   });
   Object.keys(userAddressData[email]).forEach((addressID) => {
     document
       .querySelector(
-        `.app-container>.right .adresses .content [data-address-id='${addressID}']`
+        `.app-container>.right .adresses .content .deleteBtn[data-address-id='${addressID}']`
       )
       .addEventListener('click', showDeleteConfirm.bind(this, addressID));
+
+    document
+      .querySelector(
+        `.app-container>.right .adresses .content .editBtn[data-address-id='${addressID}']`
+      )
+      .addEventListener('click', editAddress.bind(this, addressID));
+
+    document
+      .querySelector(
+        `.app-container>.right .address[data-address-id='${addressID}'] #inc`
+      )
+      .addEventListener('click', updateRacks.bind(this, email, addressID, 1));
+
+    document
+      .querySelector(
+        `.app-container>.right .address[data-address-id='${addressID}'] #dec`
+      )
+      .addEventListener('click', updateRacks.bind(this, email, addressID, -1));
+
+    document
+      .querySelector(
+        `.app-container>.right .address[data-address-id='${addressID}'] #address_update`
+      )
+      .addEventListener('click', updateAddress.bind(this, email, addressID));
   });
+}
+function editAddress(addressID) {
+  document
+    .querySelector(
+      `.app-container>.right .address[data-address-id='${addressID}']`
+    )
+    .classList.add('edit');
 }
 function showDeleteConfirm(addressID) {
   if (Global.popupActive) return false;
@@ -329,7 +389,8 @@ async function onSaveAddress() {
     add_housenumber,
     add_street,
     add_city,
-    add_postalcode
+    add_postalcode,
+    2
   );
   userAddressData[activeEmail][addressInfo['addressID']] = {
     title: add_title,
@@ -337,6 +398,7 @@ async function onSaveAddress() {
     street: add_street,
     city: add_city,
     postalcode: add_postalcode,
+    racks: 2,
   };
   showAddressInfo(lastEmailEle, lastEmailEle.querySelector('.txt').innerHTML);
 }

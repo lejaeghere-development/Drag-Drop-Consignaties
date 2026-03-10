@@ -1,5 +1,5 @@
-import { Global } from "./global";
-import { setScaleFactor } from "./scale_factor";
+import { Global } from './global';
+import { setScaleFactor } from './scale_factor';
 
 export class AppLoader extends Phaser.GameObjects.Group {
   constructor(scene) {
@@ -10,7 +10,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
   init(_url, loaderFont) {
     setScaleFactor.call(this, false);
 
-    document.body.style.backgroundColor = "#212121";
+    document.body.style.backgroundColor = '#212121';
     this.loaderBG = this.scene.add.graphics();
     this.loaderBase = this.scene.add.graphics();
     this.loaderPath = this.scene.add.graphics();
@@ -43,8 +43,8 @@ export class AppLoader extends Phaser.GameObjects.Group {
       0,
       0,
       30 *
-        2 *
-        (Global.gameVersion == "Offline" && Global.deviceType == "screen"
+        1 *
+        (Global.gameVersion == 'Offline' && Global.deviceType == 'screen'
           ? 0.5
           : 1)
     );
@@ -52,12 +52,12 @@ export class AppLoader extends Phaser.GameObjects.Group {
       0,
       0,
       20 *
-        2 *
-        (Global.gameVersion == "Offline" && Global.deviceType == "screen"
+        1 *
+        (Global.gameVersion == 'Offline' && Global.deviceType == 'screen'
           ? 0.5
           : 1)
     );
-    this.loaderPath.fillStyle(0xFBDE42, 1);
+    this.loaderPath.fillStyle(0xfbde42, 1);
     this.loaderBG.fillRect(
       0,
       0,
@@ -65,7 +65,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
       this.scene.game.canvas.height
     );
 
-    this.loaderPath.fillCircle(0, 0, 30 * 2); //, Phaser.Math.DegToRad(90), Phaser.Math.DegToRad(-100), true);
+    this.loaderPath.fillCircle(0, 0, 30 * 1); //, Phaser.Math.DegToRad(90), Phaser.Math.DegToRad(-100), true);
 
     for (var i = 0; i <= 50; i++) {
       this.loaderPath.fillStyle(0xffffff, 1 - (1 * i) / 50);
@@ -74,8 +74,8 @@ export class AppLoader extends Phaser.GameObjects.Group {
         0,
         0,
         30 *
-          2 *
-          (Global.gameVersion == "Offline" && Global.deviceType == "screen"
+          1 *
+          (Global.gameVersion == 'Offline' && Global.deviceType == 'screen'
             ? 0.5
             : 1),
         Phaser.Math.DegToRad(-100 - 7 * i),
@@ -91,29 +91,31 @@ export class AppLoader extends Phaser.GameObjects.Group {
     this.loadPer = this.scene.make
       .text({
         x: this.c_w * 0.5,
-        y: this.c_h * 0.5 * 1.4 + (Global.isMobile?1.5:1) * 250 * this.scaleFact,
-        text: "0%",
+        y:
+          this.c_h * 0.5 * 1.4 +
+          (Global.isMobile ? 1.5 : 1) * 250 * this.scaleFact,
+        text: '0%',
         origin: {
           x: 0.5,
           y: 0.5,
         },
         style: {
           font: Global.isMobile
-            ? "" +
+            ? '' +
               String(((30 * this.scaleFact) / 0.5) * (Global.dpr || 1)) +
               `px ${loaderFont}`
-            : "" +
+            : '' +
               String(((15 * this.scaleFact) / 0.5) * (Global.dpr || 1)) +
               `px ${loaderFont}`,
-          fill: "#777777",
-          align: "center",
+          fill: '#777777',
+          align: 'center',
         },
       })
       .setDepth(100);
 
     this.add(this.loadPer);
 
-    this.scene.load.on("progress", this.onLoadProgress.bind(this));
+    this.scene.load.on('progress', this.onLoadProgress.bind(this));
   }
   onLoadProgress(p) {
     if (isNaN(p)) return false;
@@ -125,7 +127,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
       targets: this.loaderPath,
       angle: 360,
       duration: 1100,
-      ease: "Linear",
+      ease: 'Linear',
       easeParams: [3.5],
       delay: 0,
       loop: -1,
@@ -133,17 +135,15 @@ export class AppLoader extends Phaser.GameObjects.Group {
     });
   }
   loadLogo(_url) {
-    this.scene.load.image("loader-logo", _url);
+    this.scene.load.image('loader-logo', _url);
     this.scene.load.on(
-      "complete",
-      this.checkLoaderLogoStat.bind(this, "loader-logo")
+      'complete',
+      this.checkLoaderLogoStat.bind(this, 'loader-logo')
     );
     this.scene.load.start();
   }
   checkLoaderLogoStat(_key) {
-    console.log("Load Complete Sub");
     if (this.scene.textures.get(_key).key == _key && !this.loaderLogoAdded) {
-      console.log("Load Complete Sub2");
       this.loaderLogoAdded = true;
       this.addLoaderLogo(_key);
     }
@@ -162,7 +162,7 @@ export class AppLoader extends Phaser.GameObjects.Group {
           y: this.loaderLogo.y - this.loaderLogo.height * 0.25,
           duration: 500,
           alpha: 1,
-          ease: "Cubic.Out",
+          ease: 'Cubic.Out',
           easeParams: [3.5],
           delay: 0,
         });

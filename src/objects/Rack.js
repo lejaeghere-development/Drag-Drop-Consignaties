@@ -677,20 +677,21 @@ export default class Rack extends Phaser.GameObjects.Group {
         */
     Global.emitter.emit(
       'rack:highlight_empty_space',
-      this.crateSelectedToSwap != null
+      this.crateSelectedToSwap != null,
+      Global.totalBottles
     );
   }
   calculateCustomCrate(turnOff = false) {
     if (
       /* this.rack1.visible &&  */ Global.totalCustomCrates >=
-        window.racks /* ||
+        window.racks * 2 /* ||
       (!this.rack1.visible && Global.totalCustomCrates >= 1) */ ||
       turnOff
     ) {
       Global.canUseCustomToggle = false;
       if (
         /* this.rack1.visible && */ Global.totalCustomCrates >=
-        window.racks /*  ||
+        window.racks * 2 /*  ||
         (!this.rack1.visible && Global.totalCustomCrates >= 1) */
       ) {
         Global.emitter.emit('toggle:update', false, false);
@@ -735,7 +736,7 @@ export default class Rack extends Phaser.GameObjects.Group {
     this.highlightRef = this.highlight;
     !byPass && (this.crateSelectedToSwap = null);
   }
-  highlightEmptySpaces(byPass = false) {
+  highlightEmptySpaces(byPass = false, bottlesTotal) {
     if (!(Global.isMobile || true)) return false;
     let isEmptyRemains = false;
 
@@ -757,6 +758,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         loop: false,
       });
     }
+
     let emptyHighlights = [];
     Object.keys(Global.crateData).forEach((crateDataKey) => {
       let rack = this[crateDataKey.split('_')[0]];
@@ -775,7 +777,8 @@ export default class Rack extends Phaser.GameObjects.Group {
               Global.crateData[crateDataKey.replace('left', 'right')][
                 'status'
               ] === 'empty')) &&
-          Global.totalBottles == 24
+          /* Global.totalBottles */ (bottlesTotal == 24 ||
+            bottlesTotal /* Global.totalBottles */ == 12)
         ) {
           if (crateDataKey.indexOf('right') != -1) {
             emptyHighlights.push(
@@ -792,7 +795,7 @@ export default class Rack extends Phaser.GameObjects.Group {
               `highlight_${crateDataKey.replace('left', 'center')}`
             ].setAlpha(1);
           }
-        } else if (Global.totalBottles == 6) {
+        } else if (/* Global.totalBottles */ bottlesTotal == 6) {
           emptyHighlights.push(this[`highlight_${crateDataKey}`]);
           this[`highlight_${crateDataKey}`].setAlpha(1);
         }
@@ -1095,7 +1098,11 @@ export default class Rack extends Phaser.GameObjects.Group {
 
     setTimeout(() => {
       Global.totalBottles = Global.choosenTotalBottles;
-      Global.emitter.emit('rack:highlight_empty_space');
+      Global.emitter.emit(
+        'rack:highlight_empty_space',
+        false,
+        Global.totalBottles
+      );
     }, 100);
     // Global.emitter.emit('rack:highlight_empty_space', this.crateSelectedToSwap!=null);
   }
@@ -1160,6 +1167,7 @@ export default class Rack extends Phaser.GameObjects.Group {
                       ],
                     ];
                     const isCustom = !this.areAllStringsSame(bottleConfig);
+
                     if (isCustom) {
                       Global.crateType = 'custom';
                     }
@@ -1474,6 +1482,8 @@ export default class Rack extends Phaser.GameObjects.Group {
       if (isNew) {
         Global.emitter.emit('header:update_crate_status', 'add', prefill);
 
+        !prefill && Global.emitter.emit('repeat:show');
+
         Global.crateActivated = true;
         this.addCrateOnShelf(
           filledBottlesOrObject,
@@ -1631,19 +1641,11 @@ export default class Rack extends Phaser.GameObjects.Group {
     });
     Global.isEmptyRemains = isEmptyRemains;
     if (!isEmptyRemains && !Global.rackFullInfoShown) {
-      Global.rackFullInfoShown = true;
-      Global.emitter.emit('header:show_ready_info');
+      setTimeout(() => {
+        Global.rackFullInfoShown = true;
+        Global.emitter.emit('header:show_ready_info');
+      }, 250);
     }
-    /* if(isEmptyRemains){
-            Global.emitter.emit('header:update_skip_frame', 'skip');
-            Global.emitter.emit('header:hide_ready_info');
-        }else{
-            if(!Global.defaultCrateExists){
-                Global.emitter.emit('header:update_skip_frame', 'ready');
-                Global.emitter.emit('header:show_ready_info');
-            }
-            
-        } */
   }
   hideTag(rackInfo, items) {
     if (items == null) return false;
@@ -1733,16 +1735,18 @@ export default class Rack extends Phaser.GameObjects.Group {
                 key= `${key.substring(0, 10)}...`
             } */
       totalBottles += 6;
+
       if (index < 2) {
-        card1Str += `${key}  ${_volume} (${!isAllEqual ? '6' : _totalBottles})`;
+        card1Str += `${key}  ${_volume} (${!isAllEqual ? '6' : totalBottles})`;
       } else {
-        card2Str += `${key}  ${_volume} (${!isAllEqual ? '6' : _totalBottles})`;
+        card2Str += `${key}  ${_volume} (${!isAllEqual ? '6' : totalBottles})`;
       }
     });
 
     if (isBigCrate) {
       if (allEqual(items)) {
-        card1Str = `${card1Str.split('(')[0]}(${_totalBottles})`;
+        card1Str = `${card1Str.split('(')[0]}(${totalBottles})`;
+
         this[
           `${rackInfo['rack']}_shelf${rackInfo['shelf']}_left_info`
         ].setAlpha(1);
@@ -1762,6 +1766,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         let cardItems = [...card1Str.split('\n'), ...card2Str.split('\n')];
         let cardObj = {};
         cardItems.forEach((key) => {
+          if (key.length == 0) return;
           let key1 = key.split(' (')[0];
           let key2 = parseInt(key.split(' (')[1].split(')')[0]);
           if (cardObj[key1]) {
@@ -1838,35 +1843,36 @@ export default class Rack extends Phaser.GameObjects.Group {
     // this.crateMaskGr.setDepth(100);
     // this.add(this.crateMaskGr);
     // gameObject.setData('maskGr', this.crateMaskGr);
-    [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+
+    const crateItems = gameObject.getData('crateItems') || [];
+    const allTargets = [gameObject, ...crateItems];
+    allTargets.forEach((child) => {
       if (child.getData('rackInfo')) {
         child.setData('rackInfo', this.rackInfo);
       }
       child.setDepth(child.getData('initDepth') + this.rackInfo['shelf'] * 8);
     });
     this.killAllTweens(gameObject);
-    [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+
+    allTargets.forEach((child) => {
       child.setData('readyToDrag', false);
-      this.scene.tweens.add({
-        targets: child,
-        ease: 'Back.Out',
-        x: this.highlight.x,
-        y:
-          child.getData('filledIndex') !== 0
-            ? this.highlight.y +
-              120 * this.scaleFact +
-              (child.getData('filledIndex') - 2.5) *
-                (!this.isBigCrate ? 70 : 70) *
-                this.scaleFact
-            : this.highlight.y + 120 * this.scaleFact,
-        duration: 300,
-        repeat: 0, // -1: infinity
-        yoyo: false,
-        onComplete:
-          child === gameObject
-            ? this.addCrateMask.bind(this, gameObject, true)
-            : null,
-      });
+      if (child.getData('filledIndex') == 0) {
+        this.scene.tweens.add({
+          targets: child,
+          ease: 'Back.Out',
+          x: this.highlight.x,
+
+          y: this.highlight.y + 120 * this.scaleFact,
+          duration: 300,
+          repeat: 0, // -1: infinity
+          yoyo: false,
+          onComplete:
+            child === gameObject
+              ? this.addCrateMask.bind(this, gameObject, true)
+              : null,
+        });
+      }
+
       /*    if(child.getData('filledIndex') !== 0){
                    child.setPosition(gameObject.x , gameObject.y + (child.getData('filledIndex') - 2.5) * 70 * this.scaleFact)
                }else{
@@ -1876,6 +1882,8 @@ export default class Rack extends Phaser.GameObjects.Group {
     // this.scene.tweens.killAll();
 
     // this.shrinkTwn && this.shrinkTwn.remove();
+    const bottleCnt = gameObject.getData('bottleCnt');
+    let isBigCrate = gameObject.getData('isBigCrate');
     this.scene.tweens.add({
       targets: this.scaleObj,
       ease: 'Back.Out',
@@ -1884,13 +1892,35 @@ export default class Rack extends Phaser.GameObjects.Group {
       repeat: 0, // -1: infinity
       yoyo: false,
       onUpdate: function (twn) {
-        [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+        if (!gameObject) return;
+
+        const crateItems = gameObject.getData('crateItems') || [];
+        const allTargets = [gameObject, ...crateItems];
+        allTargets.forEach((child) => {
           child.setScale(child.getData('initScale') * this.scaleObj['value']);
+
+          if (child.getData('filledIndex') !== 0) {
+            child.x =
+              gameObject.x +
+              (bottleCnt == 12
+                ? (child.getData('filledIndex') == 1 ? -0.22 : 0.22) *
+                  gameObject.width *
+                  gameObject.scaleX
+                : 0);
+            child.y =
+              gameObject.y +
+              ((bottleCnt == 12 ? 1 : child.getData('filledIndex')) - 2.5) *
+                (!isBigCrate ? 70 : 70) *
+                this.scaleFact *
+                this.shrinkFact;
+          }
         });
         this.shrinkFact = 1.5 - twn.progress * 0.5;
       }.bind(this),
       onComplete: function () {
-        [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+        const crateItems = gameObject.getData('crateItems') || [];
+        const allTargets = [gameObject, ...crateItems];
+        allTargets.forEach((child) => {
           child.setData('readyToDrag', true);
         });
       }.bind(this),
@@ -1913,7 +1943,9 @@ export default class Rack extends Phaser.GameObjects.Group {
     this.add(this.crateMaskGr);
     gameObject.setData('maskGr', this.crateMaskGr);
 
-    [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+    const crateItems = gameObject.getData('crateItems') || [];
+    const allTargets = [gameObject, ...crateItems];
+    allTargets.forEach((child) => {
       child.setMask(this.crateMaskGr.createGeometryMask());
       child.setData('initX', child.x);
       child.setData('initY', child.y);
@@ -1921,7 +1953,9 @@ export default class Rack extends Phaser.GameObjects.Group {
     });
   }
   killAllTweens(gameObject) {
-    [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+    const crateItems = gameObject.getData('crateItems') || [];
+    const allTargets = [gameObject, ...crateItems];
+    allTargets.forEach((child) => {
       this.scene.tweens.killTweensOf(gameObject);
     });
   }
@@ -1929,18 +1963,22 @@ export default class Rack extends Phaser.GameObjects.Group {
     if (gameObject.getData && gameObject.getData('insideRack')) {
       // alert("S");
       let rackInfo = gameObject.getData('rackInfo');
-      [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+      const crateItems = gameObject.getData('crateItems') || [];
+      const allTargets = [gameObject, ...crateItems];
+      allTargets.forEach((child) => {
         /* updateDepth && */ child.setDepth(
           child.getData('initDepth') + rackInfo['shelf'] * 8
         );
       });
+
       // this.scene.tweens.killAll();
       this.killAllTweens(gameObject);
       this.highlight.setPosition(
         gameObject.getData('initX'),
         gameObject.getData('initY') - 120 * this.scaleFact
       );
-      [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+
+      allTargets.forEach((child) => {
         child.setData('readyToDrag', false);
         this.scene.tweens.add({
           targets: child,
@@ -1965,13 +2003,19 @@ export default class Rack extends Phaser.GameObjects.Group {
         repeat: 0, // -1: infinity
         yoyo: false,
         onUpdate: function (twn) {
-          [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+          if (!gameObject) return;
+
+          const crateItems = gameObject.getData('crateItems') || [];
+          const allTargets = [gameObject, ...crateItems];
+          allTargets.forEach((child) => {
             child.setScale(child.getData('initScale') * this.scaleObj['value']);
           });
           this.shrinkFact = 1.5 - twn.progress * 0.5;
         }.bind(this),
         onComplete: function () {
-          [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+          const crateItems = gameObject.getData('crateItems') || [];
+          const allTargets = [gameObject, ...crateItems];
+          allTargets.forEach((child) => {
             child.setData('readyToDrag', true);
           });
         }.bind(this),
@@ -2075,7 +2119,9 @@ export default class Rack extends Phaser.GameObjects.Group {
 
       this.crateDragged = true;
 
-      [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+      const crateItems = gameObject.getData('crateItems') || [];
+      const allTargets = [gameObject, ...crateItems];
+      allTargets.forEach((child) => {
         child.setData('initX', child.x);
         // child.setData('initDepth', child.depth)
 
@@ -2090,7 +2136,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         gameObject.getData('maskGr').destroy(true, true);
       }
 
-      [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+      allTargets.forEach((child) => {
         child.setData('initScale', child.scaleX);
       });
       this.scaleObj = {
@@ -2098,6 +2144,7 @@ export default class Rack extends Phaser.GameObjects.Group {
       };
       this.shrinkTwn && this.shrinkTwn.remove();
       gameObject.setData('twnBeforeDelete', true);
+
       this.shrinkTwn = this.scene.tweens.add({
         targets: this.scaleObj,
         ease: 'Back.Out',
@@ -2109,12 +2156,26 @@ export default class Rack extends Phaser.GameObjects.Group {
           this.crateSelectedToRemove = gameObject;
         }.bind(this),
         onUpdate: function (twn) {
-          [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+          if (!gameObject) return;
+
+          const crateItems = gameObject.getData('crateItems') || [];
+          const allTargets = [gameObject, ...crateItems];
+          allTargets.forEach((child) => {
             child.setScale(child.getData('initScale') * this.scaleObj['value']);
             if (child.getData('filledIndex') !== 0) {
+              child.x =
+                gameObject.x +
+                (gameObject.getData('bottleCnt') == 12
+                  ? (child.getData('filledIndex') == 1 ? -0.22 : 0.22) *
+                    gameObject.width *
+                    gameObject.scaleX
+                  : 0);
               child.y =
                 gameObject.y +
-                (child.getData('filledIndex') - 2.5) *
+                ((gameObject.getData('bottleCnt') == 12
+                  ? 1
+                  : child.getData('filledIndex')) -
+                  2.5) *
                   (!isBigCrate ? 70 : 70) *
                   this.scaleFact *
                   this.shrinkFact;
@@ -2138,7 +2199,7 @@ export default class Rack extends Phaser.GameObjects.Group {
         }.bind(this, gameObject),
       });
     }
-    this.onBottleDrag(pointer, gameObject, gameObject.x, gameObject.y);
+    // this.onBottleDrag(pointer, gameObject, gameObject.x, gameObject.y);
   }
   onBottleDrag(pointer, gameObject, dragX, dragY) {
     if (!Global.crateActivated || Global.popupActive) return false;
@@ -2146,7 +2207,9 @@ export default class Rack extends Phaser.GameObjects.Group {
     if (gameObject.getData('insideRack')) {
       let isBigCrate = gameObject.getData('isBigCrate');
       if (!gameObject.getData('readyToDrag')) return false;
-      [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+      const crateItems = gameObject.getData('crateItems') || [];
+      const allTargets = [gameObject, ...crateItems];
+      allTargets.forEach((child) => {
         child.x = dragX;
         if (child.getData('filledIndex') !== 0) {
           child.y =
@@ -2196,6 +2259,7 @@ export default class Rack extends Phaser.GameObjects.Group {
     isBig
   ) {
     let conditionCheck = this.isBigCrate;
+
     if (prefill) {
       conditionCheck = isBig;
       this.highlight.setPosition(
@@ -2244,8 +2308,8 @@ export default class Rack extends Phaser.GameObjects.Group {
         }
       }
     }
-    let bottleCnt = prefill ? (isBig ? 24 : 6) : Global.totalBottles;
-    if (bottleCnt == 6) {
+    let bottleCnt = prefill ? filledBottles.length * 6 : Global.totalBottles;
+    if (bottleCnt == 6 || bottleCnt == 12) {
       this.crate = this.create(
         this.highlight.x,
         this.highlight.y + 120 * this.scaleFact,
@@ -2376,6 +2440,9 @@ export default class Rack extends Phaser.GameObjects.Group {
     this.crateFront.setData('rackInfo', this.rackInfo);
     this.crateFront.setData('isBigCrate', conditionCheck);
 
+    this.crate.setData('bottleCnt', bottleCnt);
+    this.crateFront.setData('bottleCnt', bottleCnt);
+
     if (filledBottles.length > 0 || true) {
       this.crateFront.setInteractive({
         draggable: !(Global.isMobile || true),
@@ -2421,17 +2488,21 @@ export default class Rack extends Phaser.GameObjects.Group {
           : filledBottles[i - 1];
 
       this[`bottle_set${i}`] = this.create(
-        this.crate
-          .x /* - (Math.ceil(this.bottleSets/2)-i)*500*this.scaleFact */,
+        this.crate.x +
+          (bottleCnt == 12
+            ? (i == 1 ? -0.22 : 0.22) * this.crate.width * this.crate.scaleX
+            : 0),
         this.crate.y +
-          (i - 2.5) * (filledBottles.length == 6 ? 70 : 70) * this.scaleFact,
+          ((bottleCnt == 12 ? 1 : i) - 2.5) *
+            (filledBottles.length == 6 ? 70 : 70) *
+            this.scaleFact,
         `${imgKey}_group`
       )
         .setScale(this.scaleFact * 0.7)
         .setData('filledIndex', i)
         // .setData('')
         .setData('filled', false)
-        .setDepth(1200 + (i == 1 ? 2 : i + 3) + shelfFactor);
+        .setDepth(1200 + (bottleCnt == 12 || i == 1 ? 2 : i + 3) + shelfFactor);
       createItems.push(this[`bottle_set${i}`]);
     }
 
@@ -2515,9 +2586,11 @@ export default class Rack extends Phaser.GameObjects.Group {
       setTimeout(
         () => {
           this.isBigCrate = crate.getData('isBigCrate');
-          Global.totalBottles = this.isBigCrate ? 24 : 6;
+          const bottleCnt = crate.getData('bottleCnt');
+
+          // Global.totalBottles = bottleCnt;
           canHighlightEmpty &&
-            Global.emitter.emit('rack:highlight_empty_space', true);
+            Global.emitter.emit('rack:highlight_empty_space', true, bottleCnt);
           this.crateSelectedToSwap = crate;
 
           this.onDragStart(pointer, crate);
@@ -2897,20 +2970,30 @@ export default class Rack extends Phaser.GameObjects.Group {
           .setScale(this.scaleFact * 0.7);
 
         // return false;
-        [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+        const crateItems = gameObject.getData('crateItems') || [];
+        const allTargets = [gameObject, ...crateItems];
+        allTargets.forEach((child) => {
           if (
             child.getData('filledIndex') &&
             child.getData('filledIndex') > 0
           ) {
+            const bottleCnt = gameObject.getData('bottleCnt');
+
             child
               .setPosition(
-                gameObject.x,
+                gameObject.x +
+                  (bottleCnt == 12
+                    ? (child.getData('filledIndex') == 1 ? -0.22 : 0.22) *
+                      gameObject.width *
+                      gameObject.scaleX
+                    : 0),
                 gameObject.y +
-                  (child.getData('filledIndex') - 2.5) *
+                  ((bottleCnt == 12 ? 1 : child.getData('filledIndex')) - 2.5) *
                     (!isBigCrate ? 70 : 70) *
                     this.scaleFact
               )
               .setScale(this.scaleFact * 0.7);
+            //(Global.totalBottles == 12 ? 1 : child.getData('filledIndex'))
           } else {
             child
               .setPosition(gameObject.x, gameObject.y)
@@ -2937,7 +3020,8 @@ export default class Rack extends Phaser.GameObjects.Group {
         this.crateMaskGr.setDepth(1200 + 100);
         this.add(this.crateMaskGr);
         gameObject.setData('maskGr', this.crateMaskGr);
-        [gameObject, ...gameObject.getData('crateItems')].forEach((child) => {
+
+        allTargets.forEach((child) => {
           child.setMask(this.crateMaskGr.createGeometryMask());
           // child.setPosition(child.getData('initX'), child.getData('initY'))
         });

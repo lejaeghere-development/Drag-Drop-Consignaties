@@ -126,7 +126,6 @@ export default class Hint extends Phaser.GameObjects.Group {
       });
 
       this.dragTitle.setText('Click on empty slots to place the crate.');
-      console.log(data.items, 'items');
     }
   }
   hideHint() {

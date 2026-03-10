@@ -31,7 +31,7 @@ $data= array();
         $housenumber= $dataSent->housenumber;
         $postalcode= $dataSent->postalcode;
         $city= $dataSent->city;
-  
+   $racks= $dataSent->racks;
         $addressID=0;
 
         $max=mt_getrandmax();
@@ -52,6 +52,7 @@ $data= array();
         $data['postalcode']= $postalcode;
         $data['city']= $city;
         $data['addressID']= $addressID;
+        $data['racks']= $racks;
         $data['uid']= $res['uid'];
         $res = $obj->saveData('deliveryves_address', $data);
         echo base64_encode(json_encode(array(
@@ -90,6 +91,14 @@ $data= array();
         }
        
         
+    }
+    if($operation == 'UPDATE_RACKS'){
+         $data=array('racks' => $dataSent->racks);
+         $condition=array('addressID' => $dataSent->addressID);
+            $res = $obj->updateData('deliveryves_address', $data, $condition);
+            echo base64_encode(json_encode(array(
+                "response" => $res
+            )));
     }
 
     

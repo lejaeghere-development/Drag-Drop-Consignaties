@@ -129,7 +129,9 @@ export default class Game extends Phaser.Scene {
     Global.emitter.on('crate_info2:show', this.showCrateInfo2.bind(this));
     Global.emitter.on('crate_info2:hide', this.hideCrateInfo2.bind(this));
     Global.emitter.on('popup_update', this.updatePopupStatus.bind(this));
-
+    Global.emitter.on('repeat:show', this.showRepeat.bind(this));
+    Global.emitter.on('repeat:hide', this.hideRepeat.bind(this));
+    Global.emitter.on('mixed:update_set', this.updateMixedListView.bind(this));
     this.BGGr = this.add.graphics();
     this.BGGr.fillStyle(0xffffff, 1.0);
     this.BGGr.fillRect(0, 0, this.c_w, this.c_h);
@@ -145,10 +147,6 @@ export default class Game extends Phaser.Scene {
     // this.bin = new Bin(this);
     // this.bin.setUp();
     // this.bin.init();
-
-    this.rack = new Rack(this);
-    this.rack.setUp();
-    this.rack.init();
 
     this.intro = new Intro(this);
     this.intro.setUp();
@@ -195,7 +193,11 @@ export default class Game extends Phaser.Scene {
 
     // Global.emitter.emit('game:skip');
 
-    if (typeof window.address == 'string') {
+    if (
+      typeof window.address == 'string' /*  ||
+      (typeof window.address == 'object' && window.address.length == 0) */
+    ) {
+      this.addRacks();
       window.address = '';
       Global.emitter.emit('crate_selection:enable');
       Global.emitter.emit('crate_selection:hide');
@@ -206,11 +208,13 @@ export default class Game extends Phaser.Scene {
       // }, 250);
     } else {
       if (Object.keys(window.address).length == 0) {
+        this.addRacks();
         window.address = '';
         Global.emitter.emit('crate_selection:enable');
         Global.emitter.emit('crate_selection:hide');
         this.setRackDefaultVal();
         this.resetRackDefaultVal();
+
         // setTimeout(() => {
         //     Global.emitter.emit('crate:add_crate');
         // }, 250);
@@ -228,6 +232,46 @@ export default class Game extends Phaser.Scene {
     //   this.calculateScore();
     // }, 5000);
     // console.log(this, 'widthhhhhh!!!');
+
+    this.repeatBtn = this.add
+      .image(
+        Global.lastOrientation == 'portrait'
+          ? this.c_w * 0.5
+          : this.extraLeftPer + this.extraTop / 4 + 890 * this.scaleFact,
+        this.c_h - this.extraTop - 400 * this.scaleFact,
+        'items',
+        `repeatBtn0000`
+      )
+      .setInteractive({
+        cursor: 'pointer',
+      })
+      .setDepth(1500)
+      .setScale(this.scaleFact * 1.0)
+      .setVisible(false)
+      .on(
+        'pointerover',
+        this.onHover.bind(this, 'repeatBtn', 'repeatBtn_10000')
+      )
+      .on('pointerout', this.onHover.bind(this, 'repeatBtn', 'repeatBtn0000'))
+      .on('pointerdown', this.onRepeat.bind(this));
+  }
+  addRacks() {
+    this.rack = new Rack(this);
+    this.rack.setUp();
+    this.rack.init();
+    this.onResize();
+  }
+  onRepeat(v) {
+    if (Global.suggestionElement != null) {
+      Global.emitter.emit(
+        'item:repeat_set',
+        Global.suggestionElement,
+        Global.lastSetToRepeat
+      );
+    }
+  }
+  onHover(key, frame) {
+    this[key].setFrame(frame);
   }
   async captureLongScreenshot() {
     const {
@@ -310,7 +354,36 @@ export default class Game extends Phaser.Scene {
 
     return finalImage;
   }
+  updateMixedListView(
+    forceActionType = null,
+    updateBtn = false,
+    updateFrame = ''
+  ) {
+    const _isVisible = document
+      .querySelector('#mixed_options')
+      .classList.contains('active');
+    if (_isVisible) {
+      document.querySelector('#mixed_options').classList.remove('active');
+    } else {
+      document.querySelector('#mixed_options').classList.add('active');
+    }
 
+    if (forceActionType != null) {
+      if (!forceActionType) {
+        document.querySelector('#mixed_options').classList.remove('active');
+      } else {
+        document.querySelector('#mixed_options').classList.add('active');
+      }
+    }
+    Global.lastCrateCategory = null;
+    Global.emitter.emit('mixed:update_btn_label', updateBtn, updateFrame);
+  }
+  showRepeat() {
+    this.repeatBtn && this.repeatBtn.setVisible(true);
+  }
+  hideRepeat() {
+    this.repeatBtn && this.repeatBtn.setVisible(false);
+  }
   getImageDataURL(image) {
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = image.width;
@@ -342,6 +415,20 @@ export default class Game extends Phaser.Scene {
       setTimeout(() => {
         Global.emitter.emit('game:resize');
         setScaleFactor.call(this, true);
+
+        this.repeatBtn &&
+          this.repeatBtn
+            .setPosition(
+              Global.lastOrientation == 'portrait'
+                ? this.c_w * 0.5
+                : this.extraLeftPer +
+                    900 * this.scaleFact +
+                    this.extraTop * 0.6,
+              this.c_h - this.extraTop - 400 * this.scaleFact
+            )
+            .setScale(
+              this.scaleFact * (Global.lastOrientation == 'portrait' ? 1.5 : 1)
+            );
       }, 0);
     }, 0);
   }
@@ -351,7 +438,7 @@ export default class Game extends Phaser.Scene {
     let DEFAULT_WIDTH = 0;
     let DEFAULT_HEIGHT = 0;
     if (Global.lastOrientation == 'landscape') {
-      Global.dpr = Math.min(window.devicePixelRatio, 1.75);
+      Global.dpr = Math.min(window.devicePixelRatio, 1);
       DEFAULT_WIDTH = 2208 * Global.dpr;
       DEFAULT_HEIGHT = 1242 * Global.dpr;
       document.querySelector('.mobile_menu').classList.remove('active2');
@@ -379,6 +466,8 @@ export default class Game extends Phaser.Scene {
       let addressID = _selectedOpt.dataset.addressId;
       let _address = `${window.address[addressID]['housenumber']}, ${window.address[addressID]['street']},<br/>${window.address[addressID]['city']}, ${window.address[addressID]['postalcode']}`;
       window.addressSelected = _address;
+      // if (window.racks <= window.address[addressID]['racks'])
+
       // Global.popupActive= false;
       Global.emitter.emit('popup_update', false);
       document.querySelector('.address_sec').classList.remove('active');
@@ -391,8 +480,36 @@ export default class Game extends Phaser.Scene {
       } else {
         window.userConfig = '';
       }
-      // window.rack1Visible = parseInt(res['rack1Visible']);
+      if (window.userConfig.length > 0) {
+        const decoder = document.createElement('textarea');
+        decoder.innerHTML = window.userConfig;
+        const decodedString = decoder.value;
 
+        // 2. Parse the clean string into a JSON object
+        const inventory = JSON.parse(decodedString);
+
+        // 3. Extract the max index as before
+        const keys = Object.keys(inventory);
+        const maxRackIndex =
+          keys.length > 0
+            ? Math.max(
+                ...keys.map((key) => {
+                  const match = key.match(/rack(\d+)/);
+                  return match ? parseInt(match[1], 10) : 0;
+                })
+              )
+            : 0;
+        // if (maxRackIndex <= window.address[addressID]['racks']) {
+        //   window.racks = window.address[addressID]['racks'];
+        // } else {
+        //   window.racks = maxRackIndex;
+        // }
+      }
+
+      window.racks = window.address[addressID]['racks'];
+
+      // window.rack1Visible = parseInt(res['rack1Visible']);
+      this.addRacks();
       window.vat = res['vat'];
 
       Global.dataToSent['addressID'] = addressID;
@@ -421,9 +538,8 @@ export default class Game extends Phaser.Scene {
     Object.keys(window.address).forEach((addressID) => {
       let _address = `${window.address[addressID]['housenumber']}, ${window.address[addressID]['street']}, ${window.address[addressID]['city']}, ${window.address[addressID]['postalcode']}`;
       let _title = window.address[addressID]['title'];
-      document.querySelector(
-        '.address_sec .content'
-      ).innerHTML += `<div class="address"> <div class="radio"><input type="radio" name="address_select" id="address_select" data-address-id='${addressID}'></div> <div class="head"> <div class="icon"><img src="./assets/location.png" alt=""></div> <div class="txt">${_title}</div> </div> <div class="info"> ${_address} </div> </div>`;
+      document.querySelector('.address_sec .content').innerHTML +=
+        `<div class="address"> <div class="radio"><input type="radio" name="address_select" id="address_select" data-address-id='${addressID}'></div> <div class="head"> <div class="icon"><img src="./assets/location.png" alt=""></div> <div class="txt">${_title}</div> </div> <div class="info"> ${_address} </div> </div>`;
     });
 
     document
@@ -482,6 +598,22 @@ export default class Game extends Phaser.Scene {
     Global.emitter.emit('popup_update', false);
     document.querySelector('#crate_info2').classList.remove('active');
   }
+  base64ToBlob(base64, mimeType = 'image/jpeg') {
+    // 1. Remove the header if it exists (e.g., "data:image/png;base64,")
+    const byteString = atob(base64.split(',')[1]);
+
+    // 2. Create an ArrayBuffer to hold the binary data
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    // 3. Convert characters to their 8-bit unsigned integer values
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    // 4. Return the new Blob
+    return new Blob([ab], { type: mimeType });
+  }
   calculateScore() {
     let combination = {};
     Object.keys(Global.crateData).forEach((key) => {
@@ -497,8 +629,12 @@ export default class Game extends Phaser.Scene {
             Global.crateData[key]['filledBottles'].length * 60;
         }
       });
-      const resizedBase64 = await this.captureLongScreenshot();
+      let resizedBase64 = await this.captureLongScreenshot();
+
+      resizedBase64 = this.base64ToBlob(resizedBase64);
+
       await saveImage(resizedBase64);
+
       Global.emitter.emit('game:show_register');
       document.querySelector('.final_loader').classList.remove('active');
       // await saveImage(resizedBase64);

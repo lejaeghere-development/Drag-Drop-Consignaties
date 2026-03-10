@@ -63,6 +63,7 @@ export default class Crates extends Phaser.GameObjects.Group {
       Global.prevCrateData = JSON.parse(JSON.stringify(Global.crateData));
     }, 700);
   }
+
   showOrHideUI(status) {
     this.setVisible(status);
   }
@@ -244,9 +245,10 @@ export default class Crates extends Phaser.GameObjects.Group {
     this.removeCrate(false);
 
     this.addCrateTO && clearTimeout(this.addCrateTO);
+
     this.addCrateTO = setTimeout(() => {
-      if (Global.totalBottles == 6) {
-        this.bottleSets = 1;
+      if (Global.totalBottles == 6 || Global.totalBottles == 12) {
+        this.bottleSets = Global.totalBottles == 12 ? 2 : 1;
         this.crate = this.create(
           this.extraLeftPer +
             this.extraTop / 4 +
@@ -259,9 +261,7 @@ export default class Crates extends Phaser.GameObjects.Group {
           .setDepth(11 + Global.extraDepth)
           .setData('readyToDrag', true)
           .setAlpha(0)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * (this.bottleSets == 2 ? 0.85 : 1));
         this.crateFront = this.create(
           this.extraLeftPer +
             this.extraTop / 4 +
@@ -269,14 +269,12 @@ export default class Crates extends Phaser.GameObjects.Group {
               this.scaleFact /* this.c_w * .5 + 200 * this.scaleFact *-0.5 */,
           this.c_h - this.extraTop - 400 * this.scaleFact,
           'items',
-          `crate_${Global.totalBottles}_front0000`
+          `crate_${this.bottleSets == 2 ? 12 : Global.totalBottles}_front0000`
         )
-          .setDepth(13 + Global.extraDepth)
+          .setDepth(12 + Global.extraDepth + this.bottleSets * 2)
           .setAlpha(0)
           // .setData('readyToDrag', true)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * (this.bottleSets == 2 ? 0.85 : 1));
       } else {
         this.bottleSets = 4;
         this.crate = this.create(
@@ -291,9 +289,7 @@ export default class Crates extends Phaser.GameObjects.Group {
           .setDepth(11 + Global.extraDepth)
           .setAlpha(0)
           .setData('readyToDrag', true)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * 0.85);
 
         this.crateChannel1 = this.create(
           this.extraLeftPer +
@@ -306,9 +302,7 @@ export default class Crates extends Phaser.GameObjects.Group {
         )
           .setDepth(13 + Global.extraDepth)
           .setAlpha(0)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * 0.85);
 
         this.crateChannel2 = this.create(
           this.extraLeftPer +
@@ -321,9 +315,7 @@ export default class Crates extends Phaser.GameObjects.Group {
         )
           .setDepth(17 + Global.extraDepth)
           .setAlpha(0)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * 0.85);
 
         this.crateFront = this.create(
           this.extraLeftPer +
@@ -337,18 +329,22 @@ export default class Crates extends Phaser.GameObjects.Group {
           .setDepth(18 + Global.extraDepth)
           .setAlpha(0)
           // .setData('readyToDrag', true)
-          .setScale(
-            this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)
-          );
+          .setScale(this.scaleFact * 1.5 * 0.85);
       }
 
       for (let i = 1; i <= this.bottleSets; i++) {
         this[`bottle_set${i}`] = this.create(
-          this.crate
-            .x /* - (Math.ceil(this.bottleSets/2)-i)*500*this.scaleFact */,
+          this.crate.x +
+            (this.bottleSets == 2
+              ? (i == 1 ? -0.22 : 0.22) * this.crate.width * this.crate.scaleX
+              : 0),
           this.crate.y +
-            (((i - 2.5) * 150 * this.scaleFact) / this.shrinkFact) *
-              (Global.totalBottles == 6 ? 0.7 : 0.85),
+            ((((Global.totalBottles == 6 || this.bottleSets == 2 ? 1 : i) -
+              2.5) *
+              150 *
+              this.scaleFact) /
+              this.shrinkFact) *
+              (Global.totalBottles == 6 || this.bottleSets == 2 ? 0.7 : 0.85),
           `bottles_group_${Global.totalBottles}`,
           ''
         )
@@ -536,11 +532,11 @@ export default class Crates extends Phaser.GameObjects.Group {
         // this.filledIndeces = [];
         // this.filledBottles = [];
       } else {
-        this[`bottle_set4`].setVisible(false);
-        this[`bottle_set4ToDrag`].setVisible(false);
+        this[`bottle_set${this.bottleSets}`].setVisible(false);
+        this[`bottle_set${this.bottleSets}ToDrag`].setVisible(false);
         Global.emitter.emit('rack:reset_swap_crate');
         Global.emitter.emit('rack:hide_all_clickable');
-        this.filledIndex = 4;
+        this.filledIndex = this.bottleSets;
         // this.filledIndex--;
       }
 
@@ -585,7 +581,11 @@ export default class Crates extends Phaser.GameObjects.Group {
     Global.emitter.emit('rack:reset_swap_crate');
     Global.emitter.emit('rack:hide_all_clickable');
 
-    Global.emitter.emit('rack:highlight_empty_space');
+    Global.emitter.emit(
+      'rack:highlight_empty_space',
+      false,
+      Global.totalBottles
+    );
     // }
   }
   removeBottle() {
@@ -810,10 +810,17 @@ export default class Crates extends Phaser.GameObjects.Group {
         this[`bottle_set${i}`].scene &&
         this[`bottle_set${i}`]
           .setPosition(
-            this.crate.x,
+            this.crate.x +
+              (this.bottleSets == 2
+                ? (i == 1 ? -0.22 : 0.22) * this.crate.width * this.crate.scaleX
+                : 0),
             this.crate.y +
-              (((i - 2.5) * 150 * this.scaleFact) / this.shrinkFact) *
-                (Global.totalBottles == 6 ? 0.7 : 0.85)
+              ((((Global.totalBottles == 6 || this.bottleSets == 2 ? 1 : i) -
+                2.5) *
+                150 *
+                this.scaleFact) /
+                this.shrinkFact) *
+                (Global.totalBottles == 6 || this.bottleSets == 2 ? 0.7 : 0.85)
           )
           .setScale(
             this.scaleFact * 1.5 * (Global.totalBottles == 6 ? 1 : 0.85)

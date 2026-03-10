@@ -23,6 +23,8 @@ foreach($dataSent as $key => $val){
 
 }
 
+echo json_encode($dataForCount);
+
 if($_SESSION["uid"]){
 
     $condition = array('uid' => $_SESSION["uid"]);

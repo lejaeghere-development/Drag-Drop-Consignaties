@@ -18,7 +18,7 @@ export default class Loader extends Phaser.Scene {
     this.appLoader.init(`${this.s3Prefix}/LoaderIcon.png`, 'greycliff-bold');
   }
   loadAssets(v) {
-    let asset_version = '4.0.0';
+    let asset_version = '4.2.24';
     this.load.image('BG', './assets/BG.png?v=1.0');
     this.load.image('arrow', './assets/arrow.png?v=1.0');
     this.load.atlas(

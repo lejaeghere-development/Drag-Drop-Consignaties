@@ -69,11 +69,47 @@ export default class Header extends Phaser.GameObjects.Group {
           v.stopImmediatePropagation();
           this.cancelReadyInfo();
         });
+
+      document
+        .querySelector('#mixed_options #option-12')
+        .addEventListener('click', (v) => {
+          Global.emitter.emit('repeat:hide');
+          v.preventDefault();
+          v.stopImmediatePropagation();
+          this.toggleType(true, false, 12);
+          Global.emitter.emit('mixed:update_set', false, true, 12);
+        });
+      document
+        .querySelector('#mixed_options #option-24')
+        .addEventListener('click', (v) => {
+          Global.emitter.emit('repeat:hide');
+          v.preventDefault();
+          v.stopImmediatePropagation();
+          this.toggleType(true, false, 24);
+          Global.emitter.emit('mixed:update_set', false, true, 24);
+        });
+      document
+        .querySelector('#mixed_options #option-fixed')
+        .addEventListener('click', (v) => {
+          Global.emitter.emit('repeat:hide');
+          v.preventDefault();
+          v.stopImmediatePropagation();
+          this.toggleType(false, false, 24);
+          Global.emitter.emit('mixed:update_set', false, true, 24);
+
+          // Global.emitter.emit('toggle:update', false, 24);
+        });
     }
+
+    //
   }
   setUp() {
     setScaleFactor.call(this, false);
     this.emitter = EventEmitter.getObj();
+    Global.emitter.on(
+      'mixed:update_btn_label',
+      this.updateMixedLabel.bind(this)
+    );
     Global.emitter.on('header:update_crate', this.updateCrate.bind(this));
     Global.emitter.on('header:show_skip', this.showSkip.bind(this));
     Global.emitter.on('game:resize', this.onResize.bind(this));
@@ -250,8 +286,28 @@ export default class Header extends Phaser.GameObjects.Group {
           align: 'center',
         },
       })
+      .setAlpha(0)
       .setDepth(1005 + 1000);
-
+    this.mixedBtn = this.create(
+      this.crateCreatedBG.x + 1320 * this.scaleFact,
+      this.crateCreatedBG.y - 40 * this.scaleFact,
+      'items',
+      'mixedBtn0000'
+    )
+      .setScale(this.scaleFact * 0.75)
+      .setInteractive({
+        cursor: 'pointer',
+      })
+      .on('pointerdown', () => {
+        Global.emitter.emit('mixed:update_set');
+      })
+      // .on('pointerover', () => {
+      //   Global.emitter.emit('toggle_info:show');
+      // })
+      // .on('pointerout', () => {
+      //   Global.emitter.emit('toggle_info:hide');
+      // })
+      .setDepth(1005 + 1000);
     this.toggleInfoIcon = this.create(
       this.crateCreatedBG.x + 1320 * this.scaleFact,
       this.crateCreatedBG.y - 40 * this.scaleFact,
@@ -270,23 +326,26 @@ export default class Header extends Phaser.GameObjects.Group {
       })
       .setDepth(1005 + 1000);
 
-    this.toggleSwitch = this.scene.add.rexToggleSwitch(
-      this.crateCreatedBG.x + 1460 * this.scaleFact,
-      150 * this.scaleFact + this.extraTop,
-      200 * this.scaleFact,
-      200 * this.scaleFact,
-      0xfbde42
-    );
-    // .setReadOnly();
-    this.toggleSwitch.on(
-      'valuechange',
-      function (value) {
-        // value: checked
-        this.toggleType(value, false, false);
-      }.bind(this)
-    );
+    // this.toggleSwitch = this.scene.add.rexToggleSwitch(
+    //   this.crateCreatedBG.x + 1460 * this.scaleFact,
+    //   150 * this.scaleFact + this.extraTop,
+    //   200 * this.scaleFact,
+    //   200 * this.scaleFact,
+    //   0xfbde42
+    // );
+    // this.toggleSwitch.on(
+    //   'valuechange',
+    //   function (value) {
+    //     Global.emitter.emit('repeat:hide');
+    //     this.toggleType(value, false, false);
+    //   }.bind(this)
+    // );
 
     if (window.isLoggedIn) {
+      console.log(Object.keys(window.address).length, 'adds');
+      if (Object.keys(window.address).length <= 1) {
+        document.querySelector('#changeAddress').classList.add('disabled');
+      }
       this.changeAddress = this.create(
         this.c_w - this.extraLeftPer - 1400 * this.scaleFact,
         150 * this.scaleFact + this.extraTop,
@@ -450,7 +509,17 @@ export default class Header extends Phaser.GameObjects.Group {
     this.onResize();
 
     //
-    this.toggleType(false, true, true);
+    this.toggleType(false, true, 24);
+  }
+  updateMixedLabel(updateBtn, updateFrame) {
+    if (updateBtn) {
+      this.mixedBtn.setFrame(
+        `mixed${Global.isToggleOn ? updateFrame : 'Btn'}0000`
+      );
+    }
+    // else{
+    //    this.mixedBtn.setFrame('mixedBtn0000');
+    // }
   }
   onSkipHintClose() {
     window.hideHint = this.hideChecked;
@@ -488,18 +557,29 @@ export default class Header extends Phaser.GameObjects.Group {
       !checkBeforeToggle ||
       (checkBeforeToggle && Global.canUseCustomToggle)
     ) {
-      this.toggleSwitch.setReadOnly(status);
-      this.toggleSwitch.setAlpha(status ? 0.1 : 1);
+      // this.toggleSwitch.setReadOnly(status);
+      // this.toggleSwitch.setAlpha(status ? 0.1 : 1);
       if (status && !checkBeforeToggle) {
-        this.toggleSwitch.setValue(false);
+        // this.toggleSwitch.setValue(false);
       }
     }
 
-    // this.toggleSwitch.input.enabled= !status;
-    // this.toggleSwitch.readOnly= !status;
+    if (Global.canUseCustomToggle) {
+      this.mixedBtn.setAlpha(1).setInteractive({
+        cursor: 'pointer',
+      });
+    } else {
+      this.mixedBtn.setAlpha(0.5).disableInteractive();
+      this.toggleType(false, false, 24);
+      Global.emitter.emit('mixed:update_set', false, true, 24);
+    }
+    if (status) {
+      Global.emitter.emit('repeat:hide');
+    }
   }
   forceUpdateToggle(toggleStatus, isTemp = false) {
     // return false;
+    // alert('forceUpdateToggle' + ':' + toggleStatus + isTemp);
     if (!toggleStatus) {
       if (Global.isToggleOn) {
         /* this.scene.tweens.add({
@@ -520,7 +600,13 @@ export default class Header extends Phaser.GameObjects.Group {
             this.toggleBG.setAlpha(0.5);
             this.toggleBG2.setAlpha(0.5); */
       if (isTemp) {
-        this.toggleSwitch.setValue(toggleStatus);
+        this.toggleType(toggleStatus, false, 24);
+        Global.emitter.emit('mixed:update_set', false, true, 24);
+        // setTimeout(() => {
+        //   Global.emitter.emit('repeat:hide');
+        // }, 10);
+        // console.log(isTemp, 'isTemp');
+        // this.toggleSwitch.setValue(toggleStatus);
         return false;
       }
       this.updateToggleState(false, true);
@@ -529,7 +615,7 @@ export default class Header extends Phaser.GameObjects.Group {
       this.updateToggleState(false, false);
     }
   }
-  toggleType(value, isStart = false, quick = false) {
+  toggleType(value, isStart = false, type = -1) {
     // return false;
     if (Global.popupActive) return false;
 
@@ -539,7 +625,7 @@ export default class Header extends Phaser.GameObjects.Group {
     if (!isStart) {
       Global.emitter.emit(
         'crate:select',
-        24,
+        type,
         Global.isToggleOn ? 'custom' : 'fixed',
         true
       );
@@ -671,6 +757,7 @@ export default class Header extends Phaser.GameObjects.Group {
     Global.emitter.emit('bottle:remove');
     Global.emitter.emit('crate:remove');
     Global.emitter.emit('crate_selection:enable');
+    Global.emitter.emit('repeat:hide');
   }
   updateCrateBtnStatus(status, isPrefill) {
     // alert(status);
@@ -831,12 +918,16 @@ export default class Header extends Phaser.GameObjects.Group {
   hideToggle() {
     this.toggleSwitchLabel.setVisible(false);
     this.toggleInfoIcon.setVisible(false);
-    this.toggleSwitch.setVisible(false);
+    // this.toggleSwitch.setVisible(false);
+
+    this.mixedBtn.setVisible(false);
   }
   showToggle() {
     this.toggleSwitchLabel.setVisible(true);
     this.toggleInfoIcon.setVisible(true);
-    this.toggleSwitch.setVisible(true);
+    // this.toggleSwitch.setVisible(true);
+
+    this.mixedBtn.setVisible(true);
   }
   showAddressSelection() {
     this.changeAddress && this.changeAddress.setVisible(true);
@@ -927,16 +1018,16 @@ export default class Header extends Phaser.GameObjects.Group {
     this.BG.fillRect(
       this.extraLeftPer,
       this.extraTop,
-      this.c_w * (Global.lastOrientation == 'portrait' ? 0.5 : 0.2) -
+      this.c_w * (Global.lastOrientation == 'portrait' ? 0.35 : 0.2) -
         this.extraLeftPer / 2,
       (Global.lastOrientation == 'portrait' ? 400 : 300) * this.scaleFact
     );
     this.BG.fillStyle(0x55a383, 1);
     this.BG.fillRect(
-      this.c_w * (Global.lastOrientation == 'portrait' ? 0.5 : 0.2) +
+      this.c_w * (Global.lastOrientation == 'portrait' ? 0.35 : 0.2) +
         this.extraLeftPer / 2,
       this.extraTop,
-      this.c_w * (Global.lastOrientation == 'portrait' ? 0.5 : 0.8) -
+      this.c_w * (Global.lastOrientation == 'portrait' ? 0.65 : 0.8) -
         this.extraLeftPer,
       (Global.lastOrientation == 'portrait' ? 400 : 300) * this.scaleFact
     );
@@ -945,18 +1036,18 @@ export default class Header extends Phaser.GameObjects.Group {
     this.logo
       .setPosition(
         this.extraLeftPer * 0.75 +
-          this.c_w * (Global.lastOrientation == 'portrait' ? 0.25 : 0.1),
+          this.c_w * (Global.lastOrientation == 'portrait' ? 0.18 : 0.1),
         (Global.lastOrientation == 'portrait' ? 200 : 150) * this.scaleFact +
           this.extraTop
       )
       .setScale(
-        this.scaleFact * (Global.lastOrientation == 'portrait' ? 2 : 1.2)
+        this.scaleFact * (Global.lastOrientation == 'portrait' ? 1.5 : 1.2)
       );
 
     this.crateCreatedBG
       .setPosition(
         /* this.extraLeftPer + */ this.c_w *
-          (Global.lastOrientation == 'portrait' ? 0.52 : 0.2) +
+          (Global.lastOrientation == 'portrait' ? 0.37 : 0.2) +
           this.extraLeftPer / 2 +
           200 * this.scaleFact,
         (Global.lastOrientation == 'portrait' ? 200 : 150) * this.scaleFact +
@@ -1096,22 +1187,22 @@ export default class Header extends Phaser.GameObjects.Group {
       }
     }
 
-    this.toggleSwitch &&
-      this.toggleSwitch
-        .setPosition(
-          Global.lastOrientation == 'portrait'
-            ? this.toggleSwitchLabel.x +
-                this.toggleSwitchLabel.width *
-                  this.toggleSwitchLabel.scaleX *
-                  0.5
-            : this.crateCreatedBG.x + 1100 * this.scaleFact,
-          (Global.lastOrientation == 'portrait' ? 280 : 150) * this.scaleFact +
-            this.extraTop
-        )
-        .setDisplaySize(
-          (Global.lastOrientation == 'portrait' ? 300 : 200) * this.scaleFact,
-          (Global.lastOrientation == 'portrait' ? 300 : 200) * this.scaleFact
-        );
+    // this.toggleSwitch &&
+    //   this.toggleSwitch
+    //     .setPosition(
+    //       Global.lastOrientation == 'portrait'
+    //         ? this.toggleSwitchLabel.x +
+    //             this.toggleSwitchLabel.width *
+    //               this.toggleSwitchLabel.scaleX *
+    //               0.5
+    //         : this.crateCreatedBG.x + 1100 * this.scaleFact,
+    //       (Global.lastOrientation == 'portrait' ? 280 : 150) * this.scaleFact +
+    //         this.extraTop
+    //     )
+    //     .setDisplaySize(
+    //       (Global.lastOrientation == 'portrait' ? 300 : 200) * this.scaleFact,
+    //       (Global.lastOrientation == 'portrait' ? 300 : 200) * this.scaleFact
+    //     );
 
     this.hideCheck &&
       this.hideCheck.setPosition(
@@ -1133,20 +1224,35 @@ export default class Header extends Phaser.GameObjects.Group {
       this.hideBtn &&
       this.hideBtn.setScale(this.scaleFact * 1);
 
+    this.mixedBtn &&
+      this.mixedBtn
+        .setPosition(
+          Global.lastOrientation == 'portrait'
+            ? this.c_w * 0.39 + this.extraLeftPer / 2 + 740 * this.scaleFact
+            : this.crateCreatedBG.x + 850 * this.scaleFact,
+          this.crateCreatedBG.y +
+            (Global.lastOrientation == 'portrait' ? 0 : 5) * this.scaleFact
+        )
+        .setScale(
+          this.scaleFact * (Global.lastOrientation == 'portrait' ? 1.1 : 0.75)
+        );
+
+    const mixedLeftPos = (this.mixedBtn.x / this.c_w) * 100;
+
+    document.querySelector('#mixed_options').style.left = `${mixedLeftPos}%`;
+
+    //(Global.lastOrientation == 'portrait' ? 400 : 300) * this.scaleFact
+
     this.toggleInfoIcon &&
       this.toggleInfoIcon
         .setPosition(
-          Global.lastOrientation == 'portrait'
-            ? this.toggleSwitchLabel.x +
-                this.toggleSwitchLabel.width *
-                  this.toggleSwitchLabel.scaleX *
-                  1 +
-                20 * this.scaleFact
-            : this.crateCreatedBG.x + 980 * this.scaleFact,
-          this.crateCreatedBG.y - 50 * this.scaleFact
+          this.mixedBtn.x +
+            this.mixedBtn.width * this.mixedBtn.scaleX * 0.5 +
+            20 * this.scaleFact,
+          this.mixedBtn.y - this.mixedBtn.height * this.mixedBtn.scaleX * 0.5
         )
         .setScale(
-          this.scaleFact * (Global.lastOrientation == 'portrait' ? 0.85 : 0.6)
+          this.scaleFact * (Global.lastOrientation == 'portrait' ? 1 : 0.6)
         );
 
     /* this.skipHintBGActive && */ this.hideInfo &&

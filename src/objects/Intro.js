@@ -34,11 +34,13 @@ export default class Intro extends Phaser.GameObjects.Group {
 
   enableCrates() {
     let slotAvailable = false;
+    if (!Global.crateData) return;
     Object.keys(Global.crateData).forEach((key) => {
       if (Global.crateData[key]['status'] == 'empty') {
         slotAvailable = true;
       }
     });
+
     if (!slotAvailable) return false;
 
     Global.crateActivated = false;
@@ -250,12 +252,13 @@ export default class Intro extends Phaser.GameObjects.Group {
     if (Global.popupActive) return false;
 
     Global.totalBottles = bottles;
+
     Global.choosenTotalBottles = Global.totalBottles;
     Global.crateType = crateType;
     // alert(Global.totalBottles)
 
     this.clear(true, true);
-
+    Global.emitter.emit('repeat:hide');
     // alert("DS")
     if (Global.isIntroFirst) {
       // setTimeout(() => {

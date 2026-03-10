@@ -27,6 +27,7 @@ foreach ($results as $res) {
             $addressInfo[$res['email']][$resA['addressID']]['housenumber'] = $resA['housenumber'];
             $addressInfo[$res['email']][$resA['addressID']]['postalcode'] = $resA['postalcode'];
             $addressInfo[$res['email']][$resA['addressID']]['city'] = $resA['city'];
+            $addressInfo[$res['email']][$resA['addressID']]['racks'] = $resA['racks'];
         }
     }
    

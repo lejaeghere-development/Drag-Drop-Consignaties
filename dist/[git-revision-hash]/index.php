@@ -39,6 +39,7 @@
         $addressInfo[$resA['addressID']]['housenumber'] = $resA['housenumber'];
         $addressInfo[$resA['addressID']]['postalcode'] = $resA['postalcode'];
         $addressInfo[$resA['addressID']]['city'] = $resA['city'];
+        $addressInfo[$resA['addressID']]['racks'] = $resA['racks'];
     }
     $_SESSION['address']= json_encode($addressInfo);
 
@@ -175,7 +176,7 @@
 </head>
 
 <body>
- <div class="dummy">
+   <div class="dummy">
       <p>Hello</p>
       <p>Hello</p>
       <p>Hello</p>
@@ -185,7 +186,9 @@
     <div class="mobile_menu active2">
       <div class="mobile_menu_close close"></div>
       <div class="content">
-        <div class="logo"><img src="./assets/logo.png" alt="" srcset="" /></div>
+        <div class="logo">
+          <img src="./assets/logo.png" alt="" srcset="" />
+        </div>
         <div class="buttons">
           <div id="skipBtn">
             <img src="./assets/skip.png" alt="" srcset="" />
@@ -223,7 +226,9 @@
             </div>
           </div>
         </div>
-        <div id="logoutBtn"><img src="./assets/logout.png" alt="" /></div>
+        <div id="logoutBtn">
+          <img src="./assets/logout.png" alt="" />
+        </div>
       </div>
     </div>
     <div class="form_bg"></div>
@@ -375,7 +380,6 @@
         <div class="sub" data-parent-id="bottle_zuivel" data-type="Chocomelk">
           Chocomelk
         </div>
-     
 
         <div
           class="sub"
@@ -384,7 +388,7 @@
         >
           Kids en baby's
         </div>
-           <div class="sub" data-parent-id="bottle_zuivel" data-type="Lactosevrij">
+        <div class="sub" data-parent-id="bottle_zuivel" data-type="Lactosevrij">
           Lactosevrij
         </div>
         <div class="sub" data-parent-id="bottle_bieren" data-type="Fruitbier">
@@ -467,7 +471,6 @@
         <div class="buttons">
           <div class="btn" id="cancel">Annuleer</div>
           <div class="btn yellow" id="confirm">Bevestig</div>
-          
         </div>
       </div>
     </div>
@@ -480,9 +483,8 @@
           Je wijzigingen op dit adres zijn nog niet opgeslagen.
         </div>
         <div class="buttons">
-
           <div class="btn" id="cancel">Annuleer</div>
-                    <div class="btn yellow" id="confirm">Bevestig</div>
+          <div class="btn yellow" id="confirm">Bevestig</div>
         </div>
       </div>
     </div>
@@ -492,7 +494,11 @@
           Je kunt opslaan zodra je krattenrekken volledig gevuld zijn. Bijna
           daar, bedankt!
         </div>
-        <div class="buttons"><div class="btn yellow" id="cancel">OK</div></div>
+        <!-- <div class="info">Ben je zeker dat je wil doorgaan?</div> -->
+        <div class="buttons">
+          <!-- <div class="btn" id="confirm">Bevestig</div> -->
+          <div class="btn yellow" id="cancel">OK</div>
+        </div>
       </div>
     </div>
     <div id="ready_info" class="">
@@ -501,12 +507,12 @@
           Proficiat, je krattenrekken zijn nu netjes opgevuld.
         </div>
         <div class="info">
-          Zit je drankenvoorraad nu goed? Klik op BEVESTIG om verder te gaan. Wil je nog eens controleren of iets wijzigen klik op ANNULEER.
+          Zit je drankenvoorraad nu goed? Klik op BEVESTIG om verder te gaan.
+          Wil je nog eens controleren of iets wijzigen klik op ANNULEER.
         </div>
         <div class="buttons">
-
           <div class="btn" id="cancel">Annuleer</div>
-                    <div class="btn yellow" id="confirm">Bevestig</div>
+          <div class="btn yellow" id="confirm">Bevestig</div>
         </div>
       </div>
     </div>
@@ -600,9 +606,16 @@
           Een mixed krat laat je toe om verschillende soorten dranken samen in
           één krat te combineren.
         </div>
-       <!--  <div class="buttons">
+        <!-- <div class="buttons">
           <div class="btn yellow" id="toggle_cancel">Terug</div>
         </div> -->
+      </div>
+    </div>
+    <div id="mixed_options" class="">
+      <div class="container">
+        <div class="option" id="option-12">MIXED KRAT GROTE FLESSEN (12)</div>
+        <div class="option" id="option-24">MIXED KRAT KLEINE FLESSEN (24)</div>
+        <div class="option" id="option-fixed">FIXED KRAT</div>
       </div>
     </div>
     <div class="gameError"></div>
@@ -616,9 +629,7 @@
     </div>
     <div id="rotate"><img src="./assets/rotate.png" alt="" srcset="" /></div>
 
-    
-       
-    <script src="./index.js?v=6.0.0"></script>
+    <script src="./index.js?v=7.1.2.79"></script>
 </body>
 
 </html>

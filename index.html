@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta
@@ -103,7 +103,7 @@
     </style>
     <script>
       window.showEmpty = '';
-      window.racks = '1';
+      window.racks = '3';
       window.hideHint = '';
       window.isGuest = 'true';
       window.isLoggedIn = '';
@@ -119,10 +119,15 @@
       window.rack1Visible = parseInt(window.rack1Visible);
       if (!window.isLoggedIn) {
         window.rack1Visible = 1;
-        window.userConfig = '[]';
+        window.userConfig =
+          '{&quot;rack3_left_1&quot;:[&quot;BRU_PLAT_BIG&quot;,&quot;CRISTALINE_PLAT&quot;],&quot;rack3_right_1&quot;:[],&quot;rack3_left_2&quot;:[&quot;APPLETISER&quot;,&quot;AQUARIUS_RED_PEACH_50&quot;],&quot;rack3_right_2&quot;:[&quot;BAVIK_SUPER_PILS&quot;,&quot;COLA_ZERO_SMALL&quot;],&quot;rack3_left_3&quot;:[&quot;AQUARIUS_ORANGE_50&quot;,&quot;AQUARIUS_ORANGE_50&quot;],&quot;rack3_right_3&quot;:[&quot;AQUARIUS_ORANGE_50&quot;,&quot;AQUARIUS_ORANGE_50&quot;],&quot;rack3_left_4&quot;:[&quot;AQUARIUS_ORANGE_50&quot;,&quot;AQUARIUS_ORANGE_50&quot;],&quot;rack3_right_4&quot;:[&quot;AQUARIUS_ORANGE_50&quot;,&quot;AQUARIUS_ORANGE_50&quot;],&quot;rack2_left_1&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_right_1&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_left_2&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_right_2&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_left_3&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_right_3&quot;:[&quot;BOSCOULIS&quot;,&quot;BOSCOULIS&quot;],&quot;rack2_left_4&quot;:[&quot;CHAUDFONTAINE_PLAT_SMALL&quot;,&quot;CHAUDFONTAINE_PLAT_SMALL&quot;],&quot;rack2_right_4&quot;:[&quot;CHAUDFONTAINE_PLAT_SMALL&quot;,&quot;CHAUDFONTAINE_PLAT_SMALL&quot;],&quot;rack1_left_1&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_right_1&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_left_2&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_right_2&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_left_3&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_right_3&quot;:[&quot;DUVEL_TRIPEL_HOP_CITRA&quot;,&quot;DUVEL_TRIPEL_HOP_CITRA&quot;],&quot;rack1_left_4&quot;:null,&quot;rack1_right_4&quot;:null}';
+        // window.address =
+        //   '{"1142259449":{"title":"Home2","street":"S2","housenumber":"H2","postalcode":"P2","city":"C2","racks":"2"},"124136121":{"title":"Home1","street":"S1","housenumber":"H1","postalcode":"P1","city":"C1","racks":"10"}}';
+        // window.userConfig = '';
         window.address = '';
         window.vat = '';
         window.comments = '';
+        // window.address = JSON.parse(window.address);
       } else {
         window.address = JSON.parse(window.address);
       }
@@ -583,6 +588,13 @@
         <!-- <div class="buttons">
           <div class="btn yellow" id="toggle_cancel">Terug</div>
         </div> -->
+      </div>
+    </div>
+    <div id="mixed_options" class="">
+      <div class="container">
+        <div class="option" id="option-12">MIXED KRAT GROTE FLESSEN (12)</div>
+        <div class="option" id="option-24">MIXED KRAT KLEINE FLESSEN (24)</div>
+        <div class="option" id="option-fixed">FIXED KRAT</div>
       </div>
     </div>
     <div class="gameError"></div>
